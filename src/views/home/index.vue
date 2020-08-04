@@ -1,5 +1,5 @@
 <template>
-  <div class="flexcc flexcol welcome" style="height:100vh">
+  <div class="flexcc flexcol welcome" style="height: 100vh;">
     hello world!
   </div>
 </template>
