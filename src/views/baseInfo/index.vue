@@ -8,10 +8,12 @@
             当前等级:
             <span>
               一星忠诚用户
-              <van-icon name="star" v-for="item in startNum" :key="item" />
+              <van-icon name="star"
+                        v-for="item in startNum"
+                        :key="item" />
             </span>
           </div>
-          <div>尊敬的一星忠诚用户，您拥有的特权有，生日问候。</div>
+          <div>尊敬的一星忠诚用户，您拥有的特权有，生日问候。恩</div>
         </div>
       </div>
       <!-- 下方内容 -->
@@ -57,7 +59,9 @@
             <div class="body_span">
               <span>用户级别</span>
               <span>
-                <van-icon name="star" v-for="item in startNum" :key="item" />
+                <van-icon name="star"
+                          v-for="item in startNum"
+                          :key="item" />
               </span>
             </div>
             <div class="body_span">
@@ -85,7 +89,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       text: 30,
       flag: true,
