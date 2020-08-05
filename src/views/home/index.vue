@@ -1,5 +1,5 @@
 <template>
-  <div class="flexcc flexcol welcome" style="height: 100vh;">
+  <div class="home">
     hello world!
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
   padding: 10px;
   background: #ccc;
 }
-.welcome p {
+.home {
   font-size: 24px;
 }
 </style>
