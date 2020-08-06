@@ -11,6 +11,137 @@ let routes = [
     name: "home",
     component: Home
   },
+  //影院列表
+  {
+    path: "/cinemas",
+    name: "cinemas",
+    component: () => import(/* webpackChunkName: "pages" */ "../views/cinemas")
+  },
+  //影院详情
+  {
+    path: "/detail",
+    name: "detail",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/cinemas/detail")
+  },
+  //影片列表
+  {
+    path: "/movies",
+    name: "movies",
+    component: () => import(/* webpackChunkName: "pages" */ "../views/movies")
+  },
+  //影片详情
+  {
+    path: "/detail",
+    name: "detail",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/movies/detail")
+  },
+  //影票频道首页
+  {
+    path: "/tickets",
+    name: "tickets",
+    component: () => import(/* webpackChunkName: "pages" */ "../views/tickets")
+  },
+  //影票频道搜索
+  {
+    path: "/search",
+    name: "search",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/tickets/search")
+  },
+  //影票频道购票
+  {
+    path: "/booking",
+    name: "booking",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/tickets/booking")
+  },
+  //影票频道选座
+  {
+    path: "/choseSeat",
+    name: "choseSeat",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/tickets/choseSeat")
+  },
+  //影票频道订单确认
+  {
+    path: "/orderConfirm",
+    name: "orderConfirm",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/tickets/orderConfirm")
+  },
+  //个人主页
+  {
+    path: "/userCenter",
+    name: "userCenter",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/userCenter")
+  },
+  //优惠券
+  {
+    path: "/coupon",
+    name: "coupon",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/userCenter/coupon")
+  },
+  //影城卡
+  {
+    path: "/cinemaCard",
+    name: "cinemaCard",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/userCenter/cinemaCard")
+  },
+  //联名卡
+  {
+    path: "/cobrandCard",
+    name: "cobrandCard",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/userCenter/cobrandCard")
+  },
+  //我的订单
+  {
+    path: "/order",
+    name: "order",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/userCenter/order")
+  },
+  //想看的影片
+  {
+    path: "/favor",
+    name: "favor",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/userCenter/favor")
+  },
+  //我的收藏
+  {
+    path: "/collection",
+    name: "collection",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/userCenter/collection")
+  },
+  //影评
+  {
+    path: "/comments",
+    name: "comments",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/userCenter/comments")
+  },
+  //关于
+  {
+    path: "/about",
+    name: "about",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/userCenter/about")
+  },
+  //我的活动
+  {
+    path: "/activites",
+    name: "activites",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/userCenter/activites")
+  },
+  //404
   {
     path: "/404",
     name: "404",
