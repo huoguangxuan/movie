@@ -45,9 +45,5 @@
     "insertPragma": false,
     "trailingComma": "none",
     "arrowParens": "avoid"
-  },
-  "browserlist": [
-    "Android >= 4.0",
-    "iOS >= 7"
-  ]
+  }
 }
