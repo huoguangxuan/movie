@@ -179,6 +179,7 @@ export default {
       }
     }
   },
+  
   created() {
     this.$parent.$refs["head"].title &&
       (this.$parent.$refs["head"].title = "扫码登录");
