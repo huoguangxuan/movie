@@ -11,6 +11,40 @@ let routes = [
     name: "home",
     component: Home
   },
+  //首页
+  {
+    path: "/home",
+    name: "home",
+    component: () => import(/* webpackChunkName: "pages" */ "../views/home")
+  },
+  //首页banner详情页
+  {
+    path: "/bannerDetail",
+    name: "bannerDetail",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/home/bannerDetail")
+  },
+  //首页搜索页
+  {
+    path: "/search",
+    name: "search",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/home/search")
+  },
+  //资讯详情
+  {
+    path: "/information",
+    name: "information",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/home/information")
+  },
+  //热门活动
+  {
+    path: "/activity",
+    name: "activity",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/home/activity")
+  },
   //影院列表
   {
     path: "/cinemas",
