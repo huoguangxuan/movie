@@ -8,7 +8,6 @@
           <span style="color:orange">手机营业厅app</span>
           <br />扫描二维码
         </p>
-        <qrcode class="qrcode" :value="value" :size="size" level="H" />
       </div>
     </div>
     <div v-else class="flexcc flexrow" style="width:100%">
@@ -178,10 +177,6 @@ export default {
         console.log("close");
       }
     }
-  },
-  created() {
-    this.$parent.$refs["head"].title &&
-      (this.$parent.$refs["head"].title = "扫码登录");
   },
   methods: {
     getSms() {

@@ -5,9 +5,7 @@ export default [
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/login/index.vue"),
     meta: {
-      title: "登录"
-      // auth: true,
-      // keepAlive: true
+      title: "扫码登录"
     }
   },
   {
