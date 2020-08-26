@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    首页
+    首页搜索页
   </div>
 </template>
 
