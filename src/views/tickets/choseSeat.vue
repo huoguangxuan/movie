@@ -64,7 +64,6 @@
 <script>
 import { NavBar, Swipe, SwipeItem } from "vant";
 import BScroll from "better-scroll";
-import jsonData from "@/assets/seat.json";
 import SeatArea from "./component/SeatArea";
 import api from "@/api";
 export default {
@@ -114,18 +113,24 @@ export default {
     }
   },
   mounted() {
-    this.seatList = jsonData.seatList;
-    this.seatTypeList = jsonData.seatTypeList;
-    let width = this.selectedSeat.length * 3.2 + 1.6;
-    this.$refs.scrollUl.style.width = width + "rem";
-    this.scroll = new BScroll(this.$refs.scroll, {
-      scrollX: true,
-      // 忽略竖直方向的滚动
-      scrollY: false,
-      eventPassthrough: "vertical"
-    });
+    // this.seatList = jsonData.seatList;
+    // this.seatTypeList = jsonData.seatTypeList;
+    this.getSeats();
   },
   methods: {
+    getSeats() {
+      const params = { cinemaId: "12345", showId: "1234", cityId: "北京" };
+      api
+        .getSeats(params)
+        .then(res => {
+          if (!res) return;
+          this.seatList = res.data.datas.seats;
+          this.seatTypeList = res.data.datas.seatStatus;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
     onClickLeft() {
       this.$router.back(-1);
     },

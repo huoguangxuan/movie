@@ -4,6 +4,6 @@ const prefix = "";
 
 export default {
   getSeats(params) {
-    return axios.get(`${prefix}/user/getSms`, params);
+    return axios.get(`${prefix}/ticket/getSeatDatas`, params);
   }
 };
