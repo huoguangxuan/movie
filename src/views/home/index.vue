@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    首页
+    hello world!
+    <the-footer activeIndex="0" />
   </div>
 </template>
 

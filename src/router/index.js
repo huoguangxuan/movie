@@ -58,19 +58,7 @@ let routes = [
     component: () =>
       import(/* webpackChunkName: "pages" */ "../views/cinemas/detail")
   },
-  //影片列表
-  {
-    path: "/movies",
-    name: "movies",
-    component: () => import(/* webpackChunkName: "pages" */ "../views/movies")
-  },
-  //影片详情
-  {
-    path: "/detail",
-    name: "detail",
-    component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/movies/detail")
-  },
+
   //影票频道首页
   {
     path: "/tickets",

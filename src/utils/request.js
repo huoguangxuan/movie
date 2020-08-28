@@ -44,7 +44,7 @@ service.interceptors.response.use(
   response => {
     let res = response.data;
     // if the custom code is not 20000, it is judged as an error.
-    if (res.responseCode !== "0000") {
+    if (res.code !== "0000") {
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
       // if (
       //   res.responseCode === "50008" ||
