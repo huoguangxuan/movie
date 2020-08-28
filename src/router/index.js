@@ -8,7 +8,6 @@ Vue.use(VueRouter);
 let routes = [
   {
     path: "/",
-    name: "home",
     component: Home
   },
   //首页
@@ -53,8 +52,8 @@ let routes = [
   },
   //影院详情
   {
-    path: "/detail",
-    name: "detail",
+    path: "/cinemas/detail",
+    name: "cinemasdetail",
     component: () =>
       import(/* webpackChunkName: "pages" */ "../views/cinemas/detail")
   },
@@ -80,7 +79,7 @@ let routes = [
   //影票频道搜索
   {
     path: "/search",
-    name: "search",
+    name: "ticketssearch",
     component: () =>
       import(/* webpackChunkName: "pages" */ "../views/tickets/search")
   },
