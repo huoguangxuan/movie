@@ -110,6 +110,132 @@ app.use("/ticket/getSeatDatas", function(req, res) {
   });
 });
 
+// 获取首页banner，热映，即将上映，热门活动的数据接口
+app.use("/home/getHomeData", function(req, res) {
+  res.json({
+    responseCode: "0000",
+    data: {
+      banner: [
+        {
+          sort: "1",
+          name: "少时诵诗书",
+          imageUrl: "https://img.yzcdn.cn/vant/apple-1.jpg",
+          title: "",
+          linkUrl: "https://img.yzcdn.cn/vant/apple-1.jpg"
+        },
+        {
+          sort: "2",
+          name: "少时诵诗书",
+          imageUrl: "https://img.yzcdn.cn/vant/apple-2.jpg",
+          title: "",
+          linkUrl: "https://img.yzcdn.cn/vant/apple-2.jpg"
+        },
+        {
+          sort: "3",
+          name: "少时诵诗书",
+          imageUrl: "https://img.yzcdn.cn/vant/apple-3.jpg",
+          title: "",
+          linkUrl: "https://img.yzcdn.cn/vant/apple-3.jpg"
+        },
+        {
+          sort: "4",
+          name: "少时诵诗书",
+          imageUrl: "https://img.yzcdn.cn/vant/apple-4.jpg",
+          title: "",
+          linkUrl: "https://img.yzcdn.cn/vant/apple-4.jpg"
+        }
+      ],
+      showing: {
+        modelName: "正在热映",
+        data: [
+          {
+            name: "图片",
+            "id ": "",
+            sort: "1",
+            playBillUrl: "https://img.yzcdn.cn/vant/apple-5.jpg"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "2",
+            playBillUrl: "https://img.yzcdn.cn/vant/apple-6.jpg"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "3",
+            playBillUrl: "https://img.yzcdn.cn/vant/apple-7.jpg"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "4",
+            playBillUrl: "https://img.yzcdn.cn/vant/apple-8.jpg"
+          }
+        ]
+      },
+      coming: {
+        modelName: "即将上映",
+        data: [
+          {
+            name: "图片",
+            "id ": "",
+            sort: "1",
+            playBillUrl: "https://img.yzcdn.cn/vant/apple-8.jpg"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "2",
+            playBillUrl: "https://img.yzcdn.cn/vant/apple-7.jpg"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "3",
+            playBillUrl: "https://img.yzcdn.cn/vant/apple-6.jpg"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "4",
+            playBillUrl: "https://img.yzcdn.cn/vant/apple-5.jpg"
+          }
+        ]
+      },
+      activity: {
+        modelName: "热门活动",
+        data: [
+          {
+            name: "活动",
+            "id ": "",
+            sort: "1",
+            photoUrl: "https://img.yzcdn.cn/vant/apple-2.jpg"
+          },
+          {
+            name: "活动",
+            "id ": "",
+            sort: "2",
+            photoUrl: "https://img.yzcdn.cn/vant/apple-4.jpg"
+          },
+          {
+            name: "活动",
+            "id ": "",
+            sort: "3",
+            photoUrl: "https://img.yzcdn.cn/vant/apple-6.jpg"
+          },
+          {
+            name: "活动",
+            "id ": "",
+            sort: "4",
+            photoUrl: "https://img.yzcdn.cn/vant/apple-8.jpg"
+          }
+        ]
+      }
+    }
+  });
+});
+
 app.listen("8090", () => {
   console.log("监听端口 8090");
 });
