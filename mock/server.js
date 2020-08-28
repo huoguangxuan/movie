@@ -31,7 +31,6 @@ app.use("/list", function(req, res) {
     })
   );
 });
-
 //login
 app.use("/user/login", function(req, res) {
   res.json({
