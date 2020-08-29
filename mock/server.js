@@ -113,34 +113,36 @@ app.use("/ticket/getSeatDatas", function(req, res) {
 // 获取首页banner，热映，即将上映，热门活动的数据接口
 app.use("/home/getHomeData", function(req, res) {
   res.json({
-    responseCode: "0000",
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 17:38：22",
     data: {
       banner: [
         {
           sort: "1",
           name: "少时诵诗书",
-          imageUrl: "https://img.yzcdn.cn/vant/apple-1.jpg",
+          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/536/0000536578.fid",
           title: "",
           linkUrl: "https://img.yzcdn.cn/vant/apple-1.jpg"
         },
         {
           sort: "2",
           name: "少时诵诗书",
-          imageUrl: "https://img.yzcdn.cn/vant/apple-2.jpg",
+          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/588/0000588314.fid",
           title: "",
           linkUrl: "https://img.yzcdn.cn/vant/apple-2.jpg"
         },
         {
           sort: "3",
           name: "少时诵诗书",
-          imageUrl: "https://img.yzcdn.cn/vant/apple-3.jpg",
+          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/456/0000456738.fid",
           title: "",
           linkUrl: "https://img.yzcdn.cn/vant/apple-3.jpg"
         },
         {
           sort: "4",
           name: "少时诵诗书",
-          imageUrl: "https://img.yzcdn.cn/vant/apple-4.jpg",
+          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/457/0000457354.fid",
           title: "",
           linkUrl: "https://img.yzcdn.cn/vant/apple-4.jpg"
         }
@@ -152,25 +154,25 @@ app.use("/home/getHomeData", function(req, res) {
             name: "图片",
             "id ": "",
             sort: "1",
-            playBillUrl: "https://img.yzcdn.cn/vant/apple-5.jpg"
+            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484060.fid"
           },
           {
             name: "图片",
             "id ": "",
             sort: "2",
-            playBillUrl: "https://img.yzcdn.cn/vant/apple-6.jpg"
+            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484060.fid"
           },
           {
             name: "图片",
             "id ": "",
             sort: "3",
-            playBillUrl: "https://img.yzcdn.cn/vant/apple-7.jpg"
+            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484060.fid"
           },
           {
             name: "图片",
             "id ": "",
             sort: "4",
-            playBillUrl: "https://img.yzcdn.cn/vant/apple-8.jpg"
+            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484060.fid"
           }
         ]
       },
@@ -181,25 +183,25 @@ app.use("/home/getHomeData", function(req, res) {
             name: "图片",
             "id ": "",
             sort: "1",
-            playBillUrl: "https://img.yzcdn.cn/vant/apple-8.jpg"
+            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484061.fid"
           },
           {
             name: "图片",
             "id ": "",
             sort: "2",
-            playBillUrl: "https://img.yzcdn.cn/vant/apple-7.jpg"
+            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484061.fid"
           },
           {
             name: "图片",
             "id ": "",
             sort: "3",
-            playBillUrl: "https://img.yzcdn.cn/vant/apple-6.jpg"
+            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484061.fid"
           },
           {
             name: "图片",
             "id ": "",
             sort: "4",
-            playBillUrl: "https://img.yzcdn.cn/vant/apple-5.jpg"
+            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484061.fid"
           }
         ]
       },
@@ -210,25 +212,25 @@ app.use("/home/getHomeData", function(req, res) {
             name: "活动",
             "id ": "",
             sort: "1",
-            photoUrl: "https://img.yzcdn.cn/vant/apple-2.jpg"
+            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
           },
           {
             name: "活动",
             "id ": "",
             sort: "2",
-            photoUrl: "https://img.yzcdn.cn/vant/apple-4.jpg"
+            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
           },
           {
             name: "活动",
             "id ": "",
             sort: "3",
-            photoUrl: "https://img.yzcdn.cn/vant/apple-6.jpg"
+            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
           },
           {
             name: "活动",
             "id ": "",
             sort: "4",
-            photoUrl: "https://img.yzcdn.cn/vant/apple-8.jpg"
+            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
           }
         ]
       }
