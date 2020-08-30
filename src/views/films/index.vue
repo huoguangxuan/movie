@@ -5,54 +5,79 @@
       <van-tab title="即将上映"></van-tab>
     </van-tabs>
     <div class="divider"></div>
-    <ul class="tab-content">
-      <li
-        class="item"
-        v-for="film in filmList"
-        :key="film.movieId"
-        @click="
-          $router.push({
-            path: 'film-detail',
-            params: { movieId: film.movieId }
-          })
-        "
+    <van-pull-refresh
+      v-model="refreshing"
+      @refresh="onRefresh"
+      :head-height="110"
+      success-text="刷新成功"
+    >
+      <van-list
+        v-model="loading"
+        offset="100"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
       >
-        <img class="poster" :src="film.posterUrl" alt />
-        <div class="info">
-          <h3 class="font16 black">八佰</h3>
-          <p class="font14 hot-score">
-            <span class="orange">{{ film.hotScore || 0 }}</span>
-            <span class="black">&nbsp;人想看</span>
-          </p>
-          <p class="font12 mtb4 van-multi-ellipsis--l2">{{ film.introduction }}</p>
-          <p class="font12 black van-multi-ellipsis--l2">{{ film.actor }}</p>
-        </div>
-        <div class="score">
-          <p class="font16">
-            评分
-            <span class="orange">9.2</span>
-          </p>
-          <van-button
-            class="buy-btn"
-            round
-            @click.stop="
+        <ul class="tab-content">
+          <li
+            class="item"
+            v-for="film in filmList"
+            :key="film.movieId"
+            @click="
               $router.push({
-                path: '/choseSeat',
+                path: 'film-detail',
                 params: { movieId: film.movieId }
               })
             "
-            size="small"
-            color="linear-gradient(to right, #F8A10E, #EE6806)"
-          >去购票</van-button>
-        </div>
-      </li>
-    </ul>
+          >
+            <img class="poster" :src="film.posterUrl" alt />
+            <div class="info">
+              <h3 class="font16 black">八佰</h3>
+              <p class="font14 hot-score">
+                <span class="orange">{{ film.hotScore || 0 }}</span>
+                <span class="black">&nbsp;人想看</span>
+              </p>
+              <p class="font12 mtb4 van-multi-ellipsis--l2">{{ film.introduction }}</p>
+              <p class="font12 black van-multi-ellipsis--l2">{{ film.actor }}</p>
+            </div>
+            <div class="score">
+              <p class="font16">
+                评分
+                <span class="orange">9.2</span>
+              </p>
+              <van-button
+                class="buy-btn"
+                round
+                @click.stop="
+                  $router.push({
+                    path: '/choseSeat',
+                    params: { movieId: film.movieId }
+                  })
+                "
+                size="small"
+                color="linear-gradient(to right, #F8A10E, #EE6806)"
+              >去购票</van-button>
+            </div>
+          </li>
+        </ul>
+      </van-list>
+    </van-pull-refresh>
+
     <the-footer activeIndex="1" />
   </div>
 </template>
 
 <script>
-import { Search, Grid, GridItem, Tab, Tabs, Button } from "vant";
+import {
+  Search,
+  Grid,
+  GridItem,
+  Tab,
+  Tabs,
+  Button,
+  List,
+  PullRefresh
+} from "vant";
 import api from "@/api";
 import TheFooter from "@/components/TheFooter";
 export default {
@@ -63,13 +88,18 @@ export default {
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
     [Button.name]: Button,
+    [List.name]: List,
+    [PullRefresh.name]: PullRefresh,
     "the-footer": TheFooter
   },
 
   data() {
     return {
       active: "1",
-      filmList: []
+      filmList: [],
+      loading: false,
+      finished: false,
+      refreshing: false
     };
   },
   created() {
@@ -82,8 +112,30 @@ export default {
         .getFilms(params)
         .then(res => {
           this.filmList = res.data.pageData;
+          console.log(1);
+          setTimeout(() => {
+            this.refreshing = false;
+            this.finished = false;
+          }, 1000);
+          this.loading = false;
         })
-        .catch();
+        .catch(() => {
+          this.refreshing = false;
+          this.loading = false;
+          this.finished = false;
+        });
+    },
+    onLoad() {
+      this.getFilms();
+    },
+    onRefresh() {
+      // 清空列表数据
+      this.finished = false;
+
+      // 重新加载数据
+      // 将 loading 设置为 true，表示处于加载状态
+      this.loading = true;
+      this.onLoad();
     }
   }
 };
@@ -92,13 +144,8 @@ export default {
 <style lang="less">
 .films {
   margin-top: 43px;
-  &-tab {
-    position: fixed;
-    top: 40px;
-  }
   .tab-content {
     background-color: #fff;
-    margin-bottom: 88px;
     .item {
       padding: 10px 17px;
       display: flex;
@@ -133,6 +180,9 @@ export default {
   /deep/ .van-tabs__line {
     background-color: #ff6024;
     height: 2px;
+  }
+  /deep/ .van-list__loading {
+    margin-bottom: 100px;
   }
 }
 </style>
