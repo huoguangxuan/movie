@@ -173,6 +173,12 @@ app.use("/home/getHomeData", function(req, res) {
             "id ": "",
             sort: "4",
             playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484060.fid"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "4",
+            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484060.fid"
           }
         ]
       },
@@ -202,6 +208,12 @@ app.use("/home/getHomeData", function(req, res) {
             "id ": "",
             sort: "4",
             playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484061.fid"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "4",
+            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484061.fid"
           }
         ]
       },
@@ -224,6 +236,18 @@ app.use("/home/getHomeData", function(req, res) {
             name: "活动",
             "id ": "",
             sort: "3",
+            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+          },
+          {
+            name: "活动",
+            "id ": "",
+            sort: "4",
+            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+          },
+          {
+            name: "活动",
+            "id ": "",
+            sort: "4",
             photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
           },
           {

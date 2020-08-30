@@ -1,61 +1,36 @@
 <template>
-  <van-grid :column-num="4" :border="false" ref="theFooter" class="the-footer">
-    <van-grid-item
-      icon="home-o"
-      text="首页"
-      :class="{ active: activeIndex == 0 }"
-      to="/"
-    />
-    <van-grid-item
-      icon="search"
-      :class="{ active: activeIndex == 1 }"
-      text="影片"
-      to="/films"
-    />
-    <van-grid-item
-      icon="home-o"
-      text="影院"
-      :class="{ active: activeIndex == 2 }"
-      to="/cinemas"
-    />
-    <van-grid-item
-      icon="search"
-      :class="{ active: activeIndex == 3 }"
-      text="我的"
-      to="/choseSeat"
-    />
-  </van-grid>
+  <div class="footer">
+    <van-tabbar v-model="active">
+      <van-tabbar-item icon="home-o"
+                       to="/home">首页</van-tabbar-item>
+      <van-tabbar-item icon="video-o"
+                       to="/tickets">影片</van-tabbar-item>
+      <van-tabbar-item icon="coupon-o"
+                       to="/cinemas">影院</van-tabbar-item>
+      <van-tabbar-item icon="manager-o"
+                       to="/userCenter">我的</van-tabbar-item>
+    </van-tabbar>
+  </div>
 </template>
+
 <script>
-import { Grid, GridItem } from "vant";
+import { Tabbar, TabbarItem } from "vant";
 export default {
-  name: "the-footer",
   components: {
-    [Grid.name]: Grid,
-    [GridItem.name]: GridItem
+    [Tabbar.name]: Tabbar,
+    [TabbarItem.name]: TabbarItem
   },
-  props: {
-    activeIndex: String,
-    default: function() {
-      return "0";
+  data () {
+    return {
+      active: 0
     }
-  },
-  mounted() {
-    // console.log(this.activeIndex);
-    // console.log(this.$refs["theFooter"].children[this.activeIndex]);
   }
-};
+}
 </script>
+
 <style lang="less" scoped>
-.the-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  .active {
-    color: orangered;
-    /deep/.van-grid-item__text {
-      color: orangered;
-    }
-  }
+.footer {
+  width: 100vw;
+  height: 49px;
 }
 </style>
