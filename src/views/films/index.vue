@@ -1,6 +1,9 @@
 <template>
   <div class="films">
-    <van-tabs style="position:fixed;top:0;width:100%;z-index:2" v-model="active">
+    <van-tabs
+      style="position:fixed;top:0;width:100%;z-index:2"
+      v-model="active"
+    >
       <van-tab title="正在热映"></van-tab>
       <van-tab title="即将上映"></van-tab>
     </van-tabs>
@@ -11,7 +14,12 @@
       :head-height="110"
       success-text="刷新成功"
     >
-      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+      <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+      >
         <ul class="tab-content">
           <li
             class="item"
@@ -31,8 +39,12 @@
                 <span class="orange">{{ film.hotScore || 0 }}</span>
                 <span class="black">&nbsp;人想看</span>
               </p>
-              <p class="font12 mtb4 van-multi-ellipsis--l2">{{ film.introduction }}</p>
-              <p class="font12 black van-multi-ellipsis--l2">{{ film.actor }}</p>
+              <p class="font12 mtb4 van-multi-ellipsis--l2">
+                {{ film.introduction }}
+              </p>
+              <p class="font12 black van-multi-ellipsis--l2">
+                {{ film.actor }}
+              </p>
             </div>
             <div class="score">
               <p class="font16">
@@ -50,14 +62,15 @@
                 "
                 size="small"
                 color="linear-gradient(to right, #F8A10E, #EE6806)"
-              >去购票</van-button>
+                >去购票</van-button
+              >
             </div>
           </li>
         </ul>
       </van-list>
     </van-pull-refresh>
 
-    <!-- <the-footer activeIndex="1" /> -->
+    <the-footer activeIndex="1" />
   </div>
 </template>
 
@@ -174,6 +187,10 @@ export default {
   /deep/ .van-tabs__line {
     background-color: #ff6024;
     height: 2px;
+  }
+  /deep/ .van-list__finished-text,
+  .van-list__loading {
+    margin-bottom: 90px;
   }
 }
 </style>
