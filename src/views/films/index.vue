@@ -98,6 +98,7 @@ export default {
   }
   .tab-content {
     background-color: #fff;
+    margin-bottom: 88px;
     .item {
       padding: 10px 17px;
       display: flex;
