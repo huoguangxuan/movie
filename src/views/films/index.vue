@@ -11,13 +11,7 @@
       :head-height="110"
       success-text="刷新成功"
     >
-      <van-list
-        v-model="loading"
-        offset="100"
-        :finished="finished"
-        finished-text="没有更多了"
-        @load="onLoad"
-      >
+      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
         <ul class="tab-content">
           <li
             class="item"
@@ -63,7 +57,7 @@
       </van-list>
     </van-pull-refresh>
 
-    <the-footer activeIndex="1" />
+    <!-- <the-footer activeIndex="1" /> -->
   </div>
 </template>
 
@@ -112,20 +106,19 @@ export default {
         .getFilms(params)
         .then(res => {
           this.filmList = res.data.pageData;
-          console.log(1);
           setTimeout(() => {
             this.refreshing = false;
-            this.finished = false;
+            this.loading = false;
+            this.finished = true;
           }, 1000);
-          this.loading = false;
         })
         .catch(() => {
           this.refreshing = false;
           this.loading = false;
-          this.finished = false;
         });
     },
     onLoad() {
+      console.log(1);
       this.getFilms();
     },
     onRefresh() {
@@ -135,7 +128,8 @@ export default {
       // 重新加载数据
       // 将 loading 设置为 true，表示处于加载状态
       this.loading = true;
-      this.onLoad();
+      // this.onLoad();
+      this.getFilms();
     }
   }
 };
@@ -180,9 +174,6 @@ export default {
   /deep/ .van-tabs__line {
     background-color: #ff6024;
     height: 2px;
-  }
-  /deep/ .van-list__loading {
-    margin-bottom: 100px;
   }
 }
 </style>
