@@ -2,12 +2,18 @@
   <div class="home">
     <!-- 搜索导航栏 -->
     <div class="search">
-      <van-search show-action
-                  placeholder="搜索影片、影院...">
-        <template #action>
-          <div>搜索</div>
-        </template>
-      </van-search>
+      <div class="searchcontent">
+        <router-link :to="{name:'search'}">
+          <div class="searchto">
+              <img src="@/assets/images/searchglass.png" />
+              <span class="searchtext">搜索影片、影院...</span>
+          </div>
+          </router-link>
+          <div class="searchsite">
+              <span>北京</span>
+              <img src="@/assets/images/pull.png" />
+          </div>
+      </div>
     </div>
     <!-- banner位 -->
     <div class="banner">
@@ -32,7 +38,7 @@
                 :class="{active:num==2}"
                 class="spanright">即将上映</span>
         </span>
-        <router-link :to="{name:num==1?'search':'information'}">
+        <router-link :to="{name:num==1?'films':'films'}">
           <span class="headright">
             更多<img class="more"
                  src="@/assets/images/more.png" />
@@ -145,11 +151,10 @@
 import TheFooter from '@/components/TheFooter';
 import BScroll from "better-scroll";
 import api from "@/api";
-import { Search, Swipe, SwipeItem, Button } from "vant";
+import { Swipe, SwipeItem, Button } from "vant";
 export default {
   components: {
     TheFooter,
-    [Search.name]: Search,
     [Swipe.name]: Swipe,
     [SwipeItem.name]: SwipeItem,
     [Button.name]: Button
@@ -249,8 +254,52 @@ export default {
 .search {
   width: 100vw;
   height: 44px;
-  .van-search--show-action {
-    height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .searchcontent{
+    width: 341px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .searchto{
+      width: 282px;
+      height: 35px;
+      background: #F6F6F6;
+      border-radius: 35px;
+      display: flex;
+      align-items: center;
+      img{
+        width: 16px;
+        height: 16px;
+        margin-left: 20px;
+        margin-right: 22px;
+      }
+      .searchtext{
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        color: #999999;
+        text-align: right;
+        line-height: 12px;
+      }
+    }
+    .searchsite{
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span{
+        font-family: PingFang-SC-Medium;
+        font-size: 12px;
+        color: #333333;
+        text-align: right;
+        line-height: 12px;
+      }
+      img{
+        width: 22px;
+        height: 14px;
+      }
+    }
   }
 }
 //轮播图
