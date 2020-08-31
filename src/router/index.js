@@ -17,6 +17,13 @@ let routes = [
     name: "home",
     component: () => import(/* webpackChunkName: "pages" */ "../views/home")
   },
+  //首页城市选择
+  {
+    path: "/citySelection",
+    name: "citySelection",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/home/citySelection")
+  },
   //首页banner详情页
   {
     path: "/bannerDetail",

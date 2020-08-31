@@ -5,14 +5,14 @@
       <div class="searchcontent">
         <router-link :to="{name:'search'}">
           <div class="searchto">
-              <img src="@/assets/images/searchglass.png" />
-              <span class="searchtext">搜索影片、影院...</span>
+            <img src="@/assets/images/searchglass.png" />
+            <span class="searchtext">搜索影片、影院...</span>
           </div>
-          </router-link>
-          <div class="searchsite">
-              <span>北京</span>
-              <img src="@/assets/images/pull.png" />
-          </div>
+        </router-link>
+        <div class="searchsite">
+          <span>北京</span>
+          <img src="@/assets/images/pull.png" />
+        </div>
       </div>
     </div>
     <!-- banner位 -->
@@ -24,6 +24,17 @@
         <van-swipe-item v-for="(item, index) in banner"
                         :key="index"><img :src="item.imageUrl" /></van-swipe-item>
       </van-swipe>
+    </div>
+    <!-- 精选活动位 -->
+    <div class="liveactivity">
+      <div class="livecontent">
+        <div class="liveleft"><img src="@/assets/images/liveactivity.png" /></div>
+        <div class="liveright">
+          <span class="exclusive">万达影票X联通专享</span>
+          <van-button round
+                      type="info">限时兑换</van-button>
+        </div>
+      </div>
     </div>
     <!-- 正在热映/即将上映 -->
     <div class="film">
@@ -257,25 +268,25 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  .searchcontent{
+  .searchcontent {
     width: 341px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .searchto{
+    .searchto {
       width: 282px;
       height: 35px;
-      background: #F6F6F6;
+      background: #f6f6f6;
       border-radius: 35px;
       display: flex;
       align-items: center;
-      img{
+      img {
         width: 16px;
         height: 16px;
         margin-left: 20px;
         margin-right: 22px;
       }
-      .searchtext{
+      .searchtext {
         font-family: PingFangSC-Regular;
         font-size: 12px;
         color: #999999;
@@ -283,19 +294,19 @@ export default {
         line-height: 12px;
       }
     }
-    .searchsite{
+    .searchsite {
       height: 35px;
       display: flex;
       justify-content: center;
       align-items: center;
-      span{
+      span {
         font-family: PingFang-SC-Medium;
         font-size: 12px;
         color: #333333;
         text-align: right;
         line-height: 12px;
       }
-      img{
+      img {
         width: 22px;
         height: 14px;
       }
@@ -319,6 +330,60 @@ export default {
     img {
       width: 341px;
       height: 150px;
+    }
+  }
+}
+//精选活动
+.liveactivity {
+  width: 100vw;
+  height: 65px;
+  margin-bottom: 20px;
+  .livecontent {
+    height: 65px;
+    margin: 0px 17px;
+    background: #f6f6f6;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    .liveleft {
+      width: 100px;
+      height: 65px;
+      background-color: blue;
+      border-radius: 8px 0px 0px 8px;
+      img {
+        width: 40px;
+        height: 15px;
+        margin-top: -16px;
+      }
+    }
+    .liveright {
+      width: 241px;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .exclusive {
+        font-family: PingFangSC-Semibold;
+        font-size: 16px;
+        color: #333333;
+        line-height: 16px;
+        margin-left: 8px;
+        font-weight: bold;
+      }
+      .van-button {
+        width: 78px;
+        height: 36px;
+        line-height: 36px;
+        margin-right: 8px;
+        background: #ff6024;
+        box-shadow: 0 2px 12px 0 rgba(255, 96, 36, 0.7);
+        border-radius: 30px;
+        border: none;
+        border-style: none;
+        font-family: PingFangSC-Regular;
+        font-size: 10px;
+        color: #ffffff;
+      }
     }
   }
 }
@@ -411,7 +476,7 @@ export default {
           border-radius: 30spx;
           margin-top: 10px;
           border: none;
-          border-style:none;
+          border-style: none;
         }
       }
       img {
