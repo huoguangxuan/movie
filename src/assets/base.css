@@ -192,6 +192,9 @@ em {
 .gray {
   color: #666666;
 }
+.gray999 {
+  color: #999;
+}
 /* 间距 */
 .mtb5 {
   margin: 5px 0px;

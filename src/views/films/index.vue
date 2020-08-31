@@ -39,7 +39,7 @@
                 <span class="orange">{{ film.hotScore || 0 }}</span>
                 <span class="black">&nbsp;人想看</span>
               </p>
-              <p class="font12 mtb4 van-multi-ellipsis--l2">
+              <p class="font12 mtb4 gray999 van-multi-ellipsis--l2">
                 {{ film.introduction }}
               </p>
               <p class="font12 black van-multi-ellipsis--l2">

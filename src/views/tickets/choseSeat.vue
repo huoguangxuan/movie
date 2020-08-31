@@ -51,7 +51,16 @@
         </ul>
       </div>
     </section>
-    <van-button type="primary" class="seats-confirm" block>确认选座</van-button>
+    <div class="buy ac">
+      <van-button
+        @click.stop="
+          $router.push({ path: '/orderConfirm', params: { movieId: 1 } })
+        "
+        class="buy-btn"
+        color="linear-gradient(to right, #F8A10E, #EE6806)"
+        >去购票</van-button
+      >
+    </div>
   </div>
 </template>
 <script>
@@ -191,6 +200,14 @@ export default {
       font-size: 14px;
       font-weight: bold;
       margin-left: 10px;
+    }
+  }
+  .buy {
+    position: fixed;
+    width: 100%;
+    bottom: 10px;
+    &-btn {
+      width: 340px;
     }
   }
 }

@@ -387,6 +387,7 @@ app.use("/film/getFilmDetail", function(req, res) {
     }
   });
 });
+//home
 app.use("/home/getMoreData", function(req, res) {
   res.json({
     code: "0000",
@@ -504,6 +505,10 @@ app.use("/home/getMoreData", function(req, res) {
       ]
     }
   });
+});
+//cinemas
+app.use("/cinema/getMessage", function(req, res) {
+  res.json();
 });
 app.listen("8090", () => {
   console.log("监听端口 8090");
