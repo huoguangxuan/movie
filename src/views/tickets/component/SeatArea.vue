@@ -1,5 +1,5 @@
 <template>
-  <div style="border:1px solid red">
+  <div>
     <div class="screen">
       <div class="screen-num">一号厅</div>
     </div>

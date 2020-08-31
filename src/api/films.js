@@ -1,5 +1,12 @@
-// import axios from "@/utils/request";
+import axios from "@/utils/request";
 
-// const prefix = "";
+const prefix = "";
 
-// export default {};
+export default {
+  getFilms(params) {
+    return axios.post(`${prefix}/home/getMoreData`, params);
+  },
+  getFilmDetail(params) {
+    return axios.post(`${prefix}/film/getFilmDetail`, params);
+  }
+};

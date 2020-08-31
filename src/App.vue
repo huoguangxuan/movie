@@ -4,3 +4,8 @@
     <router-view></router-view>
   </div>
 </template>
+<style lang="less">
+body {
+  background: #f4f4f4 !important;
+}
+</style>
