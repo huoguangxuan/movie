@@ -11,14 +11,21 @@
     <div class="film-info">
       <div class="left">
         <h3 class="film-title">{{ film.movieName }}</h3>
-        <p
-          class="film-feature"
-          style="margin-bottom:4px"
-        >{{ film.duration }} / {{ film.movieCategory }} / {{ film.origin }}</p>
+        <p class="film-feature" style="margin-bottom:4px">
+          {{ film.duration }} / {{ film.movieCategory }} / {{ film.origin }}
+        </p>
         <p class="film-feature">{{ film.runDate }}</p>
         <div class="actions">
-          <van-button icon="like-o" size="small" style="margin-right:14px" type="default">想看</van-button>
-          <van-button icon="star-o" size="small" type="default">收藏</van-button>
+          <van-button
+            icon="like-o"
+            size="small"
+            style="margin-right:14px"
+            type="default"
+            >想看</van-button
+          >
+          <van-button icon="star-o" size="small" type="default"
+            >收藏</van-button
+          >
         </div>
       </div>
       <div class="right">
@@ -32,10 +39,9 @@
     <div class="divider"></div>
     <div class="film-story">
       <h3 class="film-title">剧情简介</h3>
-      <p
-        class="film-content"
-        :class="{ 'van-multi-ellipsis--l3': !showMore }"
-      >{{ film.introduction }}</p>
+      <p class="film-content" :class="{ 'van-multi-ellipsis--l3': !showMore }">
+        {{ film.introduction }}
+      </p>
       <div class="ac story-action" @click="toggleContent">
         <van-icon class="font16" :name="showMore ? 'arrow-up' : 'arrow-down'" />
       </div>
@@ -51,7 +57,11 @@
       </h3>
       <div class="wrapper" ref="wrapper">
         <ul class="actors bscroll-container" ref="scrollUl">
-          <li class="ac item" v-for="item in film.celebrityMovieRoles" :key="item.actor.id">
+          <li
+            class="ac item"
+            v-for="item in film.celebrityMovieRoles"
+            :key="item.actor.id"
+          >
             <img class="avatar" :src="item.actor.avatarLogo" alt />
             <p class="font14 black">{{ item.roleType }}</p>
             <p class="font12">{{ item.actor.name }}</p>
@@ -116,14 +126,16 @@
                 size="mini"
                 color="#fff"
                 plain
-              >{{ likeCount }}</van-button>
+                >{{ likeCount }}</van-button
+              >
               <van-button
                 icon="chat-o"
                 class="font14"
                 size="mini"
                 color="#fff"
                 plain
-              >{{ commentCount }}</van-button>
+                >{{ commentCount }}</van-button
+              >
             </div>
           </div>
         </li>
@@ -163,14 +175,16 @@
                 size="mini"
                 color="#fff"
                 plain
-              >{{ likeCount }}</van-button>
+                >{{ likeCount }}</van-button
+              >
               <van-button
                 icon="chat-o"
                 class="font14"
                 size="mini"
                 color="#fff"
                 plain
-              >{{ commentCount }}</van-button>
+                >{{ commentCount }}</van-button
+              >
             </div>
           </div>
         </li>
@@ -183,7 +197,8 @@
         "
         class="buy-btn"
         color="linear-gradient(to right, #F8A10E, #EE6806)"
-      >去购票</van-button>
+        >去购票</van-button
+      >
     </div>
   </div>
 </template>
@@ -249,7 +264,7 @@ export default {
         // movieId: this.$router.params.movieId || 0
         movieId: 0
       };
-      api
+      api.films
         .getFilmDetail(params)
         .then(res => {
           this.film = res.data;

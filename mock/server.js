@@ -508,7 +508,59 @@ app.use("/home/getMoreData", function(req, res) {
 });
 //cinemas
 app.use("/cinema/getMessage", function(req, res) {
-  res.json();
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 17:38：22",
+    data: {
+      phoneNo: "15022233733",
+      orderNo: "twe999999923792737217",
+      movieName: "战狼2",
+      showStartTime: "2020-08-13 15:25:00",
+      showEndTime: "2020-08-13 15:25:00",
+      cinemaName: "万首都店",
+      language: "英文3D",
+      hallCode: "11号厅",
+      showScreenType: "IMAX",
+      posterUrl:
+        "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@180w_240h_1e_1c",
+      totalNum: "2",
+      totalPrice: "64",
+      features: ["儿童票", "可停车"],
+      seats: [
+        {
+          rowId: "1",
+          columnId: "1",
+          rowNum: "1",
+          columnNum: "8",
+          type: "0",
+          regionId: "234567",
+          seatId: "0001"
+        },
+        {
+          rowId: "1",
+          columnId: "1",
+          rowNum: "1",
+          columnNum: "9",
+          type: "0",
+          regionId: "234567",
+          seatId: "0002"
+        }
+      ],
+      discounts: [
+        {
+          name: "xxxxxxxx影城卡",
+          sort: "1",
+          discount: "单单减3元"
+        },
+        {
+          name: "xxxxxxxx联名卡",
+          sort: "2",
+          discount: "首单减9元"
+        }
+      ]
+    }
+  });
 });
 app.listen("8090", () => {
   console.log("监听端口 8090");

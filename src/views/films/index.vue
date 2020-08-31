@@ -115,7 +115,7 @@ export default {
   methods: {
     getFilms() {
       const params = { type: 1 };
-      api
+      api.films
         .getFilms(params)
         .then(res => {
           this.filmList = res.data.pageData;
