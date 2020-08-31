@@ -355,7 +355,7 @@ export default {
   }
   .content {
     display: flex;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
   .left-text {
     flex: 1;
