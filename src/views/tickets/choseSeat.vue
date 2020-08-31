@@ -21,22 +21,15 @@
       <li>已售</li>
       <li>已售</li>
     </ul>
-    <seat-area class="seats-area" ref="seatArea">
+    <seat-area class="wrapper" ref="seatArea">
       <!--以下为座位图具名插槽 开始-->
       <template v-slot:seat-area>
         <div class="seatBox">
-          <template v-for="(seatItem, index) in seatList">
-            <div
-              class="seatClass"
-              @click.prevent="clickSeat(index)"
-              :key="seatItem.id"
-            >
-              <img
-                class="seatImgClass"
-                :seatId="seatItem.id"
-                :seatIndex="index"
-                src="@/assets/images/free.png"
-              />
+          <template v-for="(row, index) in seatList">
+            <div class="row" @click.prevent="clickSeat(index)" :key="row.id">
+              <template v-for="(seat, index) in row.columns">
+                <span class="seat sold" :key="index"></span>
+              </template>
             </div>
           </template>
         </div>
@@ -58,7 +51,16 @@
         </ul>
       </div>
     </section>
-    <van-button type="primary" class="seats-confirm" block>确认选座</van-button>
+    <div class="buy ac">
+      <van-button
+        @click.stop="
+          $router.push({ path: '/orderConfirm', params: { movieId: 1 } })
+        "
+        class="buy-btn"
+        color="linear-gradient(to right, #F8A10E, #EE6806)"
+        >去购票</van-button
+      >
+    </div>
   </div>
 </template>
 <script>
@@ -95,7 +97,7 @@ export default {
     "seat-area": SeatArea
   },
   watch: {
-    selectedSeat: function(value) {
+    selectedSeat: function() {
       let width = this.propSelectedSeat.length * 1.2 + 0.6;
       this.$refs.scrollUl.style.width = width + "rem";
       this.$nextTick(() => {
@@ -200,36 +202,34 @@ export default {
       margin-left: 10px;
     }
   }
-  .scroll {
-    width: 375px;
-    .scroll-ul {
-      display: flex;
-      .scroll-item {
-        flex: none;
-        height: 40px;
-        line-height: 40px;
-        text-align: center;
-        font-size: 12px;
-        width: 110px;
-        margin-left: 10px;
-        margin-top: 12px;
-        color: #888888;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
+  .buy {
+    position: fixed;
+    width: 100%;
+    bottom: 10px;
+    &-btn {
+      width: 340px;
     }
   }
-  &-area {
-  }
 }
-.seatBox {
-  transform-origin: 0px 0px 0px;
-  .seatClass {
-    .seatImgClass {
-      img {
-        width: 20px;
-        height: 20px;
-      }
+.wrapper {
+  position: relative;
+  width: 375px;
+  height: 400px;
+  overflow: hidden;
+  .seatBox {
+    position: absolute;
+    white-space: nowrap;
+    transform-origin: 0px 0px 0px;
+    .seat {
+      display: inline-block;
+      // width: 30px;
+      // height: 30px;
+      // margin: 5px;
+      background: red;
+      background: url("../../assets/images/free.png") no-repeat;
+    }
+    .sold {
+      background-image: url("../../assets/images/sold.png");
     }
   }
 }
