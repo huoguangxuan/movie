@@ -5,7 +5,7 @@
     </div>
     <div class="searchs">
       <van-search v-model="value"
-                  @search="onSearch"
+                  @input="onSearch(value)"
                   placeholder="输入城市名、拼音或字母查询">
       </van-search>
     </div>
@@ -71,7 +71,19 @@ export default {
     this.cityDts = cityDts.city
   },
   methods: {
-    onSearch () { alert("搜索") },
+    onSearch (val) {
+      if (val.trim()) {
+        this.showIndexBar = false;
+        let res = this.cityDts.filter(i => {
+          console.log(i)
+          return i.name.indexOf(val) !== -1
+        });
+        this.cityDts = res;
+
+      } else {
+        this.showIndexBar = true;
+      }
+    },
     chooseCity (citem) {
       console.log(citem)
       alert(citem.name)
