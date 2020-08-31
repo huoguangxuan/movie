@@ -361,6 +361,8 @@ export default {
           box-shadow: 0 2px 12px 0 rgba(255, 96, 36, 0.7);
           border-radius: 30spx;
           margin-top: 10px;
+          border: none;
+          border-style:none;
         }
       }
       img {
@@ -502,10 +504,10 @@ export default {
           font-family: PingFangSC-Regular;
           font-size: 12px;
           color: #999999;
-          line-height: 14px;
+          line-height: 20px;
           .spanstart {
             overflow: hidden;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 3;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
