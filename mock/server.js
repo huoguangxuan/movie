@@ -109,7 +109,147 @@ app.use("/ticket/getSeatDatas", function(req, res) {
     }
   });
 });
-
+// 我的订单接口
+app.use("/user/getUserOrders", function(req, res) {
+  res.json({
+      code: "0000", 
+      msg: "成功", 
+      dateTime: "2020-08-06 17:38：22", 
+      data: {
+          pageSize: "", 
+          pageNo: "", 
+          totalPage: "1", 
+          pageData: [
+              {
+                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+                  movieName: "电影名", 
+                  cinemaName: "影院名", 
+                  payAmount: "100.00", 
+                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
+                  orderNo: "订单号", 
+                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
+                  runStatus: "1", 
+                  sort: "1"
+              }, 
+              {
+                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+                  movieName: "电影名", 
+                  cinemaName: "影院名", 
+                  payAmount: "100.00", 
+                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
+                  orderNo: "订单号", 
+                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
+                  runStatus: "0", 
+                  sort: "1"
+              }
+              , 
+              {
+                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+                  movieName: "电影名", 
+                  cinemaName: "影院名", 
+                  payAmount: "100.00", 
+                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
+                  orderNo: "订单号", 
+                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
+                  runStatus: "0", 
+                  sort: "1"
+              }
+              , 
+              {
+                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+                  movieName: "电影名", 
+                  cinemaName: "影院名", 
+                  payAmount: "100.00", 
+                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
+                  orderNo: "订单号", 
+                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
+                  runStatus: "0", 
+                  sort: "1"
+              }
+              , 
+              {
+                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+                  movieName: "电影名", 
+                  cinemaName: "影院名", 
+                  payAmount: "100.00", 
+                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
+                  orderNo: "订单号", 
+                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
+                  runStatus: "0", 
+                  sort: "1"
+              }
+              , 
+              {
+                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+                  movieName: "电影名", 
+                  cinemaName: "影院名", 
+                  payAmount: "100.00", 
+                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
+                  orderNo: "订单号", 
+                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
+                  runStatus: "0", 
+                  sort: "1"
+              }
+              , 
+              {
+                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+                  movieName: "电影名", 
+                  cinemaName: "影院名", 
+                  payAmount: "100.00", 
+                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
+                  orderNo: "订单号", 
+                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
+                  runStatus: "0", 
+                  sort: "1"
+              } , 
+              {
+                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+                  movieName: "电影名", 
+                  cinemaName: "影院名", 
+                  payAmount: "100.00", 
+                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
+                  orderNo: "订单号", 
+                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
+                  runStatus: "0", 
+                  sort: "1"
+              } , 
+              {
+                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+                  movieName: "电影名", 
+                  cinemaName: "影院名", 
+                  payAmount: "100.00", 
+                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
+                  orderNo: "订单号", 
+                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
+                  runStatus: "0", 
+                  sort: "1"
+              } , 
+              {
+                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+                  movieName: "电影名", 
+                  cinemaName: "影院名", 
+                  payAmount: "100.00", 
+                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
+                  orderNo: "订单号", 
+                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
+                  runStatus: "0", 
+                  sort: "1"
+              } , 
+              {
+                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+                  movieName: "电影名", 
+                  cinemaName: "影院名", 
+                  payAmount: "100.00", 
+                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
+                  orderNo: "订单号", 
+                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
+                  runStatus: "0", 
+                  sort: "1"
+              }
+          ]
+      }
+  });
+});
 app.listen("8090", () => {
   console.log("监听端口 8090");
 });

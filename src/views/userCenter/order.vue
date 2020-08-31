@@ -1,13 +1,13 @@
 <template>
   <div>
     <van-nav-bar title="我的订单" left-text left-arrow />
-    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
       <van-tabs v-model="active">
         <van-tab title="全部">
+          <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
           <div v-if="noData" class="noData">暂无数据</div>
           <template v-else>
             <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="pullUp">
-              <van-row v-for="item in list" :key="item.id" gutter="6">
+              <van-row v-for="(item,index) in list" :key="index" gutter="6">
                 <van-col span="6">
                   <img :src="item.posterUrl" class="leftImg" />
                 </van-col>
@@ -24,13 +24,14 @@
               </van-row>
             </van-list>
           </template>
+          </van-pull-refresh>
         </van-tab>
         <van-tab title="待付款">内容 2</van-tab>
         <van-tab title="待使用">内容 3</van-tab>
         <van-tab title="待评价">内容 4</van-tab>
         <van-tab title="退款">内容 4</van-tab>
       </van-tabs>
-    </van-pull-refresh>
+    
   </div>
 </template>
 <script>
@@ -45,11 +46,12 @@ export default {
       list: [],
       loading: false,
       finished: false,
+      offset: 100,
       load: false, // 加载dom的控制,
       noData: false, // 如果没有数据，显示暂无数据
       isLoading: false, // 下拉的加载图案
       type: 1,//订单显示tab类型:1,全部,2,未使用,3,未付款,4,已使用,5,退款.默认1
-      page: 1,//当前页码,默认1
+      pageNo: 1,//当前页码,默认1
       pageSize: 5//每页数据量,默认10
     };
   },
@@ -83,33 +85,36 @@ export default {
     [PullRefresh.name]: PullRefresh
   },
   mounted() {
-    this.getUserOrder();
+    // this.getUserOrders();
   },
   methods: {
-    getUserOrder() {
+    getUserOrders() {
       const params = {
-        type: '北京',
-        pageNo: '34',
-        pageSize: '46554'
+        type: this.type,
+        pageNo: this.pageNo,
+        pageSize: this.pageSize
       };
-      console.log(params)
       api
         .getUserOrders(params)
         .then(res => {
           if (!res) return;
           console.log(res);
-          this.list = res.data.pageData;
-          // this.page++;
-          // // 如果没有数据，显示暂无数据
-          // if (this.list.length === 0 && this.page === 1) {
-          //   this.noData = true
-          // }
-          // //加载状态结束
-          // this.loading = false;
-          // // 数据全部加载完成
-          // if (res.data.pageData.length < 10) {
-          //   this.finished = true;
-          // }
+          // 如果没有数据，显示暂无数据
+          if (res.data.pageData.length === 0 && this.pageNo === 1) {
+            this.noData = true
+          }
+          //加载状态结束
+          this.loading = false;
+          // 数据全部加载完成
+          if (res.data.pageData.length < 10) {
+            this.finished = true;
+          }
+          // 累加
+          if (this.pageNo === 1) {
+            this.list = res.data.pageData;
+          } else {
+           this.list = this.list.concat(res.data.pageData)
+          }
         })
         .catch(err => {
           console.log(err);
@@ -118,21 +123,23 @@ export default {
     // 下拉加载
     pullUp () {
       setTimeout(() => {
-        this.getUserOrder()
-        this.loading = true
-      }, 500)
+        this.pageNo++;
+        this.loading = true;
+        this.getUserOrders()
+        }, 500)
     },
+    // 上拉刷新
     onRefresh () {
       setTimeout(() => {
         // 重新初始化这些属性
         this.isLoading = false
         this.list = []
-        this.page = 1
+        this.pageNo = 1
         this.loading = false
         this.finished = false
         this.noData = false
         // 请求信息
-        this.getUserOrder()
+        this.getUserOrders()
       }, 500)
     },
     clickSeat(index) {
