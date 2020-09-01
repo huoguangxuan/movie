@@ -32,6 +32,102 @@ app.use("/list", function(req, res) {
   );
 });
 
+app.use("/home/getMoreDatar", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 17:38：22",
+    data: {
+      pageTotal: 100,
+      pageNo: 100,
+      pageSize: 100,
+      pageData: {
+        expected: {
+          modelName: "近期最受期待",
+          datas: [
+            {
+              movieId: "1234567",
+              hotScore: "10000",
+              movieName: "xxx变形记",
+              sort: "排序",
+              runDate: "2020-08-15 18:00:00",
+              posterUrl: "https://www.sojson.com/"
+            },
+            {
+              movieId: "1234567",
+              hotScore: "10000",
+              movieName: "xxx变形记",
+              sort: "排序",
+              runDate: "2020-08-15 18:00:00",
+              posterUrl: "https://www.sojson.com/"
+            }
+          ]
+        },
+        nearCome: [
+          {
+            date: "2020-08-07",
+            datas: [
+              {
+                movieId: "1234567",
+                movieName: "xxx变形记",
+                introduction:
+                  "送的还是覅都会死发货地发挥IDfish法华寺发挥好私服",
+                hotScore: "1000",
+                sort: "排序",
+                posterUrl: "https://www.sojson.com/",
+                director: "小黄",
+                actor: "小星星,本宝宝,爱学贷,苗疆客",
+                runDate: "2020-08-15 18:00:00"
+              },
+              {
+                movieId: "1234567",
+                movieName: "xxx变形记",
+                introduction:
+                  "送的还是覅都会死发货地发挥IDfish法华寺发挥好私服",
+                hotScore: "1000",
+                sort: "排序",
+                posterUrl: "https://www.sojson.com/",
+                director: "小黄",
+                actor: "小星星,本宝宝,爱学贷,苗疆客",
+                runDate: "2020-08-15 18:00:00"
+              }
+            ]
+          },
+          {
+            date: "2020-08-07",
+            datas: [
+              {
+                movieId: "1234567",
+                movieName: "xxx变形记",
+                introduction:
+                  "送的还是覅都会死发货地发挥IDfish法华寺发挥好私服",
+                hotScore: "1000",
+                sort: "排序",
+                posterUrl: "https://www.sojson.com/",
+                director: "小黄",
+                actor: "小星星,本宝宝,爱学贷,苗疆客",
+                runDate: "2020-08-15 18:00:00"
+              },
+              {
+                movieId: "1234567",
+                movieName: "xxx变形记",
+                introduction:
+                  "送的还是覅都会死发货地发挥IDfish法华寺发挥好私服",
+                hotScore: "1000",
+                sort: "排序",
+                posterUrl: "https://www.sojson.com/",
+                director: "小黄",
+                actor: "小星星,本宝宝,爱学贷,苗疆客",
+                runDate: "2020-08-15 18:00:00"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  });
+});
+
 //tickets
 app.use("/ticket/getSeatDatas", function(req, res) {
   res.json({

@@ -18,7 +18,16 @@
       </div>
     </div>
     <div class="specific">
-      <div class="specifictime"></div>
+      <div class="specifictime">
+        <!-- 上映时间的滑动 -->
+        <div class="specificbig" ref="specificbig">
+          <ul class="specificmin" ref="specificmin">
+            <li v-for="(item, index) in time" :key="index">
+              <span class="specifictimer">{{ item.date }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
       <div class="specificcontent">
         <div class="specificitem">
           <van-list
@@ -93,12 +102,14 @@ export default {
       loading: false,
       finished: false,
       refreshing: false,
-      filmList: []
+      filmList: [],
+      time: ""
     };
   },
   mounted() {
     this.getHomeData();
     this.getFilms();
+    this.getMoreDatar();
     this.$nextTick(() => {
       let timer = setTimeout(() => {
         // 其实我也不想写这个定时器的，这相当于又嵌套了一层$nextTick，但是不这么写会失败
@@ -116,13 +127,21 @@ export default {
       api
         .getHomeData(params)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.recently = res.data.coming.data;
           this.length_recently = res.data.coming.data.length;
         })
         .catch(err => {
           console.log(err);
         });
+    },
+    getMoreDatar() {
+      api.getMoreDatar().then(res => {
+        // console.log(res.data.pageData);
+        console.log(res.data.pageData.nearCome);
+        this.time = res.data.pageData.nearCome;
+        this.length_time = res.data.pageData.nearCome.length;
+      });
     },
     getFilms() {
       const params = { type: 1 };
@@ -142,7 +161,6 @@ export default {
         });
     },
     onLoad() {
-      console.log(1);
       this.getFilms();
     },
     onRefresh() {
@@ -157,10 +175,19 @@ export default {
     },
     verScroll() {
       let width_recently = this.length_recently * 110;
+      let width_time = this.length_time * 110;
       this.$refs.recentlycont.style.width = width_recently + "px";
+      this.$refs.specificmin.style.width = width_time + "px";
       this.$nextTick(() => {
         if (!this.scroll) {
           this.scroll = new BScroll(this.$refs.recentlycontent, {
+            startX: 0, // 配置的详细信息请参考better-scroll的官方文档，这里不再赘述
+            click: true,
+            scrollX: true,
+            scrollY: false,
+            eventPassthrough: "vertical"
+          });
+          this.scroll = new BScroll(this.$refs.specificbig, {
             startX: 0, // 配置的详细信息请参考better-scroll的官方文档，这里不再赘述
             click: true,
             scrollX: true,
@@ -230,11 +257,39 @@ export default {
     }
   }
   .specific {
+    width: 100vw;
     .specifictime {
       width: 100vw;
       height: 46px;
-      padding: 0px 17px;
       background-color: white;
+      .specificbig {
+        touch-action: none;
+        width: 100vw;
+        height: 46px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        .specificmin {
+          width: 750px;
+          height: 46px;
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          padding-left: 17px;
+          li {
+            width: 100px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            span {
+              font-family: PingFangSC-Regular;
+              font-size: 16px;
+              color: #333333;
+              line-height: 16px;
+            }
+          }
+        }
+      }
     }
     .specificcontent {
       width: 100vw;
