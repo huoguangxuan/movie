@@ -32,6 +32,102 @@ app.use("/list", function(req, res) {
   );
 });
 
+app.use("/home/getMoreDatar", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 17:38：22",
+    data: {
+      pageTotal: 100,
+      pageNo: 100,
+      pageSize: 100,
+      pageData: {
+        expected: {
+          modelName: "近期最受期待",
+          datas: [
+            {
+              movieId: "1234567",
+              hotScore: "10000",
+              movieName: "xxx变形记",
+              sort: "排序",
+              runDate: "2020-08-15 18:00:00",
+              posterUrl: "https://www.sojson.com/"
+            },
+            {
+              movieId: "1234567",
+              hotScore: "10000",
+              movieName: "xxx变形记",
+              sort: "排序",
+              runDate: "2020-08-15 18:00:00",
+              posterUrl: "https://www.sojson.com/"
+            }
+          ]
+        },
+        nearCome: [
+          {
+            date: "2020-08-07",
+            datas: [
+              {
+                movieId: "1234567",
+                movieName: "xxx变形记",
+                introduction:
+                  "送的还是覅都会死发货地发挥IDfish法华寺发挥好私服",
+                hotScore: "1000",
+                sort: "排序",
+                posterUrl: "https://www.sojson.com/",
+                director: "小黄",
+                actor: "小星星,本宝宝,爱学贷,苗疆客",
+                runDate: "2020-08-15 18:00:00"
+              },
+              {
+                movieId: "1234567",
+                movieName: "xxx变形记",
+                introduction:
+                  "送的还是覅都会死发货地发挥IDfish法华寺发挥好私服",
+                hotScore: "1000",
+                sort: "排序",
+                posterUrl: "https://www.sojson.com/",
+                director: "小黄",
+                actor: "小星星,本宝宝,爱学贷,苗疆客",
+                runDate: "2020-08-15 18:00:00"
+              }
+            ]
+          },
+          {
+            date: "2020-08-07",
+            datas: [
+              {
+                movieId: "1234567",
+                movieName: "xxx变形记",
+                introduction:
+                  "送的还是覅都会死发货地发挥IDfish法华寺发挥好私服",
+                hotScore: "1000",
+                sort: "排序",
+                posterUrl: "https://www.sojson.com/",
+                director: "小黄",
+                actor: "小星星,本宝宝,爱学贷,苗疆客",
+                runDate: "2020-08-15 18:00:00"
+              },
+              {
+                movieId: "1234567",
+                movieName: "xxx变形记",
+                introduction:
+                  "送的还是覅都会死发货地发挥IDfish法华寺发挥好私服",
+                hotScore: "1000",
+                sort: "排序",
+                posterUrl: "https://www.sojson.com/",
+                director: "小黄",
+                actor: "小星星,本宝宝,爱学贷,苗疆客",
+                runDate: "2020-08-15 18:00:00"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  });
+});
+
 //tickets
 app.use("/ticket/getSeatDatas", function(req, res) {
   res.json({
@@ -216,6 +312,168 @@ app.use("/ticket/getSeatDatas", function(req, res) {
                 seatId: "0006"
               }
             ]
+          }
+        ]
+      }
+    }
+  });
+});
+
+// 获取首页banner，热映，即将上映，热门活动的数据接口
+app.use("/home/getHomeData", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 17:38：22",
+    data: {
+      banner: [
+        {
+          sort: "1",
+          name: "少时诵诗书",
+          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/536/0000536578.fid",
+          title: "",
+          linkUrl: "https://img.yzcdn.cn/vant/apple-1.jpg"
+        },
+        {
+          sort: "2",
+          name: "少时诵诗书",
+          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/588/0000588314.fid",
+          title: "",
+          linkUrl: "https://img.yzcdn.cn/vant/apple-2.jpg"
+        },
+        {
+          sort: "3",
+          name: "少时诵诗书",
+          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/456/0000456738.fid",
+          title: "",
+          linkUrl: "https://img.yzcdn.cn/vant/apple-3.jpg"
+        },
+        {
+          sort: "4",
+          name: "少时诵诗书",
+          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/457/0000457354.fid",
+          title: "",
+          linkUrl: "https://img.yzcdn.cn/vant/apple-4.jpg"
+        }
+      ],
+      showing: {
+        modelName: "正在热映",
+        data: [
+          {
+            name: "图片",
+            "id ": "",
+            sort: "1",
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "2",
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "3",
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "4",
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "4",
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+          }
+        ]
+      },
+      coming: {
+        modelName: "即将上映",
+        data: [
+          {
+            name: "图片",
+            "id ": "",
+            sort: "1",
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "2",
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "3",
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "4",
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+          },
+          {
+            name: "图片",
+            "id ": "",
+            sort: "4",
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+          }
+        ]
+      },
+      activity: {
+        modelName: "热门活动",
+        data: [
+          {
+            name: "活动",
+            "id ": "",
+            sort: "1",
+            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+          },
+          {
+            name: "活动",
+            "id ": "",
+            sort: "2",
+            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+          },
+          {
+            name: "活动",
+            "id ": "",
+            sort: "3",
+            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+          },
+          {
+            name: "活动",
+            "id ": "",
+            sort: "4",
+            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+          },
+          {
+            name: "活动",
+            "id ": "",
+            sort: "4",
+            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+          },
+          {
+            name: "活动",
+            "id ": "",
+            sort: "4",
+            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
           }
         ]
       }
