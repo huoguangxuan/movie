@@ -3,13 +3,20 @@ export default [
   {
     path: "/films",
     name: "films",
-    component: () => import(/* webpackChunkName: "pages" */ "../views/films")
+    component: () => import(/* webpackChunkName: "films" */ "../views/films")
   },
   //影片详情
   {
     path: "/film-detail",
     name: "film-detail",
     component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/films/detail")
+      import(/* webpackChunkName: "film" */ "../views/films/detail")
+  },
+  //更多剧照
+  {
+    path: "/film-detail/photos",
+    name: "film-photos",
+    component: () =>
+      import(/* webpackChunkName: "film" */ "../views/films/photos")
   }
 ];

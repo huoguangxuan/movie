@@ -50,10 +50,10 @@
     <div class="film-actors">
       <h3 class="film-title">
         <span>演职人员</span>
-        <span class="font14 gray more">
+        <!-- <span class="font14 gray more">
           更多
           <van-icon class="more-arrow" name="arrow" />
-        </span>
+        </span> -->
       </h3>
       <div class="wrapper" ref="wrapper">
         <ul class="actors bscroll-container" ref="scrollUl">
@@ -73,7 +73,15 @@
     <div class="film-photos">
       <h3 class="film-title">
         <span>剧照</span>
-        <span class="font14 gray more">
+        <span
+          class="font14 gray more"
+          @click="
+            $router.push({
+              path: '/film-detail/photos',
+              params: { movieId: film.movieId, moreType: 'photo' }
+            })
+          "
+        >
           更多
           <van-icon class="more-arrow" name="arrow" />
         </span>

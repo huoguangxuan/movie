@@ -122,7 +122,7 @@ export default {
   methods: {
     getSeats() {
       const params = { cinemaId: "12345", showId: "1234", cityId: "北京" };
-      api
+      api.tickets
         .getSeats(params)
         .then(res => {
           if (!res) return;

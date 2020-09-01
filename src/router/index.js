@@ -25,40 +25,6 @@ let routes = [
       import(/* webpackChunkName: "pages" */ "../views/cinemas/detail")
   },
 
-  //影票频道首页
-  {
-    path: "/tickets",
-    name: "tickets",
-    component: () => import(/* webpackChunkName: "pages" */ "../views/tickets")
-  },
-  //影票频道搜索
-  {
-    path: "/search",
-    name: "search",
-    component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/tickets/search")
-  },
-  //影票频道购票
-  {
-    path: "/booking",
-    name: "booking",
-    component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/tickets/booking")
-  },
-  //影票频道选座
-  {
-    path: "/choseSeat",
-    name: "choseSeat",
-    component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/tickets/choseSeat")
-  },
-  //影票频道订单确认
-  {
-    path: "/orderConfirm",
-    name: "orderConfirm",
-    component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/tickets/orderConfirm")
-  },
   //个人主页
   {
     path: "/userCenter",

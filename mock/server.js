@@ -323,12 +323,79 @@ app.use("/film/getFilmDetail", function(req, res) {
       photos: {
         all: [
           {
-            sort: "排序",
-            photoUrl: "https://www.sojson.com/"
+            sort: "1",
+            photoUrl:
+              "https://p0.meituan.net/movie/48f2fa0329c018fae54be3744f99cbef307649.jpg@106w_106h_1e_1c"
           },
           {
-            sort: "排序",
-            photoUrl: "https://www.sojson.com/"
+            sort: "2",
+            photoUrl:
+              "https://p0.meituan.net/movie/cd13ea8f99240c9786bc3af7945d4abb298083.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "3",
+            photoUrl:
+              "https://p0.meituan.net/movie/8325b14f02105c12fee1352d832f0596612534.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "4",
+            photoUrl:
+              "https://p0.meituan.net/movie/ecd157af3473d402b1f11272eb8dde16529384.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "5",
+            photoUrl:
+              "https://p0.meituan.net/movie/f1f71b08f0e7d8f5641de0d53fef0142480772.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "6",
+            photoUrl:
+              "https://p0.meituan.net/movie/f1f71b08f0e7d8f5641de0d53fef0142480772.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "7",
+            photoUrl:
+              "https://p1.meituan.net/movie/f25e2ae2d542b6a5614130d8df0a1b6d455606.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "8",
+            photoUrl:
+              "https://p0.meituan.net/movie/62e7a47c6d0933ee30160dfe8cd28726425215.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "9",
+            photoUrl:
+              "https://p1.meituan.net/movie/0cdfda6b48c81cf9edca90377b195830302799.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "10",
+            photoUrl:
+              "https://p0.meituan.net/movie/f15869831b7efad38e29175dd1961d84434387.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "11",
+            photoUrl:
+              "https://p1.meituan.net/movie/019c659fbcf153be8f1eeb7801a2ba5d358887.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "12",
+            photoUrl:
+              "https://p0.meituan.net/movie/517bc6f185eb643b2dbe8965a5c8c17c489028.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "13",
+            photoUrl:
+              "https://p0.meituan.net/movie/0f9370ae82bda635008817fa0388b6e9403641.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "14",
+            photoUrl:
+              "https://p0.meituan.net/movie/8800a2d66db164128be5b1acde1a75f4363813.jpg@106w_106h_1e_1c"
+          },
+          {
+            sort: "15",
+            photoUrl:
+              "https://p0.meituan.net/movie/188dedec1092db901706a0374a75991b260407.jpg@106w_106h_1e_1c"
           }
         ],
         photo: [
@@ -388,6 +455,44 @@ app.use("/film/getFilmDetail", function(req, res) {
   });
 });
 //home
+app.use("/user/getTicket", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 17:38：22",
+    data: {
+      posterUrl:
+        "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
+      movieName: "八佰",
+      runDate: "08月23日 12:10-14:37 （国语2D）",
+      showStartTime: "08月23日 12:10-14:37",
+      showEndTime: "散场时间",
+      language: "国语2D",
+      showVersionType: "放映版本",
+      hallCode: "3D镭射厅",
+      cinemaName: "大地影院",
+      cinemaAddress: "影院名",
+      qrCode: "二维码信息",
+      ticketCode: "1221123212331213",
+      seats: [
+        {
+          row: "1",
+          column: "1"
+        },
+        {
+          row: "1",
+          column: "2"
+        }
+      ],
+      pay: {
+        payAmount: "支付金额",
+        activity: ["", ""]
+      },
+      orderNo: "订单号",
+      phoneNo: "手机号(脱敏)"
+    }
+  });
+});
 app.use("/home/getMoreData", function(req, res) {
   res.json({
     code: "0000",

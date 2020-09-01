@@ -1,7 +1,7 @@
 <template>
   <div class="order">
     <div class="header tit1">
-      <van-icon class="back" name="arrow-left" />
+      <van-icon class="back" @click="$router.back(-1)" name="arrow-left" />
       <h3 class="page-name">确认订单</h3>
       <div class="timer ">{{ timer }}</div>
     </div>
@@ -98,6 +98,7 @@
         class="font16"
         round
         color="linear-gradient(to right, #F8A10E, #EE6806)"
+        @click="$router.push('/booking')"
         >立即付款</van-button
       >
     </div>
