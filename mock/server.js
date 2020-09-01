@@ -363,31 +363,36 @@ app.use("/home/getHomeData", function(req, res) {
             name: "图片",
             "id ": "",
             sort: "1",
-            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484060.fid"
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
             name: "图片",
             "id ": "",
             sort: "2",
-            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484060.fid"
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
             name: "图片",
             "id ": "",
             sort: "3",
-            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484060.fid"
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
             name: "图片",
             "id ": "",
             sort: "4",
-            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484060.fid"
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
             name: "图片",
             "id ": "",
             sort: "4",
-            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484060.fid"
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           }
         ]
       },
@@ -398,31 +403,36 @@ app.use("/home/getHomeData", function(req, res) {
             name: "图片",
             "id ": "",
             sort: "1",
-            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484061.fid"
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
             name: "图片",
             "id ": "",
             sort: "2",
-            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484061.fid"
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
             name: "图片",
             "id ": "",
             sort: "3",
-            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484061.fid"
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
             name: "图片",
             "id ": "",
             sort: "4",
-            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484061.fid"
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
             name: "图片",
             "id ": "",
             sort: "4",
-            playBillUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484061.fid"
+            playBillUrl:
+              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           }
         ]
       },

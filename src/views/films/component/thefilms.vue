@@ -85,7 +85,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import api from "@/api";
 import BScroll from "better-scroll";
@@ -112,7 +111,6 @@ export default {
     this.getMoreDatar();
     this.$nextTick(() => {
       let timer = setTimeout(() => {
-        // 其实我也不想写这个定时器的，这相当于又嵌套了一层$nextTick，但是不这么写会失败
         if (timer) {
           clearTimeout(timer);
           this.verScroll();
@@ -166,7 +164,6 @@ export default {
     onRefresh() {
       // 清空列表数据
       this.finished = false;
-
       // 重新加载数据
       // 将 loading 设置为 true，表示处于加载状态
       this.loading = true;

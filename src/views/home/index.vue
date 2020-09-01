@@ -131,7 +131,7 @@
               >
             </li>
             <li class="extwo">
-              <img src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+              <img src="https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c" />
             </li>
           </ul>
         </div>
@@ -152,7 +152,7 @@
               >
             </li>
             <li class="extwo">
-              <img src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+              <img src="https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c" />
             </li>
           </ul>
         </div>
