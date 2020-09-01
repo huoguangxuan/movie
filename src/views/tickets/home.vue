@@ -3,7 +3,7 @@
     <!-- 搜索导航栏 -->
     <div class="search">
       <div class="searchcontent">
-        <router-link :to="{ name: 'search' }">
+        <router-link :to="{ name: 'homeSearch' }">
           <div class="searchto">
             <img src="@/assets/images/searchglass.png" />
             <span class="searchtext">搜索影片、影院...</span>
@@ -52,7 +52,7 @@
             >即将上映</span
           >
         </span>
-        <router-link :to="{ name: num == 1 ? 'films' : 'films' }">
+        <router-link :to="{ name: num == 1 ? 'hotfilms' : 'thefilms' }">
           <span class="headright">
             更多<img class="more" src="@/assets/images/more.png" />
           </span>

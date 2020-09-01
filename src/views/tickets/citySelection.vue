@@ -4,9 +4,11 @@
       <span>城市选择</span>
     </div>
     <div class="searchs">
-      <van-search v-model="value"
-                  @input="onSearch(value)"
-                  placeholder="输入城市名、拼音或字母查询">
+      <van-search
+        v-model="value"
+        @input="onSearch(value)"
+        placeholder="输入城市名、拼音或字母查询"
+      >
       </van-search>
     </div>
     <div class="location">
@@ -33,17 +35,19 @@
       </div>
     </div>
     <div class="allcity">
-      <van-index-bar class="indexBar"
-                     :sticky="false"
-                     highlight-color="#AE853A">
-        <van-index-anchor v-for="(item,index) in cityDts"
-                          :key="index"
-                          :index="item.initial">
-          <span class="indexWord">{{item.initial}}</span>
-          <van-cell @click="chooseCity(citem)"
-                    v-for="(citem,cindex) in item.list"
-                    :key="cindex"
-                    :title="citem.name" />
+      <van-index-bar class="indexBar" :sticky="false" highlight-color="#AE853A">
+        <van-index-anchor
+          v-for="(item, index) in cityDts"
+          :key="index"
+          :index="item.initial"
+        >
+          <span class="indexWord">{{ item.initial }}</span>
+          <van-cell
+            @click="chooseCity(citem)"
+            v-for="(citem, cindex) in item.list"
+            :key="cindex"
+            :title="citem.name"
+          />
         </van-index-anchor>
       </van-index-bar>
     </div>
@@ -51,7 +55,7 @@
 </template>
 
 <script>
-import cityDts from '@/views/home/component/city.json';
+import cityDts from "@/views/tickets/component/city.json";
 import { Search, IndexBar, IndexAnchor, Cell } from "vant";
 export default {
   components: {
@@ -60,36 +64,35 @@ export default {
     [IndexAnchor.name]: IndexAnchor,
     [Cell.name]: Cell
   },
-  data () {
+  data() {
     return {
       value: "",
       cityDts: []
-    }
+    };
   },
-  created () { },
-  mounted () {
-    this.cityDts = cityDts.city
+  created() {},
+  mounted() {
+    this.cityDts = cityDts.city;
   },
   methods: {
-    onSearch (val) {
+    onSearch(val) {
       if (val.trim()) {
         this.showIndexBar = false;
         let res = this.cityDts.filter(i => {
-          console.log(i)
-          return i.name.indexOf(val) !== -1
+          console.log(i);
+          return i.name.indexOf(val) !== -1;
         });
         this.cityDts = res;
-
       } else {
         this.showIndexBar = true;
       }
     },
-    chooseCity (citem) {
-      console.log(citem)
-      alert(citem.name)
+    chooseCity(citem) {
+      console.log(citem);
+      alert(citem.name);
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

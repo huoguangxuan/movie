@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "@/views/home";
+import Home from "@/views/tickets/home";
 import store from "@/store";
 
 Vue.use(VueRouter);
@@ -15,42 +15,43 @@ let routes = [
   {
     path: "/home",
     name: "home",
-    component: () => import(/* webpackChunkName: "pages" */ "../views/home")
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/tickets/home")
   },
   //首页城市选择
   {
     path: "/citySelection",
     name: "citySelection",
     component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/home/citySelection")
+      import(/* webpackChunkName: "pages" */ "../views/tickets/citySelection")
   },
   //首页banner详情页
   {
     path: "/bannerDetail",
     name: "bannerDetail",
     component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/home/bannerDetail")
+      import(/* webpackChunkName: "pages" */ "../views/tickets/bannerDetail")
   },
   //首页搜索页
   {
-    path: "/search",
-    name: "search",
+    path: "/homeSearch",
+    name: "homeSearch",
     component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/home/search")
+      import(/* webpackChunkName: "pages" */ "../views/tickets/homeSearch")
   },
   //资讯详情
   {
     path: "/information",
     name: "information",
     component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/home/information")
+      import(/* webpackChunkName: "pages" */ "../views/tickets/information")
   },
   //热门活动
   {
     path: "/activity",
     name: "activity",
     component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/home/activity")
+      import(/* webpackChunkName: "pages" */ "../views/tickets/activity")
   },
   //影院列表
   {
