@@ -208,7 +208,7 @@ export default {
   methods: {
     getTicketInfo() {
       const params = {};
-      api
+      api.tickets
         .getTicketInfo(params)
         .then(res => {
           this.ticket = res.data;

@@ -272,7 +272,7 @@ export default {
         // movieId: this.$router.params.movieId || 0
         movieId: 0
       };
-      api
+      api.films
         .getFilmDetail(params)
         .then(res => {
           this.film = res.data;

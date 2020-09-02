@@ -14,5 +14,12 @@ export default {
   //获取影票信息
   getTicketInfo(params) {
     return axios.post(`${prefix}/user/getTicket`, params);
+  },
+  //home
+  getHomeData(params) {
+    return axios.post(`${prefix}/home/getHomeData`, params);
+  },
+  getMoreDatar(params) {
+    return axios.post(`${prefix}/home/getMoreDatar`, params);
   }
 };

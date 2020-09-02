@@ -198,7 +198,7 @@ export default {
     //首页banner，热映，即将上映，热门活动的数据接口
     getHomeData() {
       const params = { cityId: "北京" };
-      api
+      api.tickets
         .getHomeData(params)
         .then(res => {
           console.log(res);

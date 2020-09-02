@@ -83,16 +83,19 @@
         </div>
       </div>
     </div>
+    <the-footer activeIndex="2" />
   </div>
 </template>
 <script>
 import api from "@/api";
 import BScroll from "better-scroll";
 import { Button, List } from "vant";
+import TheFooter from "@/components/TheFooter";
 export default {
   components: {
     [Button.name]: Button,
-    [List.name]: List
+    [List.name]: List,
+    "the-footer": TheFooter
   },
   data() {
     return {
@@ -114,7 +117,7 @@ export default {
     //首页banner，热映，即将上映，热门活动的数据接口
     getHomeData() {
       const params = { cityId: "北京" };
-      api
+      api.tickets
         .getHomeData(params)
         .then(res => {
           // console.log(res);
@@ -127,7 +130,7 @@ export default {
         });
     },
     getMoreDatar() {
-      api.getMoreDatar().then(res => {
+      api.tickets.getMoreDatar().then(res => {
         // console.log(res.data.pageData);
         console.log(res.data.pageData.nearCome);
         this.time = res.data.pageData.nearCome;
@@ -136,7 +139,7 @@ export default {
     },
     getFilms() {
       const params = { type: 1 };
-      api
+      api.tickets
         .getFilms(params)
         .then(res => {
           this.filmList = res.data.pageData;

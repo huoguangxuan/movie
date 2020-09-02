@@ -61,12 +61,14 @@
         </ul>
       </van-list>
     </van-pull-refresh>
+    <the-footer activeIndex="2" />
   </div>
 </template>
 
 <script>
 import { Search, Grid, GridItem, Button, List, PullRefresh } from "vant";
 import api from "@/api";
+import TheFooter from "@/components/TheFooter";
 export default {
   components: {
     [Search.name]: Search,
@@ -74,7 +76,8 @@ export default {
     [GridItem.name]: GridItem,
     [Button.name]: Button,
     [List.name]: List,
-    [PullRefresh.name]: PullRefresh
+    [PullRefresh.name]: PullRefresh,
+    "the-footer": TheFooter
   },
   data() {
     return {
@@ -90,7 +93,7 @@ export default {
   methods: {
     getFilms() {
       const params = { type: 1 };
-      api
+      api.films
         .getFilms(params)
         .then(res => {
           this.filmList = res.data.pageData;

@@ -9,16 +9,13 @@
     </van-tabs>
     <div class="divider"></div>
     <router-view></router-view>
-    <the-footer activeIndex="1" />
   </div>
 </template>
 
 <script>
 import { Tab, Tabs } from "vant";
-import TheFooter from "@/components/TheFooter";
 export default {
   components: {
-    "the-footer": TheFooter,
     [Tab.name]: Tab,
     [Tabs.name]: Tabs
   },

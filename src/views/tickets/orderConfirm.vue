@@ -200,7 +200,7 @@ export default {
           }
         ]
       };
-      api
+      api.tickets
         .getOrderInfo(params)
         .then(res => {
           console.log(res);
