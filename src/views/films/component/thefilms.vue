@@ -109,14 +109,6 @@ export default {
     this.getHomeData();
     this.getFilms();
     this.getMoreDatar();
-    this.$nextTick(() => {
-      let timer = setTimeout(() => {
-        if (timer) {
-          clearTimeout(timer);
-          this.verScroll();
-        }
-      }, 0);
-    });
   },
   methods: {
     //首页banner，热映，即将上映，热门活动的数据接口
@@ -128,6 +120,7 @@ export default {
           // console.log(res);
           this.recently = res.data.coming.data;
           this.length_recently = res.data.coming.data.length;
+          this.verScroll();
         })
         .catch(err => {
           console.log(err);
@@ -171,8 +164,8 @@ export default {
       this.getFilms();
     },
     verScroll() {
-      let width_recently = this.length_recently * 110;
-      let width_time = this.length_time * 110;
+      let width_recently = this.length_recently * 110 * 2 + 20;
+      let width_time = this.length_time * 110 * 2 + 20;
       this.$refs.recentlycont.style.width = width_recently + "px";
       this.$refs.specificmin.style.width = width_time + "px";
       this.$nextTick(() => {
@@ -185,7 +178,7 @@ export default {
             eventPassthrough: "vertical"
           });
           this.scroll = new BScroll(this.$refs.specificbig, {
-            startX: 0, // 配置的详细信息请参考better-scroll的官方文档，这里不再赘述
+            startX: 0,
             click: true,
             scrollX: true,
             scrollY: false,
