@@ -22,6 +22,8 @@
         >
       </div>
     </section>
+    <div class="divider"></div>
+    <img class="activi" src="@/assets/images/liveactivity.png" />
   </div>
 </template>
 <script>
@@ -69,6 +71,10 @@ export default {
         margin-left: 35px;
       }
     }
+  }
+  .activi{
+    width:100vw;
+    height:100px;
   }
 }
 </style>

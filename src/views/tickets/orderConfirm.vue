@@ -57,18 +57,42 @@
       </div>
     </div>
     <div class="divider"></div>
-    <div class="user-mobile">
-      <div class="mobile-icon">
-        <img class="img-url" :src="mobileUrl" alt="" />
+    <div class="monyway">
+      <div class="monyway-title">
+        <span>选择支付方式</span>
       </div>
-      <div class="mobile">
-        <p class="font14 black">13623131233</p>
-        <p class="font12">此手机号仅用于生成订单</p>
-      </div>
-      <div class="action">
-        <van-icon class="back font14" name="arrow" />
+      <div class="monyway-content">
+        <van-radio-group v-model="radio">
+          <div class="my item">
+            <div><img src="@/assets/images/fix.png" /><span>沃钱包</span></div>
+            <van-radio name="1"></van-radio>
+          </div>
+          <div class="wechat item">
+            <div><img src="@/assets/images/fix.png" /><span>微信</span></div>
+            <van-radio name="2"></van-radio>
+          </div>
+          <div class="bank-card item">
+            <div><img src="@/assets/images/fix.png" /><span>银行卡</span></div>
+            <van-radio name="3"></van-radio>
+          </div>
+        </van-radio-group>
       </div>
     </div>
+    <div class="divider"></div>
+    <router-link :to="{ name: 'modifyPhone' }">
+      <div class="user-mobile">
+        <div class="mobile-icon">
+          <img class="img-url" :src="mobileUrl" alt="" />
+        </div>
+        <div class="mobile">
+          <p class="font14 black">13623131233</p>
+          <p class="font12">此手机号仅用于生成订单</p>
+        </div>
+        <div class="action">
+          <van-icon class="back font14" name="arrow" />
+        </div>
+      </div>
+    </router-link>
     <div class="divider"></div>
     <div class="attention">
       <h3 class="font18 black">购票须知</h3>
@@ -127,20 +151,23 @@
 </template>
 <script>
 import api from "@/api";
-import { Icon, Button, Popup } from "vant";
+import { Icon, Button, Popup, Radio, RadioGroup } from "vant";
 export default {
   name: "order-confirm",
   components: {
     [Icon.name]: Icon,
     [Button.name]: Button,
-    [Popup.name]: Popup
+    [Popup.name]: Popup,
+    [Radio.name]: Radio,
+    [RadioGroup.name]: RadioGroup
   },
   data: function() {
     return {
       order: {},
       timer: "00:00",
       mobileUrl: require("@/assets/images/mobile.png"),
-      showDetail: false
+      showDetail: false,
+      radio: "1"
     };
   },
   created() {
@@ -173,7 +200,7 @@ export default {
           }
         ]
       };
-      api.tickets
+      api
         .getOrderInfo(params)
         .then(res => {
           console.log(res);
@@ -303,6 +330,48 @@ export default {
       width: 35px;
       text-align: right;
       font-weight: 600;
+    }
+  }
+  .monyway {
+    padding: 0px 17px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    .monyway-title {
+      padding-top: 10px;
+      font-family: PingFangSC-Semibold;
+      font-size: 16px;
+      color: #333333;
+      line-height: 32px;
+    }
+    .monyway-content {
+      flex: 1;
+      .van-radio-group {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .item {
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        span {
+          font-family: PingFangSC-Regular;
+          font-size: 14px;
+          color: #333333;
+          line-height: 14px;
+          margin-left: 24px;
+        }
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
     }
   }
   .attention {
