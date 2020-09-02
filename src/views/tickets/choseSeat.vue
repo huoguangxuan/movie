@@ -52,7 +52,7 @@
                   class="seat"
                   :class="{
                     empty: seat.status === '0',
-                    fix: seat.status === '2' && seat.type === '0',
+                    disable: seat.status === '2' && seat.type === '0',
                     sold: seat.status === '3' && seat.type === '0',
                     'sold-love-left': seat.status === '3' && seat.type === '1',
                     'sold-love-right': seat.status === '3' && seat.type === '2',
@@ -319,6 +319,9 @@ export default {
       }
       .fix {
         background-image: url("../../assets/images/fix.png");
+      }
+      .disable {
+        background-image: url("../../assets/images/disable.png");
       }
       .select {
         background-image: url("../../assets/images/select.png");
