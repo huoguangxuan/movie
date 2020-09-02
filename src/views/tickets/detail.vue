@@ -29,7 +29,7 @@
       </div>
       <p class="font12 black ac count">您有{{ ticketCount }}张电影票</p>
       <div class="code font14 black">取票号：{{ dealStr4 }}</div>
-      <div class="actions" ref="actions">
+      <div class="actions no-win">
         <div class="block" @click="saveImg">
           <p><van-icon name="down" /></p>
           <p class="font14">保存图片</p>
@@ -101,7 +101,13 @@ export default {
       console.log("开始生成图片");
       html2canvas(this.$refs.imageWrapper, {
         scale: 1,
-        useCORS: true
+        useCORS: true,
+        ignoreElements: function(item) {
+          if (item.classList.contains("no-win")) {
+            return true;
+          }
+          return false;
+        }
       })
         .then(canvas => {
           let dataURL = canvas.toDataURL("image/png");

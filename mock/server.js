@@ -158,8 +158,9 @@ app.use("/ticket/getSeatDatas", function(req, res) {
         seats: [
           {
             rowId: "1",
-            rowNum: "1",
+            rowNum: "1", //<!-- status:0空，1可售，2不可售，3，已售 -->
             columns: [
+              // <!-- type:0普通，1情侣左，2情侣右 -->
               {
                 seatPrice: "50.00",
                 status: "0",
@@ -170,7 +171,7 @@ app.use("/ticket/getSeatDatas", function(req, res) {
               },
               {
                 seatPrice: "50.00",
-                status: "1",
+                status: "2",
                 columnId: "2",
                 columnNum: "1",
                 type: "0",
@@ -186,7 +187,7 @@ app.use("/ticket/getSeatDatas", function(req, res) {
               },
               {
                 seatPrice: "50.00",
-                status: "1",
+                status: "2",
                 columnId: "3",
                 columnNum: "1",
                 type: "0",
@@ -203,7 +204,7 @@ app.use("/ticket/getSeatDatas", function(req, res) {
               },
               {
                 seatPrice: "50.00",
-                status: "1",
+                status: "2",
                 columnId: "3",
                 columnNum: "1",
                 type: "0",
@@ -219,7 +220,7 @@ app.use("/ticket/getSeatDatas", function(req, res) {
               },
               {
                 seatPrice: "50.00",
-                status: "1",
+                status: "2",
                 columnId: "3",
                 columnNum: "1",
                 type: "0",
@@ -235,7 +236,7 @@ app.use("/ticket/getSeatDatas", function(req, res) {
               },
               {
                 seatPrice: "50.00",
-                status: "1",
+                status: "2",
                 columnId: "3",
                 columnNum: "1",
                 type: "0",
@@ -246,7 +247,7 @@ app.use("/ticket/getSeatDatas", function(req, res) {
                 status: "1",
                 columnId: "3",
                 columnNum: "1",
-                type: "0",
+                type: "1",
                 seatId: "0003"
               },
               {
@@ -254,12 +255,12 @@ app.use("/ticket/getSeatDatas", function(req, res) {
                 status: "1",
                 columnId: "3",
                 columnNum: "1",
-                type: "0",
+                type: "2",
                 seatId: "0003"
               },
               {
                 seatPrice: "50.00",
-                status: "1",
+                status: "2",
                 columnId: "3",
                 columnNum: "1",
                 type: "0",
@@ -282,6 +283,11 @@ app.use("/ticket/getSeatDatas", function(req, res) {
                 seatId: "0003"
               }
             ]
+          },
+          {
+            rowId: "2",
+            rowNum: "2",
+            columns: []
           },
           {
             rowId: "2",

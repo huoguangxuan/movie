@@ -21,14 +21,53 @@
       <li>已售</li>
       <li>已售</li>
     </ul>
-    <seat-area class="wrapper" ref="seatArea">
+
+    <seat-area
+      class="wrapper"
+      ref="seatArea"
+      :seatAreaWidthRem="seatAreaWidthRem"
+      :seatAreaHeightRem="seatAreaHeightRem"
+      :seatScale="seatScale"
+    >
       <!--以下为座位图具名插槽 开始-->
       <template v-slot:seat-area>
-        <div class="seatBox">
-          <template v-for="(row, index) in seatList">
-            <div class="row" @click.prevent="clickSeat(index)" :key="row.id">
+        <div class="seatBox" :style="{ transform: 'scale(' + seatScale + ')' }">
+          <div class="screen">
+            <div class="screen-num">一号厅</div>
+          </div>
+          <template v-for="row in seatList">
+            <div
+              v-if="row.columns.length < 1"
+              class="empty-row"
+              :style="{
+                height: height + 'rem'
+              }"
+              :key="row.id"
+            ></div>
+            <div v-else class="row" :key="row.id">
               <template v-for="(seat, index) in row.columns">
-                <span class="seat sold" :key="index"></span>
+                <!-- status:0空，1可售，2不可售，3，已售 -->
+                <!-- type:0普通，1情侣左，2情侣右,3黄金区域 -->
+                <span
+                  class="seat"
+                  :class="{
+                    empty: seat.status === '0',
+                    fix: seat.status === '2' && seat.type === '0',
+                    sold: seat.status === '3' && seat.type === '0',
+                    'sold-love-left': seat.status === '3' && seat.type === '1',
+                    'sold-love-right': seat.status === '3' && seat.type === '2',
+                    'fix-love-left': seat.status === '2' && seat.type === '1',
+                    'fix-love-right': seat.status === '2' && seat.type === '2',
+                    'love-left': seat.status === '1' && seat.type === '1',
+                    'love-right': seat.status === '1' && seat.type == '2'
+                  }"
+                  :style="{
+                    height: height + 'rem',
+                    width: width + 'rem'
+                  }"
+                  @click.prevent="clickSeat($event, seat)"
+                  :key="index"
+                />
               </template>
             </div>
           </template>
@@ -65,7 +104,7 @@
 </template>
 <script>
 import { NavBar, Swipe, SwipeItem } from "vant";
-import BScroll from "better-scroll";
+// import BScroll from "better-scroll";
 import SeatArea from "./component/SeatArea";
 import api from "@/api";
 export default {
@@ -74,20 +113,10 @@ export default {
       selectedSeat: [],
       seatList: [], // 座位对象list
       seatTypeList: [], // 座位类型list
-      movieName: "", // 展示用 电影名称 接口获取
-      hallName: "", // 展示用 影厅名称 接口获取
-      showDate: "", // 展示用 开始日期 接口获取
-      showTime: "", // 展示用 开始时间 接口获取
-      positionDistin: 0.25, // 每个座位偏移距离
-      width: 0.25, // 每个座位的宽
-      height: 0.25, // 每个座位的高
-      thumbnailWidth: 0.05, // 缩略图每个座位的宽
-      thumbnailHeight: 0.05, // 缩略图每个座位的高
-      thumbnailPositionDistin: 0.075, // 缩略图每个座位偏移距离
+      width: 0.5, // 每个座位的宽
+      height: 0.5, // 每个座位的高
       seatAreaWidthRem: 10, // 座位区域横向rem最大值 用于和 seatAreaHeightRem 共同计算区域缩放比例
-      selectedSeatList: [], // 已选择座位
-      maxSelect: 4, // 最大选择座位数量 改动可改变最大选择座位数
-      load: false // 加载dom的控制
+      selectedSeatList: [] // 已选择座位
     };
   },
   components: {
@@ -96,27 +125,54 @@ export default {
     [SwipeItem.name]: SwipeItem,
     "seat-area": SeatArea
   },
-  watch: {
-    selectedSeat: function() {
-      let width = this.propSelectedSeat.length * 1.2 + 0.6;
-      this.$refs.scrollUl.style.width = width + "rem";
-      this.$nextTick(() => {
-        if (!this.scroll) {
-          this.scroll = new BScroll(this.$refs.scroll, {
-            scrollX: true,
-            // 忽略竖直方向的滚动
-            scrollY: false,
-            eventPassthrough: "vertical"
-          });
-        } else {
-          this.scroll.refresh();
+  computed: {
+    nowIcon: function() {
+      return require("@/assets/images/free.png");
+    },
+    seatAreaHeightRem: function() {
+      let screenRem =
+        (document.body.clientWidth ||
+          window.innerWidth ||
+          document.documentElement.clientWidth) / 5;
+      let height =
+        document.documentElement.clientHeight ||
+        window.innerHeight ||
+        document.body.clientHeight;
+      // 除了座位区域的大小
+      let otherDom = 0; // 头+排期信息+座位示例 +底部快捷选择+确认按钮
+      // 剩下的座位区域的大小
+      return height / screenRem - otherDom;
+    },
+    // 取最大横坐标
+    xMax: function() {
+      if (this.seatList.length) {
+        if (this.seatList[0].columns.length) {
+          return this.seatList[0].columns.length;
         }
-      });
+      }
+      return 0;
+    },
+    // 取最大纵坐标
+    yMax: function() {
+      return this.seatList.length;
+    },
+    // class 为 seatBox 的高度值 单位为rem
+    seatBoxHeight: function() {
+      return this.yMax * this.height;
+    },
+    // class 为 seatBox 的宽度值 单位为rem
+    seatBoxWidth: function() {
+      return (this.xMax + 2) * this.width;
+    },
+    seatScale: function() {
+      let seatScaleX = 1;
+      let seatScaleY = 1;
+      seatScaleX = this.seatAreaWidthRem / this.seatBoxWidth;
+      seatScaleY = this.seatAreaHeightRem / this.seatBoxHeight;
+      return seatScaleX < seatScaleY ? seatScaleX : seatScaleY;
     }
   },
   mounted() {
-    // this.seatList = jsonData.seatList;
-    // this.seatTypeList = jsonData.seatTypeList;
     this.getSeats();
   },
   methods: {
@@ -139,8 +195,25 @@ export default {
     cancelSelect(item) {
       console.log(item);
     },
-    clickSeat(index) {
-      console.log(index);
+    clickSeat(e, seat) {
+      console.log(seat);
+      //空或者不可选 return
+      // <!-- status:0空，1可售，2不可售，3，已售 -->
+      // <!-- type:0普通，1情侣左，2情侣右 -->
+      if (seat.status === "1") {
+        //可售
+        const c_index = e.srcElement.className.indexOf("active");
+
+        if (c_index < 0) {
+          e.srcElement.className = e.srcElement.className + " active";
+        } else {
+          e.srcElement.className = e.srcElement.className.replace(
+            " active",
+            ""
+          );
+        }
+      }
+      return;
     }
   }
 };
@@ -212,24 +285,60 @@ export default {
   }
 }
 .wrapper {
-  position: relative;
-  width: 375px;
-  height: 400px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .seatBox {
-    position: absolute;
     white-space: nowrap;
-    transform-origin: 0px 0px 0px;
-    .seat {
-      display: inline-block;
-      // width: 30px;
-      // height: 30px;
-      // margin: 5px;
-      background: red;
-      background: url("../../assets/images/free.png") no-repeat;
+    // transform-origin: 0px 0px 0px;
+    .row {
+      .seat {
+        display: inline-block;
+        background-image: url("../../assets/images/free.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        &.active {
+          background-image: url("../../assets/images/select.png");
+        }
+      }
+      .empty {
+        background-image: none;
+      }
+      .sold {
+        background-image: url("../../assets/images/sold.png");
+      }
+      .love-left {
+        background-image: url("../../assets/images/love_left.png");
+        &.active {
+          background-image: url("../../assets/images/select.png");
+        }
+      }
+      .love-right {
+        background-image: url("../../assets/images/love_right.png");
+      }
+      .fix {
+        background-image: url("../../assets/images/fix.png");
+      }
+      .select {
+        background-image: url("../../assets/images/select.png");
+      }
     }
-    .sold {
-      background-image: url("../../assets/images/sold.png");
+    .screen {
+      width: 120px;
+      margin: 0px auto;
+      margin-bottom: 20px;
+      border-top: 25px solid #dfdfdf;
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      &-num {
+        text-align: center;
+        font-size: 12px;
+
+        margin-top: -18px;
+      }
     }
   }
 }
