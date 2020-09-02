@@ -193,15 +193,6 @@ export default {
   created() {},
   mounted() {
     this.getHomeData();
-    // this.$nextTick(() => {
-    //   let timer = setTimeout(() => {
-    //     // 其实我也不想写这个定时器的，这相当于又嵌套了一层$nextTick，但是不这么写会失败
-    //     if (timer) {
-    //       clearTimeout(timer);
-    //       this.verScroll();
-    //     }
-    //   }, 0);
-    // });
   },
   methods: {
     //首页banner，热映，即将上映，热门活动的数据接口
@@ -225,7 +216,7 @@ export default {
         });
     },
     verScroll() {
-      let width_active = this.length_activi * 110 * 2 + 10; // 动态计算出滚动区域的大小，前面已经说过了，产生滚动的原因是滚动区域宽度大于父盒子宽度
+      let width_active = this.length_activi * 110 * 2 + 20; // 动态计算出滚动区域的大小，前面已经说过了，产生滚动的原因是滚动区域宽度大于父盒子宽度
       let width_fail = this.length_fail * 110 * 2 + 20;
       let width_coming = this.length_coming * 110 * 2 + 20;
       this.$refs.cont.style.width = width_active + "px"; // 修改滚动区域的宽度
@@ -241,14 +232,14 @@ export default {
             eventPassthrough: "vertical"
           });
           this.scroll = new BScroll(this.$refs.filmcontent, {
-            startX: 0, // 配置的详细信息请参考better-scroll的官方文档，这里不再赘述
+            startX: 0,
             click: true,
             scrollX: true,
             scrollY: false,
             eventPassthrough: "vertical"
           });
           this.scroll = new BScroll(this.$refs.comingcontent, {
-            startX: 0, // 配置的详细信息请参考better-scroll的官方文档，这里不再赘述
+            startX: 0,
             click: true,
             scrollX: true,
             scrollY: false,

@@ -39,5 +39,12 @@ export default [
     name: "orderConfirm",
     component: () =>
       import(/* webpackChunkName: "tickets" */ "../views/tickets/orderConfirm")
+  },
+  //影票频道修改手机号码
+  {
+    path: "/modifyPhone",
+    name: "modifyPhone",
+    component: () =>
+      import(/* webpackChunkName: "tickets" */ "../views/tickets/modifyPhone")
   }
 ];
