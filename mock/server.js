@@ -138,6 +138,7 @@ app.use("/ticket/getSeatDatas", function(req, res) {
       date: "2020-08-06",
       showStartTime: "2020-08-06 17:38：22",
       showEndTime: "2020-08-06 17:38：22",
+      limit: 4,
       note: [
         {
           sort: "1",
@@ -173,114 +174,114 @@ app.use("/ticket/getSeatDatas", function(req, res) {
                 seatPrice: "50.00",
                 status: "2",
                 columnId: "2",
-                columnNum: "1",
+                columnNum: "2",
                 type: "0",
                 seatId: "0002"
               },
               {
                 seatPrice: "50.00",
-                status: "1",
+                status: "3",
                 columnId: "3",
-                columnNum: "1",
+                columnNum: "3",
                 type: "0",
                 seatId: "0003"
               },
               {
                 seatPrice: "50.00",
                 status: "2",
-                columnId: "3",
-                columnNum: "1",
+                columnId: "4",
+                columnNum: "4",
                 type: "0",
-                seatId: "0003"
+                seatId: "0004"
               },
 
               {
                 seatPrice: "50.00",
                 status: "1",
-                columnId: "3",
-                columnNum: "1",
+                columnId: "5",
+                columnNum: "5",
                 type: "0",
-                seatId: "0003"
+                seatId: "0005"
               },
               {
                 seatPrice: "50.00",
                 status: "2",
-                columnId: "3",
-                columnNum: "1",
+                columnId: "6",
+                columnNum: "6",
                 type: "0",
-                seatId: "0003"
+                seatId: "0006"
               },
               {
                 seatPrice: "50.00",
                 status: "1",
-                columnId: "3",
-                columnNum: "1",
+                columnId: "7",
+                columnNum: "7",
                 type: "0",
-                seatId: "0003"
+                seatId: "0007"
               },
               {
                 seatPrice: "50.00",
                 status: "2",
-                columnId: "3",
-                columnNum: "1",
+                columnId: "8",
+                columnNum: "8",
                 type: "0",
-                seatId: "0003"
+                seatId: "0008"
               },
               {
                 seatPrice: "50.00",
                 status: "1",
-                columnId: "3",
-                columnNum: "1",
+                columnId: "9",
+                columnNum: "9",
                 type: "0",
-                seatId: "0003"
+                seatId: "0009"
               },
               {
                 seatPrice: "50.00",
                 status: "2",
-                columnId: "3",
-                columnNum: "1",
+                columnId: "10",
+                columnNum: "10",
                 type: "0",
-                seatId: "0003"
+                seatId: "0010"
               },
               {
                 seatPrice: "50.00",
                 status: "1",
-                columnId: "3",
-                columnNum: "1",
+                columnId: "11",
+                columnNum: "11",
                 type: "1",
-                seatId: "0003"
+                seatId: "0011"
               },
               {
                 seatPrice: "50.00",
                 status: "1",
-                columnId: "3",
-                columnNum: "1",
+                columnId: "12",
+                columnNum: "12",
                 type: "2",
-                seatId: "0003"
+                seatId: "0012"
               },
               {
                 seatPrice: "50.00",
                 status: "2",
-                columnId: "3",
-                columnNum: "1",
+                columnId: "13",
+                columnNum: "13",
                 type: "0",
-                seatId: "0003"
+                seatId: "0013"
               },
               {
                 seatPrice: "50.00",
                 status: "1",
-                columnId: "3",
-                columnNum: "1",
+                columnId: "14",
+                columnNum: "14",
                 type: "0",
-                seatId: "0003"
+                seatId: "0014"
               },
               {
                 seatPrice: "50.00",
                 status: "1",
-                columnId: "3",
-                columnNum: "1",
+                columnId: "15",
+                columnNum: "15",
                 type: "0",
-                seatId: "0003"
+                seatId: "0015"
               }
             ]
           },
@@ -296,26 +297,26 @@ app.use("/ticket/getSeatDatas", function(req, res) {
               {
                 seatPrice: "50.00",
                 status: "1",
-                columnId: "4",
-                columnNum: "4",
+                columnId: "16",
+                columnNum: "1",
                 type: "0",
-                seatId: "0004"
+                seatId: "0016"
               },
               {
                 seatPrice: "50.00",
                 status: "1",
-                columnId: "5",
-                columnNum: "5",
+                columnId: "17",
+                columnNum: "2",
                 type: "0",
-                seatId: "0005"
+                seatId: "0017"
               },
               {
                 seatPrice: "50.00",
                 status: "1",
-                columnId: "6",
-                columnNum: "6",
+                columnId: "18",
+                columnNum: "3",
                 type: "0",
-                seatId: "0006"
+                seatId: "0018"
               }
             ]
           }

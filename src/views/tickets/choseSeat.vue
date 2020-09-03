@@ -1,19 +1,7 @@
 <template>
   <div class="seats">
-    <van-nav-bar
-      title="选择座位"
-      left-text="返回"
-      left-arrow
-      @click-left="onClickLeft"
-    />
-    <section class="seats-desc">
-      <h5 class="seats-desc-film">八佰</h5>
-      <p class="seats-desc-cinema">地质礼堂</p>
-      <p class="seats-desc-time">今天 08月26日 20:00(国语2D)</p>
-      <van-button round type="info" size="small" class="seats-desc-action"
-        >切换场次</van-button
-      >
-    </section>
+    <van-nav-bar title="选择座位" left-arrow @click-left="onClickLeft" />
+
     <ul class="seats-types">
       <li>可选</li>
       <li>不可选</li>
@@ -44,7 +32,7 @@
               }"
               :key="row.id"
             ></div>
-            <div v-else class="row" :key="row.id">
+            <div v-else class="row" :key="row.rowId">
               <template v-for="(seat, index) in row.columns">
                 <!-- status:0空，1可售，2不可售，3，已售 -->
                 <!-- type:0普通，1情侣左，2情侣右,3黄金区域 -->
@@ -65,8 +53,8 @@
                     height: height + 'rem',
                     width: width + 'rem'
                   }"
-                  @click.prevent="clickSeat($event, seat)"
-                  :key="index"
+                  @click.prevent="clickSeat($event, row, index)"
+                  :key="seat.seatId"
                 />
               </template>
             </div>
@@ -76,16 +64,26 @@
       <!--以上为座位图具名插槽 结束-->
     </seat-area>
     <section class="seats-select">
-      <p class="tit">已选座位:</p>
+      <section class="seats-select-desc">
+        <h5 class="seats-select-desc-film">
+          八佰
+          <span class="seats-select-desc-cinema">地质礼堂</span>
+        </h5>
+
+        <p class="seats-select-desc-time">今天 08月26日 20:00(国语2D)</p>
+        <p class="seats-select-desc-action orange font14">切换场次</p>
+      </section>
+      <!-- <p class="tit">已选座位:</p> -->
       <div class="scroll" ref="scroll">
         <ul class="select scroll-ul" ref="scrollUl">
           <li
             class="scroll-item"
-            v-for="item in selectedSeat"
-            :key="'select' + item.id"
+            v-for="item in selectedSeatList"
+            :key="'select' + item.seatId"
             @click="cancelSelect(item)"
           >
-            {{ item.row }}排{{ item.col }}座 {{ item.price }}元
+            {{ item.rowNum }}排{{ item.columnNum }}座<br />
+            <span class="orange">{{ item.seatPrice }}元</span>
           </li>
         </ul>
       </div>
@@ -95,6 +93,7 @@
         @click.stop="
           $router.push({ path: '/orderConfirm', params: { movieId: 1 } })
         "
+        round
         class="buy-btn"
         color="linear-gradient(to right, #F8A10E, #EE6806)"
         >去购票</van-button
@@ -103,26 +102,27 @@
   </div>
 </template>
 <script>
-import { NavBar, Swipe, SwipeItem } from "vant";
+import { NavBar, Swipe, SwipeItem, Toast } from "vant";
 // import BScroll from "better-scroll";
 import SeatArea from "./component/SeatArea";
 import api from "@/api";
 export default {
   data: function() {
     return {
-      selectedSeat: [],
       seatList: [], // 座位对象list
       seatTypeList: [], // 座位类型list
       width: 0.5, // 每个座位的宽
       height: 0.5, // 每个座位的高
       seatAreaWidthRem: 10, // 座位区域横向rem最大值 用于和 seatAreaHeightRem 共同计算区域缩放比例
-      selectedSeatList: [] // 已选择座位
+      selectedSeatList: [], // 已选择座位
+      maxSelect: 0 //最多选座数
     };
   },
   components: {
     [NavBar.name]: NavBar,
     [Swipe.name]: Swipe,
     [SwipeItem.name]: SwipeItem,
+    [Toast.name]: Toast,
     "seat-area": SeatArea
   },
   computed: {
@@ -184,6 +184,7 @@ export default {
           if (!res) return;
           this.seatList = res.data.datas.seats;
           this.seatTypeList = res.data.datas.seatStatus;
+          this.maxSelect = res.data.limit;
         })
         .catch(err => {
           console.log(err);
@@ -195,25 +196,71 @@ export default {
     cancelSelect(item) {
       console.log(item);
     },
-    clickSeat(e, seat) {
-      console.log(seat);
-      //空或者不可选 return
+    clickSeat(e, row, index) {
+      //点击选座
       // <!-- status:0空，1可售，2不可售，3，已售 -->
       // <!-- type:0普通，1情侣左，2情侣右 -->
-      if (seat.status === "1") {
+      let seatItem = row.columns[index];
+      seatItem.rowNum = row.rowNum;
+      if (seatItem.status === "1") {
         //可售
         const c_index = e.srcElement.className.indexOf("active");
-
-        if (c_index < 0) {
-          e.srcElement.className = e.srcElement.className + " active";
-        } else {
-          e.srcElement.className = e.srcElement.className.replace(
-            " active",
-            ""
-          );
-        }
+        c_index < 0
+          ? this._selectSeat(e, row, seatItem, index)
+          : this._unselectSeat(e, row, seatItem, index);
       }
       return;
+    },
+    _selectSeat(e, row, seatItem, index) {
+      //判断是否超出最大选座数---普通
+      if (this.selectedSeatList.length >= this.maxSelect) {
+        Toast("最多只能选择" + this.maxSelect + "个座位哦~");
+        return;
+      }
+      if (seatItem.type === "1" || seatItem.type === "2") {
+        //判断是否超出最大选座数---情侣
+        if (this.selectedSeatList.length >= this.maxSelect - 1) {
+          Toast("最多只能选择" + this.maxSelect + "个座位哦~");
+          return;
+        }
+        e.srcElement.className = e.srcElement.className + " active"; //当前选中
+        const prefixStr = seatItem.type === "1" ? "next" : "previous";
+        e.currentTarget[`${prefixStr}ElementSibling`].className =
+          e.currentTarget[`${prefixStr}ElementSibling`].className + " active";
+        if (seatItem.type === "1") {
+          this.selectedSeatList.push(seatItem);
+          this.selectedSeatList.push(row.columns[index + 1]);
+        } else {
+          this.selectedSeatList.push(row.columns[index - 1]);
+          this.selectedSeatList.push(seatItem);
+        }
+        return;
+      }
+      e.srcElement.className = e.srcElement.className + " active";
+      this.selectedSeatList.push(seatItem);
+    },
+    _unselectSeat(e, row, seatItem, index) {
+      if (seatItem.type === "1" || seatItem.type === "2") {
+        e.srcElement.className = e.srcElement.className.replace(" active", "");
+        const prefixStr = seatItem.type === "1" ? "next" : "previous";
+        console.log(e.currentTarget.previousElementSibling);
+        e.currentTarget[
+          `${prefixStr}ElementSibling`
+        ].className = e.currentTarget[
+          `${prefixStr}ElementSibling`
+        ].className.replace(" active", "");
+        const _index = seatItem.type === "1" ? 1 : -1;
+        this.selectedSeatList = this.selectedSeatList.filter(
+          i =>
+            i.seatId !== seatItem.seatId &&
+            i.seatId !== row.columns[index + _index].seatId
+        );
+        return;
+      }
+      e.srcElement.className = e.srcElement.className.replace(" active", "");
+      this.selectedSeatList = this.selectedSeatList.filter(
+        i => i.seatId !== seatItem.seatId
+      );
     }
   }
 };
@@ -235,50 +282,66 @@ export default {
       padding: 12px 0px;
     }
   }
-  &-desc {
-    padding: 0px 20px 0px;
-    position: relative;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eeeeee;
-    background-color: #fff;
-    &-film {
-      font-size: 18px;
-      padding: 10px 0px;
-    }
-    &-cinema,
-    &-time {
-      font-size: 12px;
-      line-height: 24px;
-    }
-    &-action {
-      position: absolute;
-      top: 30px;
-      right: 20px;
-    }
-  }
+
   &-confirm {
     position: fixed;
     bottom: 0;
   }
   &-select {
     position: fixed;
-    bottom: 40px;
-    height: 70px;
     padding: 10px 0px;
     border-top: 1px solid #eeeeee;
     background-color: #fff;
     width: 375px;
+    bottom: 0;
+    padding-bottom: 70px;
     overflow: hidden;
     .tit {
       font-size: 14px;
       font-weight: bold;
       margin-left: 10px;
     }
+    &-desc {
+      padding: 0px 20px 0px;
+      position: relative;
+      background-color: #fff;
+      &-film {
+        font-size: 18px;
+        padding: 10px 0px 0px;
+      }
+      &-cinema,
+      &-time {
+        font-size: 12px;
+        line-height: 24px;
+      }
+      &-action {
+        position: absolute;
+        top: 12.5px;
+        right: 20px;
+      }
+    }
+    .scroll {
+      min-height: 45px;
+      padding: 5px 17px 0px;
+      .scroll-item {
+        font-size: 12px;
+        min-width: 55px;
+        display: inline-block;
+        text-align: center;
+        padding: 10px;
+        color: #333;
+        border-radius: 8px;
+        background-color: #f4f4f4;
+        margin-right: 10px;
+        line-height: 20px;
+        margin-bottom: 10px;
+      }
+    }
   }
   .buy {
     position: fixed;
     width: 100%;
-    bottom: 10px;
+    bottom: 20px;
     &-btn {
       width: 340px;
     }
@@ -311,11 +374,26 @@ export default {
       .love-left {
         background-image: url("../../assets/images/love_left.png");
         &.active {
-          background-image: url("../../assets/images/select.png");
+          background-image: url("../../assets/images/select_love_left.png");
         }
       }
       .love-right {
         background-image: url("../../assets/images/love_right.png");
+        &.active {
+          background-image: url("../../assets/images/select_love_right.png");
+        }
+      }
+      .love-left-disable {
+        background-image: url("../../assets/images/love_left_disable.png");
+      }
+      .love-right-disable {
+        background-image: url("../../assets/images/love_right_disable.png");
+      }
+      .love-left-sold {
+        background-image: url("../../assets/images/love_left_sold.png");
+      }
+      .love-right-sold {
+        background-image: url("../../assets/images/love_right_sold.png");
       }
       .fix {
         background-image: url("../../assets/images/fix.png");

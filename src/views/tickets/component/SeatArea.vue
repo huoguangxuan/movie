@@ -23,6 +23,7 @@ export default {
 </script>
 <style lang="less">
 .seat-area {
+  // transform: scale(1.1);
   // background: lightpink;
 }
 .seats {
