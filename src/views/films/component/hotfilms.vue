@@ -106,7 +106,6 @@ export default {
         });
     },
     onLoad() {
-      console.log(1);
       this.getFilms();
     },
     onRefresh() {

@@ -11,8 +11,8 @@ files.keys().forEach(key => {
 export default new Vuex.Store({
   plugins: [createLoadingPlugin()],
   state: {
-    direction: "forward",// 页面切换方向
-    show: false
+    direction: "forward", // 页面切换方向
+    show: true
   },
   getters: {
     userData(state) {
@@ -30,12 +30,12 @@ export default new Vuex.Store({
       state.direction = direction;
     },
     navshow(state, status) {
-      state.show = status
+      state.show = status;
     }
   },
   actions: {
     changenavshow(context, status) {
-      context.commit("navshow", status)
+      context.commit("navshow", status);
     }
   },
   modules

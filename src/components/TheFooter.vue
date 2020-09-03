@@ -36,20 +36,30 @@ export default {
     [Tabbar.name]: Tabbar,
     [TabbarItem.name]: TabbarItem
   },
-  data () {
+  data() {
     return {
       active: 0,
       icon: {
-        homes: require('@/assets/images/home-s.png'),
-        home: require('@/assets/images/home.png'),
-        ticketss: require('@/assets/images/tickets-s.png'),
-        tickets: require('@/assets/images/tickets.png'),
-        cinemass: require('@/assets/images/cinemas-s.png'),
-        cinemas: require('@/assets/images/cinemas.png'),
-        usercenters: require('@/assets/images/usercenter-s.png'),
-        usercenter: require('@/assets/images/usercenter.png')
+        homes: require("@/assets/images/home-s.png"),
+        home: require("@/assets/images/home.png"),
+        ticketss: require("@/assets/images/tickets-s.png"),
+        tickets: require("@/assets/images/tickets.png"),
+        cinemass: require("@/assets/images/cinemas-s.png"),
+        cinemas: require("@/assets/images/cinemas.png"),
+        usercenters: require("@/assets/images/usercenter-s.png"),
+        usercenter: require("@/assets/images/usercenter.png")
       }
     };
+  },
+  watch: {
+    "$route.path": function(newVal, oldVal) {
+      if (newVal == "/home") {
+        this.active = 0;
+      }
+      if (newVal == "/films/hotfilms" || newVal == "/films/thefilms") {
+        this.active = 1;
+      }
+    }
   }
 };
 </script>
