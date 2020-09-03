@@ -4,15 +4,19 @@
       <div class="recentlyhead">
         <span>近期最受期待</span>
       </div>
-      <!-- 即将上映滑动 -->
-      <div class="recentlycontent" ref="recentlycontent">
+      <div class="recentlycontent"
+           ref="recentlycontent">
         <!-- /* 这里是父盒子*/ -->
-        <ul class="recentlycont" ref="recentlycont">
+        <ul class="recentlycont"
+            ref="recentlycont">
           <!-- 这里是子盒子，即滚动区域 -->
-          <li class="cont-item" v-for="(item, index) in recently" :key="index">
-            <img class="img" :src="item.playBillUrl" />
-            <span class="recentlyname">{{ item.name }}</span>
-            <span class="recentlyname">{{ item.name }}</span>
+          <li class="cont-item"
+              v-for="(item, index) in expected"
+              :key="index">
+            <img class="img"
+                 :src="item.posterUrl" />
+            <span class="recentlyname">{{ item.movieName }}</span>
+            <span class="recentlyname">{{ item.runDate }}</span>
           </li>
         </ul>
       </div>
@@ -20,62 +24,64 @@
     <div class="specific">
       <div class="specifictime">
         <!-- 上映时间的滑动 -->
-        <div class="specificbig" ref="specificbig">
-          <ul class="specificmin" ref="specificmin">
-            <li v-for="(item, index) in time" :key="index">
+        <div class="specificbig"
+             ref="specificbig">
+          <ul class="specificmin"
+              ref="specificmin">
+            <li v-for="(item, index) in time"
+                :key="index"
+                @click="timeindex(index)">
               <span class="specifictimer">{{ item.date }}</span>
             </li>
           </ul>
         </div>
       </div>
-      <div class="specificcontent">
+      <div class="specificcontent"
+           v-for="(item, index) in time"
+           :key="index"
+           v-show="num == index">
         <div class="specificitem">
-          <van-list
-            v-model="loading"
-            :finished="finished"
-            finished-text="没有更多了"
-            @load="onLoad"
-          >
+          <van-list v-model="loading"
+                    :finished="finished"
+                    finished-text="没有更多了"
+                    @load="onLoad">
             <ul class="tab-content">
-              <li
-                class="item"
-                v-for="film in filmList"
-                :key="film.movieId"
-                @click="
+              <li class="item"
+                  v-for="ite in item.datas"
+                  :key="ite.movieId"
+                  @click="
                   $router.push({
                     path: '/film-detail',
-                    params: { movieId: film.movieId }
+                    params: { movieId: ite.movieId }
                   })
-                "
-              >
-                <img class="poster" :src="film.posterUrl" alt />
+                ">
+                <img class="poster"
+                     :src="ite.posterUrl"
+                     alt />
                 <div class="info">
-                  <h3 class="font16 black">八佰</h3>
+                  <h3 class="font16 black">{{ite.movieName}}</h3>
                   <p class="font14 hot-score">
-                    <span class="orange">{{ film.hotScore || 0 }}</span>
+                    <span class="orange">{{ ite.hotScore || 0 }}</span>
                     <span class="black">&nbsp;人想看</span>
                   </p>
                   <p class="font12 mtb4 van-multi-ellipsis--l2">
-                    {{ film.introduction }}
+                    {{ ite.introduction }}
                   </p>
                   <p class="font12 black van-multi-ellipsis--l2">
-                    {{ film.actor }}
+                    {{ ite.actor }}
                   </p>
                 </div>
                 <div class="score">
-                  <van-button
-                    class="buy-btn"
-                    round
-                    @click.stop="
+                  <van-button class="buy-btn"
+                              round
+                              @click.stop="
                       $router.push({
                         path: '/choseSeat',
-                        params: { movieId: film.movieId }
+                        params: { movieId: ite.movieId }
                       })
                     "
-                    size="small"
-                    color="linear-gradient(to right, #76BEFF , #0E79FF)"
-                    >想看</van-button
-                  >
+                              size="small"
+                              color="linear-gradient(to right, #76BEFF , #0E79FF)">想看</van-button>
                 </div>
               </li>
             </ul>
@@ -97,49 +103,43 @@ export default {
     [List.name]: List,
     "the-footer": TheFooter
   },
-  data() {
+  data () {
     return {
-      recently: [],
-      length_recently: "",
+      expected: [],
+      length_expected: "",
       loading: false,
       finished: false,
       refreshing: false,
       filmList: [],
-      time: ""
+      time: "",
+      num: 0
     };
   },
-  mounted() {
-    this.getHomeData();
-    this.getFilms();
+  mounted () {
     this.getMoreDatar();
+    this.getFilms();
   },
   methods: {
-    //首页banner，热映，即将上映，热门活动的数据接口
-    getHomeData() {
+    //即将上映更多页接口
+    getMoreDatar () {
       const params = { cityId: "北京" };
       api.tickets
-        .getHomeData(params)
+        .getMoreDatar(params)
         .then(res => {
-          // console.log(res);
-          this.recently = res.data.coming.data;
-          this.length_recently = res.data.coming.data.length;
+          console.log(res);
+          this.expected = res.data.pageData.expected.datas;
+          this.length_expected = res.data.pageData.expected.datas.length;
+          this.time = res.data.pageData.nearCome;
+          this.length_time = res.data.pageData.nearCome.length;
           this.verScroll();
         })
         .catch(err => {
           console.log(err);
         });
     },
-    getMoreDatar() {
-      api.tickets.getMoreDatar().then(res => {
-        // console.log(res.data.pageData);
-        console.log(res.data.pageData.nearCome);
-        this.time = res.data.pageData.nearCome;
-        this.length_time = res.data.pageData.nearCome.length;
-      });
-    },
-    getFilms() {
+    getFilms () {
       const params = { type: 1 };
-      api.tickets
+      api.films
         .getFilms(params)
         .then(res => {
           this.filmList = res.data.pageData;
@@ -154,10 +154,10 @@ export default {
           this.loading = false;
         });
     },
-    onLoad() {
+    onLoad () {
       this.getFilms();
     },
-    onRefresh() {
+    onRefresh () {
       // 清空列表数据
       this.finished = false;
       // 重新加载数据
@@ -166,10 +166,10 @@ export default {
       // this.onLoad();
       this.getFilms();
     },
-    verScroll() {
-      let width_recently = this.length_recently * 110 * 2 + 20;
+    verScroll () {
+      let width_expected = this.length_expected * 110 * 2 + 20;
       let width_time = this.length_time * 110 * 2 + 20;
-      this.$refs.recentlycont.style.width = width_recently + "px";
+      this.$refs.recentlycont.style.width = width_expected + "px";
       this.$refs.specificmin.style.width = width_time + "px";
       this.$nextTick(() => {
         if (!this.scroll) {
@@ -191,6 +191,9 @@ export default {
           this.scroll.refresh(); //如果dom结构发生改变调用该方法
         }
       });
+    },
+    timeindex (index) {
+      this.num = index;
     }
   }
 };
@@ -240,6 +243,9 @@ export default {
             text-align: left;
             line-height: 16px;
             margin-top: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
         }
         img {
