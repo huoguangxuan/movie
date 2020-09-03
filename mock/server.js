@@ -366,35 +366,35 @@ app.use("/home/getHomeData", function(req, res) {
         modelName: "正在热映",
         data: [
           {
-            name: "图片",
+            name: "战狼1",
             "id ": "",
             sort: "1",
             playBillUrl:
               "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
-            name: "图片",
+            name: "战狼2",
             "id ": "",
             sort: "2",
             playBillUrl:
               "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
-            name: "图片",
+            name: "大头儿子小头爸爸",
             "id ": "",
             sort: "3",
             playBillUrl:
               "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
-            name: "图片",
+            name: "八佰",
             "id ": "",
             sort: "4",
             playBillUrl:
               "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
-            name: "图片",
+            name: "小时代1",
             "id ": "",
             sort: "4",
             playBillUrl:
@@ -406,35 +406,35 @@ app.use("/home/getHomeData", function(req, res) {
         modelName: "即将上映",
         data: [
           {
-            name: "图片",
+            name: "天气之子",
             "id ": "",
             sort: "1",
             playBillUrl:
               "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
-            name: "图片",
+            name: "西红柿首富",
             "id ": "",
             sort: "2",
             playBillUrl:
               "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
-            name: "图片",
+            name: "小时代2",
             "id ": "",
             sort: "3",
             playBillUrl:
               "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
-            name: "图片",
+            name: "小时代3",
             "id ": "",
             sort: "4",
             playBillUrl:
               "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
-            name: "图片",
+            name: "小时代4",
             "id ": "",
             sort: "4",
             playBillUrl:
