@@ -166,18 +166,15 @@
         </div>
       </div>
     </div>
-    <the-footer></the-footer>
   </div>
 </template>
 
 <script>
-import TheFooter from "@/components/TheFooter";
 import BScroll from "better-scroll";
 import api from "@/api";
 import { Swipe, SwipeItem, Button } from "vant";
 export default {
   components: {
-    TheFooter,
     [Swipe.name]: Swipe,
     [SwipeItem.name]: SwipeItem,
     [Button.name]: Button
@@ -197,6 +194,7 @@ export default {
   created () { },
   mounted () {
     this.getHomeData();
+    this.$store.dispatch("changenavshow", true);
   },
   methods: {
     //首页banner，热映，即将上映，热门活动的数据接口

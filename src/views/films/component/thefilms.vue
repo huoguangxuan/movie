@@ -89,19 +89,16 @@
         </div>
       </div>
     </div>
-    <the-footer activeIndex="2" />
   </div>
 </template>
 <script>
 import api from "@/api";
 import BScroll from "better-scroll";
 import { Button, List } from "vant";
-import TheFooter from "@/components/TheFooter";
 export default {
   components: {
     [Button.name]: Button,
-    [List.name]: List,
-    "the-footer": TheFooter
+    [List.name]: List
   },
   data () {
     return {
