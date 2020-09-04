@@ -504,14 +504,14 @@ app.use("/home/getHomeData", function(req, res) {
             "id ": "",
             sort: "1",
             playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+              "https://img.alicdn.com/bao/uploaded/i3/TB1PboqhGNj0u4jSZFyXXXgMVXa_.jpg_300x300.jpg"
           },
           {
             name: "战狼2",
             "id ": "",
             sort: "2",
             playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+              "https://img.alicdn.com/bao/uploaded/i3/TB1PboqhGNj0u4jSZFyXXXgMVXa_.jpg_300x300.jpg"
           },
           {
             name: "大头儿子小头爸爸",
@@ -532,7 +532,7 @@ app.use("/home/getHomeData", function(req, res) {
             "id ": "",
             sort: "4",
             playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+              "https://img.alicdn.com/bao/uploaded/i3/TB1PboqhGNj0u4jSZFyXXXgMVXa_.jpg_300x300.jpg"
           }
         ]
       },
@@ -551,7 +551,7 @@ app.use("/home/getHomeData", function(req, res) {
             "id ": "",
             sort: "2",
             playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
             name: "小时代2",
@@ -565,7 +565,7 @@ app.use("/home/getHomeData", function(req, res) {
             "id ": "",
             sort: "4",
             playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
             name: "小时代4",
@@ -583,37 +583,43 @@ app.use("/home/getHomeData", function(req, res) {
             name: "活动",
             "id ": "",
             sort: "1",
-            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+            photoUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
             name: "活动",
             "id ": "",
             sort: "2",
-            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+            photoUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
             name: "活动",
             "id ": "",
             sort: "3",
-            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+            photoUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
             name: "活动",
             "id ": "",
             sort: "4",
-            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+            photoUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
             name: "活动",
             "id ": "",
             sort: "4",
-            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+            photoUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
             name: "活动",
             "id ": "",
             sort: "4",
-            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+            photoUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           }
         ]
       }
