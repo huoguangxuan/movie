@@ -11,7 +11,8 @@ Vue.use(vant);
 
 // 根据屏幕宽度动态设置rem基准值
 import "amfe-flexible";
-
+var VueTouch = require("vue-touch");
+Vue.use(VueTouch, { name: "v-touch" });
 Vue.config.productionTip = false;
 
 new Vue({
