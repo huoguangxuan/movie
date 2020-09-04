@@ -194,7 +194,7 @@ export default {
   created () { },
   mounted () {
     this.getHomeData();
-   // this.$store.dispatch("changenavshow", true);
+    this.$store.dispatch("changenavshow", true);
   },
   methods: {
     //首页banner，热映，即将上映，热门活动的数据接口
@@ -459,7 +459,6 @@ export default {
         width: 100px;
         display: flex;
         flex-direction: column;
-        // align-items: center;
         .filmname {
           width: 100px;
           font-family: PingFang-SC-Bold;

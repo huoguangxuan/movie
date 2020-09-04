@@ -112,7 +112,7 @@
       </div>
     </div>
     <div class="divider"></div>
-    <router-link :to="{ name: 'modifyPhone' }">
+    <router-link :to="{ path: '/modifyPhone',query:{oldMobile:oldPhone} }">
       <div class="user-mobile">
         <div class="mobile-icon">
           <img class="img-url"
@@ -120,7 +120,7 @@
                alt="" />
         </div>
         <div class="mobile">
-          <p class="font14 black">13623131233</p>
+          <p class="font14 black">{{oldPhone}}</p>
           <p class="font12">此手机号仅用于生成订单</p>
         </div>
         <div class="action">
@@ -206,11 +206,13 @@ export default {
       showDetail: false,
       radio: "2",
       activeIcon: require("@/assets/images/pitchon.png"),
-      inactiveIcon: require("@/assets/images/unselected.png")
+      inactiveIcon: require("@/assets/images/unselected.png"),
+      oldPhone: "13109098766"
     };
   },
   created () {
     this.getOrderInfo();
+    this.oldPhone=this.$route.query.newMobile;
   },
   methods: {
     getOrderInfo () {

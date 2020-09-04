@@ -260,7 +260,7 @@ export default {
   },
   created() {
     this.getFilmDetail();
-    //this.$store.dispatch("changenavshow", false);
+    this.$store.dispatch("changenavshow", false);
   },
   computed: {
     player() {
