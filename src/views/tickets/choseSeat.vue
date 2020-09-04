@@ -174,6 +174,7 @@ export default {
   },
   mounted() {
     this.getSeats();
+    this.$store.dispatch("changenavshow", false);
   },
   methods: {
     getSeats() {

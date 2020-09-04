@@ -73,6 +73,7 @@ export default {
   created() {},
   mounted() {
     this.cityDts = cityDts.city;
+    this.$store.dispatch("changenavshow", false);
   },
   methods: {
     onSearch(val) {

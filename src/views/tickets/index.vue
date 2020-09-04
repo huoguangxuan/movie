@@ -459,18 +459,18 @@ export default {
         width: 100px;
         display: flex;
         flex-direction: column;
-        .filmname {
-          width: 100px;
-          font-family: PingFang-SC-Bold;
-          font-size: 16px;
-          color: #333333;
-          text-align: left;
-          line-height: 16px;
-          margin-top: 10px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
+          .filmname {
+            width: 100px;
+            font-family: PingFang-SC-Bold;
+            font-size: 16px;
+            color: #333333;
+            text-align: left;
+            line-height: 16px;
+            margin-top: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
         .bytick {
           width: 70px;
           height: 30px;

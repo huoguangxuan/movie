@@ -500,7 +500,7 @@ app.use("/home/getHomeData", function(req, res) {
         modelName: "正在热映",
         data: [
           {
-            name: "战狼1",
+            name: "大头儿子小头爸爸",
             "id ": "",
             sort: "1",
             playBillUrl:
