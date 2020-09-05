@@ -37,7 +37,7 @@
     <div class="allcity">
       <van-index-bar class="indexBar" :sticky="false" highlight-color="#AE853A">
         <van-index-anchor
-          v-for="(item, index) in cityDts"
+          v-for="(item, index) in citydata"
           :key="index"
           :index="item.initial"
         >
@@ -67,25 +67,21 @@ export default {
   data() {
     return {
       value: "",
-      cityDts: []
+      citydata: []
     };
   },
   created() {},
   mounted() {
-    this.cityDts = cityDts.city;
-    this.$store.dispatch("changenavshow", false);
+    this.citydata = cityDts.city;
   },
   methods: {
-    onSearch(val) {
-      if (val.trim()) {
-        this.showIndexBar = false;
-        let res = this.cityDts.filter(i => {
-          console.log(i);
-          return i.name.indexOf(val) !== -1;
+    onSearch(value) {
+      console.log(value);
+      if (value) {
+        let res = this.citydata.filter(function(i) {
+          return i.list.name.indexOf(value) !== -1;
         });
-        this.cityDts = res;
-      } else {
-        this.showIndexBar = true;
+        console.log(res);
       }
     },
     chooseCity(citem) {

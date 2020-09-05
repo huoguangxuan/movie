@@ -459,6 +459,14 @@ export default {
         width: 100px;
         display: flex;
         flex-direction: column;
+        a {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          padding-left: 8px;
+          width: 100px;
+          display: flex;
+          flex-direction: column;
           .filmname {
             width: 100px;
             font-family: PingFang-SC-Bold;
@@ -471,6 +479,7 @@ export default {
             text-overflow: ellipsis;
             white-space: nowrap;
           }
+        }
         .bytick {
           width: 70px;
           height: 30px;
