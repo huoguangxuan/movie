@@ -4,11 +4,9 @@
       <span>城市选择</span>
     </div>
     <div class="searchs">
-      <van-search
-        v-model="value"
-        @input="onSearch(value)"
-        placeholder="输入城市名、拼音或字母查询"
-      >
+      <van-search v-model="value"
+                  @input="onSearch(value)"
+                  placeholder="输入城市名、拼音或字母查询">
       </van-search>
     </div>
     <div class="location">
@@ -19,8 +17,10 @@
     </div>
     <div class="history">
       <span class="history_title">历史访问目的地</span>
-      <div class="history_content">
-        <div class="history_text">北京</div>
+      <div class="history_content"
+           v-for="(item,index) in cityarr"
+           :key="index">
+        <div class="history_text">{{item.name}}</div>
       </div>
     </div>
     <div class="hotcity">
@@ -35,19 +35,17 @@
       </div>
     </div>
     <div class="allcity">
-      <van-index-bar class="indexBar" :sticky="false" highlight-color="#AE853A">
-        <van-index-anchor
-          v-for="(item, index) in citydata"
-          :key="index"
-          :index="item.initial"
-        >
+      <van-index-bar class="indexBar"
+                     :sticky="false"
+                     highlight-color="#AE853A">
+        <van-index-anchor v-for="(item, index) in citydata"
+                          :key="index"
+                          :index="item.initial">
           <span class="indexWord">{{ item.initial }}</span>
-          <van-cell
-            @click="chooseCity(citem)"
-            v-for="(citem, cindex) in item.list"
-            :key="cindex"
-            :title="citem.name"
-          />
+          <van-cell @click="chooseCity(citem)"
+                    v-for="(citem, cindex) in item.list"
+                    :key="cindex"
+                    :title="citem.name" />
         </van-index-anchor>
       </van-index-bar>
     </div>
@@ -64,27 +62,36 @@ export default {
     [IndexAnchor.name]: IndexAnchor,
     [Cell.name]: Cell
   },
-  data() {
+  data () {
     return {
       value: "",
-      citydata: []
+      citydata: [],
+      cityarr: []
     };
   },
-  created() {},
-  mounted() {
+  created () { },
+  mounted () {
     this.citydata = cityDts.city;
   },
   methods: {
-    onSearch(value) {
+    onSearch (value) {
       console.log(value);
       if (value) {
-        let res = this.citydata.filter(function(i) {
-          return i.list.name.indexOf(value) !== -1;
-        });
-        console.log(res);
+        let arr = [];
+        for (let i = 0; i < this.citydata.length; i++) {
+          let city = JSON.parse(JSON.stringify(this.citydata[i].list));
+          let res = city.filter(function (i) {
+            return i.name.indexOf(value) !== -1;
+          });
+          for (let j = 0; j < res.length; j++) {
+            arr.push(res[j]);
+            this.cityarr = arr;
+          }
+        }
+        console.log(this.cityarr)
       }
     },
-    chooseCity(citem) {
+    chooseCity (citem) {
       console.log(citem);
       alert(citem.name);
     }
