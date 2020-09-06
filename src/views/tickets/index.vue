@@ -11,7 +11,7 @@
         </router-link>
         <router-link :to="{ name: 'citySelection' }">
           <div class="searchsite">
-            <span>北京</span>
+            <span>{{city}}</span>
             <img src="@/assets/images/pull.png" />
           </div>
         </router-link>
@@ -181,6 +181,7 @@ export default {
   },
   data () {
     return {
+      city: "北京",
       activi: [],
       banner: [],
       fail: [],
@@ -195,6 +196,7 @@ export default {
   mounted () {
     this.getHomeData();
     this.$store.dispatch("changenavshow", true);
+    this.getcity();
   },
   methods: {
     //首页banner，热映，即将上映，热门活动的数据接口
@@ -251,6 +253,10 @@ export default {
           this.scroll.refresh(); //如果dom结构发生改变调用该方法
         }
       });
+    },
+    getcity () {
+      if (!this.$route.query.city == "")
+        this.city = this.$route.query.city;
     }
   }
 };
@@ -307,6 +313,9 @@ export default {
         color: #333333;
         text-align: right;
         line-height: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       img {
         width: 22px;
