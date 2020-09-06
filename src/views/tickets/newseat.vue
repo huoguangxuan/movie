@@ -142,6 +142,7 @@
 <script>
 import { list } from "./seatList.js";
 import { Toast, Icon, Popup } from "vant";
+import Bscroll from "better-scroll";
 export default {
   name: "select-seat",
   data: function () {
@@ -199,6 +200,26 @@ export default {
     },
     seatWrapHeight() {
       return this.rows;
+    }
+  },
+  watch: {
+    selectedSeatList(newVal) {
+      if (newVal) {
+        let width = (newVal.length * 55) / 37.5 + 35 / 37.5 + 4.4;
+        this.$refs.scrollUl.style.width = width + "rem";
+        this.$nextTick(() => {
+          if (!this.scroll) {
+            this.scroll = new Bscroll(this.$refs.scroll, {
+              scrollX: true,
+              // 忽略竖直方向的滚动
+              scrollY: false,
+              eventPassthrough: "vertical"
+            });
+          } else {
+            this.scroll.refresh();
+          }
+        });
+      }
     }
   },
   created() {
@@ -552,6 +573,12 @@ export default {
     bottom: 10px;
     &-btn {
       width: 340px;
+    }
+  }
+  .scroll {
+    .scroll-ul {
+      padding-left: 15px;
+      padding-right: 15px;
     }
   }
 }
