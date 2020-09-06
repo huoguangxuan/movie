@@ -23,7 +23,8 @@
         <div class="history_content">
           <div class="history_div"
                v-for="(item, index) in searchHistoryList"
-               :key="index">
+               :key="index"
+               @click="TenchooseCity(item)">
             <div class="history_text">{{ item }}</div>
           </div>
         </div>
@@ -113,8 +114,20 @@ export default {
     },
     chooseCity (citem) {
       this.setlocalcity(citem.name)
-      this.searchHistoryList = localStorage.getItem('seachList').split('|')
-
+      this.$router.push({
+        path: '/',
+        query: {
+          city: citem.name
+        }
+      })
+    },
+    TenchooseCity (citem) {
+      this.$router.push({
+        path: '/',
+        query: {
+          city: citem
+        }
+      })
     },
     clear () {
       this.showcontent = true;
@@ -122,27 +135,26 @@ export default {
     },
     HistoryList () {
       if (localStorage.getItem('seachList') !== null) {
-        this.searchHistoryList = localStorage.getItem('seachList').split('|')
+        this.searchHistoryList = JSON.parse(localStorage.getItem('seachList'))
       }
     },
     //加入历史搜索记录
     setlocalcity (citem) {
       citem = citem.trim()
-      let seachList = localStorage.getItem('historyItems')
-      if (seachList === null) {
-        localStorage.setItem('historyItems', citem)
-      } else {
-        let seachListArry = seachList.split('|').filter(item => item != citem)
-        if (seachListArry.length > 0) {
-          seachList = citem + '|' + seachListArry.join('|')
+      if (this.searchHistoryList.length > 0) { // 有数据的话 判断
+        if (this.searchHistoryList.indexOf(citem) !== -1) { // 有相同的，先删除 再添加 
+          this.searchHistoryList.splice(this.searchHistoryList.indexOf(citem), 1)
+          this.searchHistoryList.unshift(citem)
+        } else { // 没有相同的 添加
+          this.searchHistoryList.unshift(citem)
         }
-        if (seachList.split('|').length > 6) {
-          seachListArry = seachList.split('|')
-          seachListArry.pop()
-          seachList = seachListArry.join('|')
-        }
-        localStorage.setItem('seachList', seachList)
+      } else { // 没有数据 添加
+        this.searchHistoryList.unshift(citem)
       }
+      if (this.searchHistoryList.length > 6) { // 保留六个值
+        this.searchHistoryList.pop()
+      }
+      localStorage.setItem('seachList', JSON.stringify(this.searchHistoryList))
     }
   },
   watch: {
