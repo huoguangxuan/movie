@@ -1,6 +1,7 @@
 <template>
   <div class="films">
     <van-tabs v-model="active">
+      <!-- 热映 -->
       <van-tab title="正在热映">
         <div class="divider"></div>
         <div class="reying">
@@ -17,11 +18,11 @@
                     v-for="film in filmList"
                     :key="film.movieId"
                     @click="
-              $router.push({
-                path: '/film-detail',
-                params: { movieId: film.movieId }
-              })
-            ">
+                    $router.push({
+                      path: '/film-detail',
+                      params: { movieId: film.movieId }
+                    })
+                  ">
                   <img class="poster"
                        :src="film.posterUrl"
                        alt />
@@ -46,11 +47,11 @@
                     <van-button class="buy-btn"
                                 round
                                 @click.stop="
-                  $router.push({
-                    path: '/choseSeat',
-                    params: { movieId: film.movieId }
-                  })
-                "
+                        $router.push({
+                          path: '/choseSeat',
+                          params: { movieId: film.movieId }
+                        })
+                      "
                                 size="small"
                                 color="linear-gradient(to right, #F8A10E, #EE6806)">去购票</van-button>
                   </div>
@@ -60,6 +61,7 @@
           </van-pull-refresh>
         </div>
       </van-tab>
+      <!-- 即将上映 -->
       <van-tab title="即将上映">
         <div class="divider"></div>
         <div class="shangying">
@@ -113,11 +115,11 @@
                         v-for="ite in item.datas"
                         :key="ite.movieId"
                         @click="
-                  $router.push({
-                    path: '/film-detail',
-                    params: { movieId: ite.movieId }
-                  })
-                ">
+                        $router.push({
+                          path: '/film-detail',
+                          params: { movieId: ite.movieId }
+                        })
+                      ">
                       <img class="poster"
                            :src="ite.posterUrl"
                            alt />
@@ -138,11 +140,11 @@
                         <van-button class="buy-btn"
                                     round
                                     @click.stop="
-                      $router.push({
-                        path: '/choseSeat',
-                        params: { movieId: ite.movieId }
-                      })
-                    "
+                            $router.push({
+                              path: '/choseSeat',
+                              params: { movieId: ite.movieId }
+                            })
+                          "
                                     size="small"
                                     color="linear-gradient(to right, #76BEFF , #0E79FF)">想看</van-button>
                       </div>
@@ -161,7 +163,16 @@
 <script>
 import api from "@/api";
 import BScroll from "better-scroll";
-import { Tab, Tabs, Search, Grid, GridItem, Button, List, PullRefresh } from "vant";
+import {
+  Tab,
+  Tabs,
+  Search,
+  Grid,
+  GridItem,
+  Button,
+  List,
+  PullRefresh
+} from "vant";
 export default {
   components: {
     [Tab.name]: Tab,
@@ -268,7 +279,7 @@ export default {
       this.getFilms();
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
