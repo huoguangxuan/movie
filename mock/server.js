@@ -116,19 +116,30 @@ app.use("/user/getUserOrders", function(req, res) {
       msg: "成功", 
       dateTime: "2020-08-06 17:38：22", 
       data: {
-          pageSize: "", 
-          pageNo: "", 
-          totalPage: "1", 
+          pageSize: "10", 
+          pageNo: "2", 
+          totalPage: "3", 
           pageData: [
               {
                   posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
                   movieName: "电影名", 
                   cinemaName: "影院名", 
                   payAmount: "100.00", 
-                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
+                  runDate: "2020-09-03 13:53:35", 
                   orderNo: "订单号", 
                   creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
                   runStatus: "1", 
+                  sort: "1"
+              }, 
+              {
+                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+                  movieName: "电影名", 
+                  cinemaName: "影院名", 
+                  payAmount: "100.00", 
+                  runDate: "2020-03-05 21:46:35", 
+                  orderNo: "订单号", 
+                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
+                  runStatus: "0", 
                   sort: "1"
               }, 
               {
@@ -142,111 +153,605 @@ app.use("/user/getUserOrders", function(req, res) {
                   runStatus: "0", 
                   sort: "1"
               }
-              , 
-              {
-                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
-                  movieName: "电影名", 
-                  cinemaName: "影院名", 
-                  payAmount: "100.00", 
-                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
-                  orderNo: "订单号", 
-                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
-                  runStatus: "0", 
-                  sort: "1"
-              }
-              , 
-              {
-                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
-                  movieName: "电影名", 
-                  cinemaName: "影院名", 
-                  payAmount: "100.00", 
-                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
-                  orderNo: "订单号", 
-                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
-                  runStatus: "0", 
-                  sort: "1"
-              }
-              , 
-              {
-                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
-                  movieName: "电影名", 
-                  cinemaName: "影院名", 
-                  payAmount: "100.00", 
-                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
-                  orderNo: "订单号", 
-                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
-                  runStatus: "0", 
-                  sort: "1"
-              }
-              , 
-              {
-                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
-                  movieName: "电影名", 
-                  cinemaName: "影院名", 
-                  payAmount: "100.00", 
-                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
-                  orderNo: "订单号", 
-                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
-                  runStatus: "0", 
-                  sort: "1"
-              }
-              , 
-              {
-                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
-                  movieName: "电影名", 
-                  cinemaName: "影院名", 
-                  payAmount: "100.00", 
-                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
-                  orderNo: "订单号", 
-                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
-                  runStatus: "0", 
-                  sort: "1"
-              } , 
-              {
-                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
-                  movieName: "电影名", 
-                  cinemaName: "影院名", 
-                  payAmount: "100.00", 
-                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
-                  orderNo: "订单号", 
-                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
-                  runStatus: "0", 
-                  sort: "1"
-              } , 
-              {
-                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
-                  movieName: "电影名", 
-                  cinemaName: "影院名", 
-                  payAmount: "100.00", 
-                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
-                  orderNo: "订单号", 
-                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
-                  runStatus: "0", 
-                  sort: "1"
-              } , 
-              {
-                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
-                  movieName: "电影名", 
-                  cinemaName: "影院名", 
-                  payAmount: "100.00", 
-                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
-                  orderNo: "订单号", 
-                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
-                  runStatus: "0", 
-                  sort: "1"
-              } , 
-              {
-                  posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
-                  movieName: "电影名", 
-                  cinemaName: "影院名", 
-                  payAmount: "100.00", 
-                  runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式", 
-                  orderNo: "订单号", 
-                  creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式", 
-                  runStatus: "0", 
-                  sort: "1"
-              }
+              
           ]
+      }
+  });
+});
+// 我的收藏接口
+app.use("/user/getUserCollect", function(req, res) {
+  res.json({
+      code: "0000", 
+      msg: "成功", 
+      dateTime: "2020-08-06 17:38：22", 
+      data: {
+          pageSize: "10", 
+          pageNo: "1", 
+          totalPage: "3", 
+          pageData: [
+            {
+            sort: "1", 
+            cinemaScore:'9.0',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "9999", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "2", 
+            cinemaScore:'9.0',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          },
+          {
+            sort: "3", 
+            cinemaScore:'9.0',
+            price:'30.45',
+            dist:'300',
+            movieName: "电影名", 
+            movieId: "电影Id,唯一标识", 
+            hotScore: "想看人数", 
+            posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", 
+            runDate: "上映日期", 
+            publicDesc: "上映描述", 
+            runStatus: "1", 
+            actors: [
+                {
+                    sort: "1", 
+                    name: "小张"
+                }, 
+                {
+                    sort: "1", 
+                    name: "小张"
+                }
+            ]
+          }
+        ],
+        pageData1: [
+          {
+            cinemaScore: "8.8", 
+            cinemaName: "影院名", 
+            price:'30.45',
+            dist:'600',
+            address: "影院地址", 
+            cinemaStatus: "1", 
+            cinemaId: "影院Id", 
+            isCollect: "是否收藏", 
+            features: [
+                "卫生", 
+                "观影体验好", 
+                "服务到位"
+            ]
+        },
+        {
+          cinemaScore: "8.8", 
+          cinemaName: "影院名", 
+          address: "影院地址", 
+          cinemaStatus: "1", 
+          cinemaId: "影院Id", 
+          isCollect: "是否收藏", 
+          features: [
+              "卫生", 
+              "观影体验好", 
+              "服务到位"
+          ]
+        }
+      ]
+      }
+  });
+});
+// 个人中心
+app.use("/user/getBaseMessage", function(req, res) {
+  res.json({
+      code: "0000", 
+      msg: "成功", 
+      dateTime: "2020-08-06 17:38：22", 
+      data: {
+        unPayNu:"1",
+        unUseNum:"2"
       }
   });
 });
