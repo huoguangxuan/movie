@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "@/views/tickets/home";
+import Home from "@/views/tickets";
 import store from "@/store";
 
 Vue.use(VueRouter);
@@ -15,8 +15,7 @@ let routes = [
   {
     path: "/home",
     name: "home",
-    component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/tickets/home")
+    component: () => import(/* webpackChunkName: "pages" */ "../views/tickets")
   },
   //首页城市选择
   {

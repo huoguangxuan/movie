@@ -48,74 +48,208 @@ app.use("/home/getMoreDatar", function(req, res) {
             {
               movieId: "1234567",
               hotScore: "10000",
-              movieName: "xxx变形记",
+              movieName: "变形金刚之大战葫芦娃",
               sort: "排序",
-              runDate: "2020-08-15 18:00:00",
-              posterUrl: "https://www.sojson.com/"
+              runDate: "2020-10-16",
+              posterUrl:
+                "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+            },
+            {
+              movieId: "1234567",
+              hotScore: "10000",
+              movieName: "泰坦尼克号",
+              sort: "排序",
+              runDate: "2020-10-17",
+              posterUrl:
+                "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+            },
+            {
+              movieId: "1234567",
+              hotScore: "10000",
+              movieName: "爸爸去哪",
+              sort: "排序",
+              runDate: "2020-10-18",
+              posterUrl:
+                "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
             },
             {
               movieId: "1234567",
               hotScore: "10000",
               movieName: "xxx变形记",
               sort: "排序",
-              runDate: "2020-08-15 18:00:00",
-              posterUrl: "https://www.sojson.com/"
+              runDate: "2020-10-19",
+              posterUrl:
+                "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+            },
+            {
+              movieId: "1234567",
+              hotScore: "10000",
+              movieName: "金刚",
+              sort: "排序",
+              runDate: "2020-10-20",
+              posterUrl:
+                "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
             }
           ]
         },
         nearCome: [
           {
-            date: "2020-08-07",
+            date: "2020-10-01",
             datas: [
               {
-                movieId: "1234567",
-                movieName: "xxx变形记",
+                movieId: "1",
+                movieName: "变形金刚2",
+                score: "9.2",
                 introduction:
-                  "送的还是覅都会死发货地发挥IDfish法华寺发挥好私服",
-                hotScore: "1000",
+                  "《八佰》由管虎执导，主演阵容包括张译、杜淳、李晨、王千源、黄志忠、姜武、魏晨、欧豪、俞灏明等人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役",
+                hotScore: "3",
                 sort: "排序",
-                posterUrl: "https://www.sojson.com/",
+                posterUrl:
+                  "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
                 director: "小黄",
-                actor: "小星星,本宝宝,爱学贷,苗疆客",
-                runDate: "2020-08-15 18:00:00"
+                actor: "管虎 | 王千源 张译 姜武"
               },
               {
-                movieId: "1234567",
-                movieName: "xxx变形记",
+                movieId: "2",
+                movieName: "张三变形记",
+                score: "9.2",
                 introduction:
-                  "送的还是覅都会死发货地发挥IDfish法华寺发挥好私服",
-                hotScore: "1000",
+                  "《八佰》由管虎执导，主演阵容包括张译、杜淳、李晨、王千源、黄志忠、姜武、魏晨、欧豪、俞灏明等人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役",
+                hotScore: "3",
                 sort: "排序",
-                posterUrl: "https://www.sojson.com/",
+                posterUrl:
+                  "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
                 director: "小黄",
-                actor: "小星星,本宝宝,爱学贷,苗疆客",
-                runDate: "2020-08-15 18:00:00"
+                actor: "管虎 | 王千源 张译 姜武"
+              },
+              {
+                movieId: "3",
+                movieName: "xxx变形记",
+                score: "9.2",
+                introduction:
+                  "《八佰》由管虎执导，主演阵容包括张译、杜淳、李晨、王千源、黄志忠、姜武、魏晨、欧豪、俞灏明等人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役",
+                hotScore: "3",
+                sort: "排序",
+                posterUrl:
+                  "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
+                director: "小黄",
+                actor: "管虎 | 王千源 张译 姜武"
               }
             ]
           },
           {
-            date: "2020-08-07",
+            date: "2020-10-02",
             datas: [
               {
-                movieId: "1234567",
-                movieName: "xxx变形记",
+                movieId: "4",
+                movieName: "李四变形记",
+                score: "9.2",
                 introduction:
-                  "送的还是覅都会死发货地发挥IDfish法华寺发挥好私服",
-                hotScore: "1000",
+                  "《八佰》由管虎执导，主演阵容包括张译、杜淳、李晨、王千源、黄志忠、姜武、魏晨、欧豪、俞灏明等人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役",
+                hotScore: "3",
                 sort: "排序",
-                posterUrl: "https://www.sojson.com/",
+                posterUrl:
+                  "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
                 director: "小黄",
-                actor: "小星星,本宝宝,爱学贷,苗疆客",
-                runDate: "2020-08-15 18:00:00"
+                actor: "管虎 | 王千源 张译 姜武"
               },
               {
-                movieId: "1234567",
+                movieId: "5",
+                movieName: "王五变形记",
+                score: "9.2",
+                introduction:
+                  "《八佰》由管虎执导，主演阵容包括张译、杜淳、李晨、王千源、黄志忠、姜武、魏晨、欧豪、俞灏明等人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役",
+                hotScore: "3",
+                sort: "排序",
+                posterUrl:
+                  "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
+                director: "小黄",
+                actor: "管虎 | 王千源 张译 姜武"
+              }
+            ]
+          },
+          {
+            date: "2020-10-03",
+            datas: [
+              {
+                movieId: "6",
+                movieName: "李六变形记",
+                score: "9.2",
+                introduction:
+                  "《八佰》由管虎执导，主演阵容包括张译、杜淳、李晨、王千源、黄志忠、姜武、魏晨、欧豪、俞灏明等人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役",
+                hotScore: "3",
+                sort: "排序",
+                posterUrl:
+                  "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
+                director: "小黄",
+                actor: "管虎 | 王千源 张译 姜武"
+              },
+              {
+                movieId: "7",
+                movieName: "xxx变形记",
+                score: "9.2",
+                introduction:
+                  "《八佰》由管虎执导，主演阵容包括张译、杜淳、李晨、王千源、黄志忠、姜武、魏晨、欧豪、俞灏明等人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役",
+                hotScore: "3",
+                sort: "排序",
+                posterUrl:
+                  "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
+                director: "小黄",
+                actor: "管虎 | 王千源 张译 姜武"
+              },
+              {
+                movieId: "8",
+                movieName: "爱情来了",
+                score: "9.2",
+                introduction:
+                  "《八佰》由管虎执导，主演阵容包括张译、杜淳、李晨、王千源、黄志忠、姜武、魏晨、欧豪、俞灏明等人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役",
+                hotScore: "3",
+                sort: "排序",
+                posterUrl:
+                  "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
+                director: "小黄",
+                actor: "管虎 | 王千源 张译 姜武"
+              },
+              {
+                movieId: "9",
+                movieName: "xxx变形记",
+                score: "9.2",
+                introduction:
+                  "《八佰》由管虎执导，主演阵容包括张译、杜淳、李晨、王千源、黄志忠、姜武、魏晨、欧豪、俞灏明等人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役",
+                hotScore: "3",
+                sort: "排序",
+                posterUrl:
+                  "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
+                director: "小黄",
+                actor: "管虎 | 王千源 张译 姜武"
+              }
+            ]
+          },
+          {
+            date: "2020-10-04",
+            datas: [
+              {
+                movieId: "10",
+                movieName: "xxx变形记",
+                score: "9.2",
+                introduction:
+                  "《八佰》由管虎执导，主演阵容包括张译、杜淳、李晨、王千源、黄志忠、姜武、魏晨、欧豪、俞灏明等人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役",
+                hotScore: "3",
+                sort: "排序",
+                posterUrl:
+                  "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
+                director: "小黄",
+                actor: "管虎 | 王千源 张译 姜武"
+              },
+              {
+                movieId: "11",
                 movieName: "xxx变形记",
                 introduction:
                   "送的还是覅都会死发货地发挥IDfish法华寺发挥好私服",
                 hotScore: "1000",
                 sort: "排序",
-                posterUrl: "https://www.sojson.com/",
+                posterUrl:
+                  "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
                 director: "小黄",
                 actor: "小星星,本宝宝,爱学贷,苗疆客",
                 runDate: "2020-08-15 18:00:00"
@@ -385,39 +519,39 @@ app.use("/home/getHomeData", function(req, res) {
         modelName: "正在热映",
         data: [
           {
-            name: "图片",
+            name: "大头儿子小头爸爸",
             "id ": "",
             sort: "1",
             playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+              "https://img.alicdn.com/bao/uploaded/i3/TB1PboqhGNj0u4jSZFyXXXgMVXa_.jpg_300x300.jpg"
           },
           {
-            name: "图片",
+            name: "战狼2",
             "id ": "",
             sort: "2",
             playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+              "https://img.alicdn.com/bao/uploaded/i3/TB1PboqhGNj0u4jSZFyXXXgMVXa_.jpg_300x300.jpg"
           },
           {
-            name: "图片",
+            name: "大头儿子小头爸爸",
             "id ": "",
             sort: "3",
             playBillUrl:
               "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
-            name: "图片",
+            name: "八佰",
             "id ": "",
             sort: "4",
             playBillUrl:
               "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
-            name: "图片",
+            name: "小时代1",
             "id ": "",
             sort: "4",
             playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+              "https://img.alicdn.com/bao/uploaded/i3/TB1PboqhGNj0u4jSZFyXXXgMVXa_.jpg_300x300.jpg"
           }
         ]
       },
@@ -425,35 +559,35 @@ app.use("/home/getHomeData", function(req, res) {
         modelName: "即将上映",
         data: [
           {
-            name: "图片",
+            name: "天气之子",
             "id ": "",
             sort: "1",
             playBillUrl:
               "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
-            name: "图片",
+            name: "西红柿首富",
             "id ": "",
             sort: "2",
             playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
-            name: "图片",
+            name: "小时代2",
             "id ": "",
             sort: "3",
             playBillUrl:
               "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
           },
           {
-            name: "图片",
+            name: "小时代3",
             "id ": "",
             sort: "4",
             playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
-            name: "图片",
+            name: "小时代4",
             "id ": "",
             sort: "4",
             playBillUrl:
@@ -468,37 +602,43 @@ app.use("/home/getHomeData", function(req, res) {
             name: "活动",
             "id ": "",
             sort: "1",
-            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+            photoUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
             name: "活动",
             "id ": "",
             sort: "2",
-            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+            photoUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
             name: "活动",
             "id ": "",
             sort: "3",
-            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+            photoUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
             name: "活动",
             "id ": "",
             sort: "4",
-            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+            photoUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
             name: "活动",
             "id ": "",
             sort: "4",
-            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+            photoUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           },
           {
             name: "活动",
             "id ": "",
             sort: "4",
-            photoUrl: "http://img.jomoo.com.cn/dev1/0/000/484/0000484063.fid"
+            photoUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
           }
         ]
       }

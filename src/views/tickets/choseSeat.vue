@@ -208,6 +208,7 @@ export default {
   },
   created() {
     this.getSeats();
+    this.$store.dispatch("changenavshow", false);
   },
   methods: {
     getSeats() {

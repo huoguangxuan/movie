@@ -3,37 +3,34 @@
     <div class="header font18 black">支付结果</div>
     <div class="divider"></div>
     <section class="main">
-      <qrcode-vue class="qrcode" :size="size" :value="ticketUrl"></qrcode-vue>
+      <qrcode-vue class="qrcode"
+                  :size="size"
+                  :value="ticketUrl"></qrcode-vue>
       <h3 class="font18 black "><b> 购票成功</b></h3>
       <div class="actions">
-        <van-button
-          @click.stop="$router.push('/')"
-          round
-          class="btn"
-          color="linear-gradient(to right, #F8A10E, #EE6806)"
-          >返回首页</van-button
-        >
-        <van-button
-          @click.stop="$router.push('/ticket-detail')"
-          round
-          class="btn"
-          color="linear-gradient(to right, #F8A10E, #EE6806)"
-          >查看电影票</van-button
-        >
+        <van-button @click.stop="$router.push('/')"
+                    round
+                    class="btn"
+                    color="linear-gradient(to right, #F8A10E, #EE6806)">返回首页</van-button>
+        <van-button @click.stop="$router.push('/ticket-detail')"
+                    round
+                    class="btn"
+                    color="linear-gradient(to right, #F8A10E, #EE6806)">查看电影票</van-button>
       </div>
     </section>
     <div class="divider"></div>
-    <img class="activi" src="@/assets/images/liveactivity.png" />
+    <img class="activi"
+         src="@/assets/images/zeroyuan.jpg" />
   </div>
 </template>
 <script>
 import QrcodeVue from "qrcode.vue";
 export default {
   name: "booking",
-  data: function() {
+  data: function () {
     return {
       ticketUrl: "123456",
-      size: 264
+      size: 132
     };
   },
   components: {
@@ -72,9 +69,9 @@ export default {
       }
     }
   }
-  .activi{
-    width:100vw;
-    height:100px;
+  .activi {
+    width: 100vw;
+    height: 100px;
   }
 }
 </style>

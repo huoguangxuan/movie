@@ -5,17 +5,23 @@
     </div>
     <div class="divider"></div>
     <div class="phone">
-      <span class="left">手机号码</span><input type="number" />
+      <van-form validate-first>
+        <!-- 通过 pattern 进行正则校验 -->
+        <van-field
+          v-model="newPhone"
+          type="tel"
+          label="手机号码"
+          placeholder="请输入要修改的手机号码"
+          :rules="[{ pattern, message: '请输入正确的手机号码' }]"
+        />
+      </van-form>
     </div>
     <van-button
       class="btn"
       round
-      @click.stop="
-        $router.push({
-          path: '/orderConfirm',
-          params: {}
-        })
-      "
+      type="info"
+      native-type="submit"
+      @click="submit"
       color="linear-gradient(to right, #F8A10E, #EE6806)"
       >确定</van-button
     >
@@ -23,14 +29,33 @@
 </template>
 
 <script>
-import { Button } from "vant";
+import { Button, Form, Field } from "vant";
 import api from "@/api";
 export default {
   components: {
-    [Button.name]: Button
+    [Button.name]: Button,
+    [Form.name]: Form,
+    [Field.name]: Field
   },
   data() {
-    return {};
+    return {
+      newPhone: "",
+      pattern: /^1[3456789]\d{9}$/
+    };
+  },
+  methods: {
+    submit() {
+      if (/^1[34578]\d{9}$/.test(this.newPhone)) {
+        this.$router.push({
+          path: "/orderConfirm",
+          query: { newMobile: this.newPhone }
+        });
+      }
+    }
+  },
+  mounted() {
+    this.$store.dispatch("changenavshow", false);
+    this.newPhone = this.$route.query.oldMobile;
   }
 };
 </script>
@@ -49,19 +74,18 @@ export default {
     text-align: center;
   }
   .phone {
-    height: 50px;
     padding: 0px 17px;
+    font-size: 16px;
     background-color: white;
-    .left {
+    /deep/.van-cell__title {
+      font-size: 16px;
       font-family: PingFangSC-Regular;
-      font-size: 16px;
       color: #333333;
-      line-height: 50px;
-      padding-right: 20px;
     }
-    input {
-      height: 50px;
+    /deep/.van-field__control {
       font-size: 16px;
+      font-family: PingFangSC-Regular;
+      color: #333333;
     }
   }
   .btn {

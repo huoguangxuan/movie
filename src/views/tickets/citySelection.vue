@@ -4,52 +4,64 @@
       <span>城市选择</span>
     </div>
     <div class="searchs">
-      <van-search
-        v-model="value"
-        @input="onSearch(value)"
-        placeholder="输入城市名、拼音或字母查询"
-      >
+      <van-search v-model="value"
+                  @input="onSearch(value)"
+                  @clear="clear"
+                  placeholder="输入城市名、拼音或字母查询">
       </van-search>
     </div>
-    <div class="location">
-      <span class="location_title">热门搜索</span>
-      <div class="location_content">
-        <div class="location_text">北京</div>
+    <div v-show="showcontent"
+         class="showcontent">
+      <div class="location">
+        <span class="location_title">热门搜索</span>
+        <div class="location_content">
+          <div class="location_text">北京</div>
+        </div>
+      </div>
+      <div class="history">
+        <span class="history_title">历史访问目的地</span>
+        <div class="history_content">
+          <div class="history_div"
+               v-for="(item, index) in searchHistoryList"
+               :key="index"
+               @click="TenchooseCity(item)">
+            <div class="history_text">{{ item }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="hotcity">
+        <span class="hotcity_title">热门城市</span>
+        <div class="hotcity_content">
+          <div class="hotcity_text">北京</div>
+          <div class="hotcity_text">上海</div>
+          <div class="hotcity_text">成都</div>
+          <div class="hotcity_text">重庆</div>
+          <div class="hotcity_text">西安</div>
+          <div class="hotcity_text">杭州</div>
+        </div>
+      </div>
+      <div class="allcity">
+        <van-index-bar class="indexBar"
+                       :sticky="false"
+                       highlight-color="#AE853A">
+          <van-index-anchor v-for="(item, index) in citydata"
+                            :key="index"
+                            :index="item.initial">
+            <span class="indexWord">{{ item.initial }}</span>
+            <van-cell @click="chooseCity(citem)"
+                      v-for="(citem, cindex) in item.list"
+                      :key="cindex"
+                      :title="citem.name" />
+          </van-index-anchor>
+        </van-index-bar>
       </div>
     </div>
-    <div class="history">
-      <span class="history_title">历史访问目的地</span>
-      <div class="history_content">
-        <div class="history_text">北京</div>
-      </div>
-    </div>
-    <div class="hotcity">
-      <span class="hotcity_title">热门城市</span>
-      <div class="hotcity_content">
-        <div class="hotcity_text">北京</div>
-        <div class="hotcity_text">上海</div>
-        <div class="hotcity_text">成都</div>
-        <div class="hotcity_text">重庆</div>
-        <div class="hotcity_text">西安</div>
-        <div class="hotcity_text">杭州</div>
-      </div>
-    </div>
-    <div class="allcity">
-      <van-index-bar class="indexBar" :sticky="false" highlight-color="#AE853A">
-        <van-index-anchor
-          v-for="(item, index) in cityDts"
-          :key="index"
-          :index="item.initial"
-        >
-          <span class="indexWord">{{ item.initial }}</span>
-          <van-cell
-            @click="chooseCity(citem)"
-            v-for="(citem, cindex) in item.list"
-            :key="cindex"
-            :title="citem.name"
-          />
-        </van-index-anchor>
-      </van-index-bar>
+    <div v-show="showlist"
+         class="showlist">
+      <van-cell v-for="(item, index) in cityarr"
+                :key="index"
+                :title="item.name"
+                @click="chooseCity(item)" />
     </div>
   </div>
 </template>
@@ -64,32 +76,93 @@ export default {
     [IndexAnchor.name]: IndexAnchor,
     [Cell.name]: Cell
   },
-  data() {
+  data () {
     return {
       value: "",
-      cityDts: []
+      citydata: [],
+      cityarr: [],
+      showcontent: true,
+      showlist: false,
+      //搜索历史
+      searchHistoryList: []
     };
   },
-  created() {},
-  mounted() {
-    this.cityDts = cityDts.city;
+  created () { },
+  mounted () {
+    this.citydata = cityDts.city;
+    this.$store.dispatch("changenavshow", false);
+    this.HistoryList();
   },
   methods: {
-    onSearch(val) {
-      if (val.trim()) {
-        this.showIndexBar = false;
-        let res = this.cityDts.filter(i => {
-          console.log(i);
-          return i.name.indexOf(val) !== -1;
-        });
-        this.cityDts = res;
-      } else {
-        this.showIndexBar = true;
+    onSearch (value) {
+      console.log(value);
+      if (value) {
+        let arr = [];
+        for (let i = 0; i < this.citydata.length; i++) {
+          let city = JSON.parse(JSON.stringify(this.citydata[i].list));
+          let res = city.filter(function (i) {
+            return i.name.indexOf(value) !== -1;
+          });
+          for (let j = 0; j < res.length; j++) {
+            arr.push(res[j]);
+            this.cityarr = arr;
+          }
+        }
+      }
+      this.showcontent = false;
+      this.showlist = true;
+    },
+    chooseCity (citem) {
+      this.setlocalcity(citem.name)
+      this.$router.push({
+        path: '/',
+        query: {
+          city: citem.name
+        }
+      })
+    },
+    TenchooseCity (citem) {
+      this.$router.push({
+        path: '/',
+        query: {
+          city: citem
+        }
+      })
+    },
+    clear () {
+      this.showcontent = true;
+      this.showlist = false;
+    },
+    HistoryList () {
+      if (localStorage.getItem('seachList') !== null) {
+        this.searchHistoryList = JSON.parse(localStorage.getItem('seachList'))
       }
     },
-    chooseCity(citem) {
-      console.log(citem);
-      alert(citem.name);
+    //加入历史搜索记录
+    setlocalcity (citem) {
+      citem = citem.trim()
+      if (this.searchHistoryList.length > 0) { // 有数据的话 判断
+        if (this.searchHistoryList.indexOf(citem) !== -1) { // 有相同的，先删除 再添加 
+          this.searchHistoryList.splice(this.searchHistoryList.indexOf(citem), 1)
+          this.searchHistoryList.unshift(citem)
+        } else { // 没有相同的 添加
+          this.searchHistoryList.unshift(citem)
+        }
+      } else { // 没有数据 添加
+        this.searchHistoryList.unshift(citem)
+      }
+      if (this.searchHistoryList.length > 6) { // 保留六个值
+        this.searchHistoryList.pop()
+      }
+      localStorage.setItem('seachList', JSON.stringify(this.searchHistoryList))
+    }
+  },
+  watch: {
+    "value" () {
+      if (this.value == "") {
+        this.showcontent = true;
+        this.showlist = false;
+      }
     }
   }
 };
@@ -123,6 +196,10 @@ export default {
       /deep/ .van-field__left-icon {
         margin-left: 10px;
         margin-right: 20px;
+      }
+      .van-search__content {
+        height: 30px;
+        background: #f6f6f6;
       }
     }
   }
@@ -168,21 +245,23 @@ export default {
       line-height: 18px;
     }
     .history_content {
-      margin-top: 10px;
       display: flex;
       flex-wrap: wrap;
-      .history_text {
-        border: 1px solid #cccccc;
-        border-radius: 4px;
-        width: 90px;
-        height: 32px;
-        font-family: PingFangSC-Regular;
-        font-size: 14px;
-        color: #333333;
-        text-align: center;
-        line-height: 32px;
-        margin-right: 5px;
-        margin-top: 5px;
+      .history_div {
+        margin-top: 10px;
+        .history_text {
+          border: 1px solid #cccccc;
+          border-radius: 4px;
+          width: 90px;
+          height: 32px;
+          font-family: PingFangSC-Regular;
+          font-size: 14px;
+          color: #333333;
+          text-align: center;
+          line-height: 32px;
+          margin-right: 5px;
+          margin-top: 5px;
+        }
       }
     }
   }
@@ -223,6 +302,8 @@ export default {
     .van-index-anchor {
       padding: 0px 17px;
     }
+  }
+  .showlist {
   }
 }
 </style>
