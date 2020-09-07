@@ -86,7 +86,7 @@ export default {
       showlist: false,
       //搜索历史
       searchHistoryList: [],
-      hotcity: ["北京", "上海", "广州", "深圳", "杭州", "重庆"],
+      hotcity: ["北京", "上海", "深圳", "广州", "成都", "武汉", "杭州", "重庆"],
       hotsearch: ["北京"]
     };
   },
