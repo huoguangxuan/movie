@@ -53,5 +53,19 @@ export default [
     name: "modifyPhone",
     component: () =>
       import(/* webpackChunkName: "tickets" */ "../views/tickets/modifyPhone")
+  },
+  //影票频道退单
+  {
+    path: "/refund",
+    name: "refund",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/tickets/refund")
+  },
+  //影票频道退单结果
+  {
+    path: "/refund/result",
+    name: "refundResult",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/tickets/refundResult")
   }
 ];

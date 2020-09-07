@@ -1,0 +1,139 @@
+.map {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+
+  .go-back,
+  .search-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    z-index: 1000;
+  }
+
+  .go-back {
+    left: 10px;
+  }
+
+  .search-btn {
+    right: 10px;
+  }
+
+  .amap-box {
+    height: calc(100vh - 135px);
+  }
+
+  .txt-box {
+    width: 100%;
+    height: 150px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+
+    h4 {
+      height: 30px;
+      line-height: 30px;
+      font-family: PingFangSC-Semibold;
+      font-size: 18px;
+      color: #000;
+    }
+
+    >p {
+      height: 20px;
+      line-height: 20px;
+      font-family: PingFangSC-Semibold;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .btns {
+      height: 50px;
+      position: relative;
+
+      .collect {
+        height: 40px;
+        background-color: #fff;
+        position: absolute;
+        left: 5px;
+
+        p {
+          font-family: PingFangSC-Semibold;
+          font-size: 12px;
+          color: #666;
+        }
+      }
+
+      .route {
+        width: 250px;
+        height: 40px;
+        background-color: #2185fc;
+        border-radius: 20px;
+        font-size: 18px;
+        color: #fff;
+        position: absolute;
+        left: 75px;
+        top: 15px;
+      }
+    }
+  }
+}
+
+
+.container {
+  width: 700px;
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border: 1px solid #999;
+}
+
+.search-box {
+  position: absolute;
+  z-index: 5;
+  width: 70%;
+  left: 13%;
+  top: 10px;
+  height: 30px;
+}
+
+.search-box input {
+  float: left;
+  width: 80%;
+  height: 100%;
+  border: 1px solid #30ccc1;
+  padding: 0 8px;
+  outline: none;
+}
+
+.search-box button {
+  float: left;
+  width: 20%;
+  height: 100%;
+  background: #30ccc1;
+  border: 1px solid #30ccc1;
+  color: #fff;
+  outline: none;
+}
+
+.tip-box {
+  width: 100%;
+  max-height: 260px;
+  position: absolute;
+  top: 30px;
+  overflow-y: auto;
+  background-color: #fff;
+}
