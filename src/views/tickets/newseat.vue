@@ -32,8 +32,8 @@
           :class="{ animate: panStatus }"
           :style="{
             transformOrigin: transformOrigin,
-            transform: `translate3d(${translateX +
-              3}rem, 0rem, 0rem) scale(${seatScale},${seatScale}) rotate3d(0, 0, 0, 0deg)`
+            transform: `translate3d(${(seatWrapWidth - 6) / 2 +
+              translateX}rem, 0rem, 0rem) scale(${seatScale},${seatScale}) rotate3d(0, 0, 0, 0deg)`
           }"
         >
           <span class="hall-name">3号高清激光厅</span>
@@ -96,8 +96,8 @@
     <section class="seats-select">
       <section class="seats-select-desc">
         <h5 class="seats-select-desc-film">
-          八佰
-          <span class="seats-select-desc-cinema">地质礼堂</span>
+          {{ movieName }}
+          <span class="seats-select-desc-cinema">{{ hallName }}</span>
         </h5>
 
         <p class="seats-select-desc-time">今天 08月26日 20:00(国语2D)</p>
@@ -137,8 +137,10 @@
         <van-icon @click="showAll = false" class="cross font18" name="cross" />
       </div>
       <div class="popup-body">
-        <p class="font14">1.请全程佩戴口罩</p>
-        <p class="font14">2.请不要在影厅就餐</p>
+        <p v-for="(note, index) in notes" :key="index" class="font14">
+          {{ note }}
+        </p>
+        <p class="font14"></p>
       </div>
     </van-popup>
   </div>
@@ -151,11 +153,16 @@ export default {
   name: "select-seat",
   data: function() {
     return {
+      movieName: "八佰", //电影名称
+      hallName: "地质礼堂", //电影院
+      notes: ["观影期间请全程佩戴口罩，感谢配合！", "2.请不要在影厅就餐"], //通知公告
       showAll: false,
-      rows: 9,
-      cols: 12,
+      rows: 2,
+      cols: 13,
+      deltaX: 0, //移动的位移X
       seatList: list,
       selectedSeatList: [],
+      selectBlockWidth: 10, //横向最大值rem
       maxSelect: 6,
       width: 1,
       height: 1,
@@ -189,7 +196,10 @@ export default {
   },
   computed: {
     maxScale() {
-      return 1;
+      return 1.2;
+    },
+    minScale() {
+      return 0.5;
     },
     selectBlockHeight() {
       let height =
@@ -209,7 +219,7 @@ export default {
   watch: {
     selectedSeatList(newVal) {
       if (newVal) {
-        let width = (newVal.length * 55) / 37.5 + 35 / 37.5 + 4.4;
+        let width = (newVal.length * 55 + 35) / 37.5 + 1.6;
         this.$refs.scrollUl.style.width = width + "rem";
         this.$nextTick(() => {
           if (!this.scroll) {
@@ -229,12 +239,14 @@ export default {
   created() {
     this.$store.dispatch("changenavshow", false);
     if (this.seatWrapWidth > 10) {
-      this.seatScaleX = 1 - (this.seatWrapWidth - 10) / 10;
+      this.seatScaleX = 1 - (this.seatWrapWidth - 10) / this.seatWrapWidth;
     } else {
       this.seatScaleX = 1;
     }
     if (this.seatWrapHeight > this.selectBlockHeight) {
-      this.seatScaleY = 1 - (this.seatWrapHeight - this.selectBlockHeight) / 10;
+      this.seatScaleY =
+        1 -
+        (this.seatWrapHeight - this.selectBlockHeight) / this.selectBlockHeight;
     } else {
       this.seatScaleY = 1;
     }
@@ -334,15 +346,70 @@ export default {
     panend() {
       this.panStatus = true;
       //四个边界值的计算问题
-      if (this.translateX > 1) {
-        this.translateX = 1;
-      } else if (this.translateX < -3) {
-        this.translateX = -3;
-      }
-      if (this.translateY > 1) {
-        this.translateY = 1;
-      } else if (this.translateY < -1) {
-        this.translateY = -1;
+      // console.log("seatWrapHeight:", this.seatWrapHeight);
+      // console.log("selectBlockHeight:", this.selectBlockHeight);
+      const BundingX = this.$refs.seatsBlock.$el.getBoundingClientRect().x;
+      const Bunding = this.$refs.seatsBlock.$el.getBoundingClientRect();
+      const BundingRight = this.$refs.seatsBlock.$el.getBoundingClientRect()
+        .right;
+      const BundingTop = this.$refs.seatsBlock.$el.getBoundingClientRect().top;
+      // const Bunding = this.$refs.seatsBlock.$el.getBoundingClientRect();
+      const BundingWidth = this.$refs.seatsBlock.$el.getBoundingClientRect()
+        .width;
+      const BundingBottom = this.$refs.seatsBlock.$el.getBoundingClientRect()
+        .bottom;
+      if (this.selectBlockWidth * this.screenRem >= BundingWidth) {
+        //初始化倍率
+        this.translateX = (10 - this.seatWrapWidth) / 2;
+        this.translateY = (this.selectBlockHeight - this.seatWrapHeight) / 2;
+      } else {
+        //放大后
+        console.log("放大了");
+        if (this.seatWrapWidth <= this.selectBlockWidth) {
+          //宽度没有超出
+          this.translateX = (10 - this.seatWrapWidth) / 2;
+        }
+        if (
+          //宽度超出
+          this.seatWrapWidth > this.selectBlockWidth
+        ) {
+          if (BundingX > 0) {
+            //右划
+            console.log("左超出");
+            this.translateX =
+              this.seatWrapWidth - 10 + (10 - this.seatWrapWidth) / 2 + 0.5;
+          } else if (BundingRight < this.screenRem * 10) {
+            //左划
+            console.log("右滑出");
+            this.translateX =
+              10 - this.seatWrapWidth + (10 - this.seatWrapWidth) / 2 - 0.5;
+          }
+        }
+        if (this.seatWrapHeight <= this.selectBlockHeight - 0.58667) {
+          //高度在范围内
+          console.log(BundingTop);
+          this.translateY = (this.selectBlockHeight - this.seatWrapHeight) / 2;
+        }
+        if (this.seatWrapHeight > this.selectBlockHeight - 0.58667) {
+          //高度超出
+          if (BundingTop > (44 + 31 + 26) * (this.screenRem / 37.5)) {
+            //头部ok了
+            this.translateY =
+              -(this.selectBlockHeight - this.seatWrapWidth) / 2 + 1;
+          }
+          console.log(
+            document.documentElement.clientHeight - BundingBottom,
+            this.screenRem / 37.5,
+            (40 + 5 + 61 + 70 + 33 + 44 + 31) * (this.screenRem / 37.5)
+          );
+          if (
+            document.documentElement.clientHeight - BundingBottom >
+            (40 + 5 + 61 + 70 + 33 + 44 + 31) * (this.screenRem / 37.5)
+          ) {
+            console.log("底部ok了");
+            this.translateY = (this.selectBlockHeight - this.seatWrapWidth) / 2;
+          }
+        }
       }
     }
   }

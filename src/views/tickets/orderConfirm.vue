@@ -1,25 +1,20 @@
 <template>
   <div class="order">
     <div class="header tit1">
-      <van-icon class="back"
-                @click="$router.back(-1)"
-                name="arrow-left" />
+      <van-icon class="back" @click="$router.back(-1)" name="arrow-left" />
       <h3 class="page-name">确认订单</h3>
       <div class="timer ">{{ timer }}</div>
     </div>
     <div class="divider"></div>
     <div class="ticket-info">
-      <img class="poster"
-           :src="order.posterUrl"
-           alt="" />
+      <img class="poster" :src="order.posterUrl" alt="" />
       <div class="film-info">
         <h3 class="font18 black">{{ order.movieName }}</h3>
         <p class="p-line">{{ order.showStartTime }} （{{ order.language }}）</p>
         <p class="p-line">{{ order.cinemaName }}</p>
         <p class="p-line">
           <span>{{ order.hallCode }} | </span>
-          <span v-for="seat in order.seats"
-                :key="seat.seatId">
+          <span v-for="seat in order.seats" :key="seat.seatId">
             {{ seat.rowNum }}排{{ seat.columnNum }}座
           </span>
         </p>
@@ -27,13 +22,23 @@
     </div>
     <div class="features">
       <div class="the-feature">
-        <span><img style="width:13px;height:13px;"
-               src="@/assets/images/support.png" />
-          <span style="font-size: 12px;color: #333333;margin-left:6px;">支持退票</span>
+        <span
+          ><img
+            style="width:13px;height:13px;"
+            src="@/assets/images/support.png"
+          />
+          <span style="font-size: 12px;color: #333333;margin-left:6px;"
+            >支持退票</span
+          >
         </span>
-        <span><img style="width:13px;height:13px;"
-               src="@/assets/images/nosupport.png" />
-          <span style="font-size: 12px;color: #333333;margin-left:6px;">不支持改签</span>
+        <span
+          ><img
+            style="width:13px;height:13px;"
+            src="@/assets/images/nosupport.png"
+          />
+          <span style="font-size: 12px;color: #333333;margin-left:6px;"
+            >不支持改签</span
+          >
         </span>
       </div>
       <div class="prices black font12">
@@ -47,15 +52,16 @@
         <p class="font14 activity-name">优惠券&活动</p>
         <div class="activity-path font14">
           已选择
-          <van-icon style="position:relative;top:2px"
-                    name="arrow" />影城卡
+          <van-icon style="position:relative;top:2px" name="arrow" />影城卡
         </div>
       </div>
       <div class="coupon-item">
-        <span class="black font14"> 北京万达影城通州店影城卡 </span><span class="orange font14">-3元</span>
+        <span class="black font14"> 北京万达影城通州店影城卡 </span
+        ><span class="orange font14">-3元</span>
       </div>
       <div class="coupon-item">
-        <span class="black font14"> 联名卡 </span><span class="orange font14"> 首单9.9元 </span>
+        <span class="black font14"> 联名卡 </span
+        ><span class="orange font14"> 首单9.9元 </span>
       </div>
     </div>
     <div class="divider"></div>
@@ -68,41 +74,49 @@
           <van-cell-group>
             <van-cell @click="radio = '1'">
               <template #title>
-                <div><img src="@/assets/images/wechat.png" /><span>微信</span></div>
+                <div>
+                  <img src="@/assets/images/wechat.png" /><span>微信</span>
+                </div>
               </template>
               <template #right-icon>
                 <van-radio name="1">
                   <template #icon="props">
-                    <img class="img-icon"
-                         :src="props.checked ? activeIcon : inactiveIcon" />
+                    <img
+                      class="img-icon"
+                      :src="props.checked ? activeIcon : inactiveIcon"
+                    />
                   </template>
                 </van-radio>
               </template>
             </van-cell>
-            <van-cell clickable
-                      @click="radio = '2'">
+            <van-cell clickable @click="radio = '2'">
               <template #title>
-                <div><img src="@/assets/images/my.png" /><span>沃钱包</span></div>
+                <div>
+                  <img src="@/assets/images/my.png" /><span>沃钱包</span>
+                </div>
               </template>
               <template #right-icon>
                 <van-radio name="2">
                   <template #icon="props">
-                    <img class="img-icon"
-                         :src="props.checked ? activeIcon : inactiveIcon" />
+                    <img
+                      class="img-icon"
+                      :src="props.checked ? activeIcon : inactiveIcon"
+                    />
                   </template>
                 </van-radio>
               </template>
             </van-cell>
-            <van-cell clickable
-                      @click="radio = '3'">
+            <van-cell clickable @click="radio = '3'">
               <template #title>
                 <img src="@/assets/images/bankcard.png" /><span>银行卡</span>
               </template>
               <template #right-icon>
                 <van-radio name="3">
                   <template #icon="props">
-                    <img class="img-icon"
-                         :src="props.checked ? activeIcon : inactiveIcon" />
+                    <img
+                      class="img-icon"
+                      :src="props.checked ? activeIcon : inactiveIcon"
+                    />
                   </template>
                 </van-radio>
               </template>
@@ -112,20 +126,17 @@
       </div>
     </div>
     <div class="divider"></div>
-    <router-link :to="{ path: '/modifyPhone',query:{oldMobile:oldPhone} }">
+    <router-link :to="{ path: '/modifyPhone', query: { oldMobile: oldPhone } }">
       <div class="user-mobile">
         <div class="mobile-icon">
-          <img class="img-url"
-               :src="mobileUrl"
-               alt="" />
+          <img class="img-url" :src="mobileUrl" alt="" />
         </div>
         <div class="mobile">
-          <p class="font14 black">{{oldPhone}}</p>
+          <p class="font14 black">{{ oldPhone }}</p>
           <p class="font12">此手机号仅用于生成订单</p>
         </div>
         <div class="action">
-          <van-icon class="back font14"
-                    name="arrow" />
+          <van-icon class="back font14" name="arrow" />
         </div>
       </div>
     </router-link>
@@ -151,24 +162,26 @@
       <p class="orange font18">
         <strong>￥{{ order.totalPrice }}</strong>
       </p>
-      <div class="action-detail font14"
-           @click="toggleShowDetail">
+      <div class="action-detail font14" @click="toggleShowDetail">
         明细
         <van-icon :name="showDetail ? 'arrow-down' : 'arrow-up'" />
       </div>
-      <van-button class="font16"
-                  round
-                  color="linear-gradient(to right, #F8A10E, #EE6806)"
-                  @click="$router.push('/booking')">立即付款</van-button>
+      <van-button
+        class="font16"
+        round
+        color="linear-gradient(to right, #F8A10E, #EE6806)"
+        @click="$router.push('/booking')"
+        >立即付款</van-button
+      >
     </div>
-    <van-popup v-model="showDetail"
-               position="bottom"
-               :style="{ height: '30%' }">
+    <van-popup
+      v-model="showDetail"
+      position="bottom"
+      :style="{ height: '30%' }"
+    >
       <div class="popup-title font18 ac black">
         结算明细
-        <van-icon @click="toggleShowDetail"
-                  class="cross font18"
-                  name="cross" />
+        <van-icon @click="toggleShowDetail" class="cross font18" name="cross" />
       </div>
       <div class="popup-body">
         <div class="font16 black">电影票{{ order.totalNum }}张</div>
@@ -198,7 +211,7 @@ export default {
     [Cell.name]: Cell,
     [CellGroup.name]: CellGroup
   },
-  data: function () {
+  data: function() {
     return {
       order: {},
       timer: "00:00",
@@ -210,12 +223,12 @@ export default {
       oldPhone: "13109098766"
     };
   },
-  created () {
+  created() {
     this.getOrderInfo();
-    this.oldPhone=this.$route.query.newMobile;
+    this.oldPhone = this.$route.query.newMobile;
   },
   methods: {
-    getOrderInfo () {
+    getOrderInfo() {
       const params = {
         cinemaId: "11111111111",
         movieId: "2222222222",
@@ -249,7 +262,7 @@ export default {
         })
         .catch();
     },
-    toggleShowDetail () {
+    toggleShowDetail() {
       this.showDetail = !this.showDetail;
     }
   }
@@ -317,6 +330,7 @@ export default {
         display: flex;
         align-items: center;
         margin-right: 12px;
+        font-size: 12px;
       }
     }
   }
