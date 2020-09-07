@@ -7,7 +7,7 @@
       <van-search v-model="value"
                   @input="onSearch(value)"
                   @clear="clear"
-                  placeholder="输入城市名、拼音或字母查询">
+                  placeholder="请输入城市名进行查询">
       </van-search>
     </div>
     <div v-show="showcontent"
@@ -15,7 +15,10 @@
       <div class="location">
         <span class="location_title">热门搜索</span>
         <div class="location_content">
-          <div class="location_text">北京</div>
+          <div class="location_text"
+               v-for="(item, index) in hotsearch"
+               :key="index"
+               @click="TenchooseCity(item)">{{item}}</div>
         </div>
       </div>
       <div class="history">
@@ -32,12 +35,10 @@
       <div class="hotcity">
         <span class="hotcity_title">热门城市</span>
         <div class="hotcity_content">
-          <div class="hotcity_text">北京</div>
-          <div class="hotcity_text">上海</div>
-          <div class="hotcity_text">成都</div>
-          <div class="hotcity_text">重庆</div>
-          <div class="hotcity_text">西安</div>
-          <div class="hotcity_text">杭州</div>
+          <div class="hotcity_text"
+               v-for="(item, index) in hotcity"
+               :key="index"
+               @click="TenchooseCity(item)">{{item}}</div>
         </div>
       </div>
       <div class="allcity">
@@ -84,7 +85,9 @@ export default {
       showcontent: true,
       showlist: false,
       //搜索历史
-      searchHistoryList: []
+      searchHistoryList: [],
+      hotcity: ["北京", "上海", "广州", "深圳", "杭州", "重庆"],
+      hotsearch: ["北京"]
     };
   },
   created () { },
@@ -113,52 +116,61 @@ export default {
       this.showlist = true;
     },
     chooseCity (citem) {
-      this.setlocalcity(citem.name)
+      this.setlocalcity(citem.name);
       this.$router.push({
-        path: '/',
+        path: "/",
         query: {
           city: citem.name
         }
-      })
+      });
     },
     TenchooseCity (citem) {
+      this.setlocalcity(citem);
       this.$router.push({
-        path: '/',
+        path: "/",
         query: {
           city: citem
         }
-      })
+      });
     },
     clear () {
       this.showcontent = true;
       this.showlist = false;
     },
     HistoryList () {
-      if (localStorage.getItem('seachList') !== null) {
-        this.searchHistoryList = JSON.parse(localStorage.getItem('seachList'))
+      if (localStorage.getItem("seachList") !== null) {
+        this.searchHistoryList = JSON.parse(localStorage.getItem("seachList"));
       }
     },
     //加入历史搜索记录
     setlocalcity (citem) {
-      citem = citem.trim()
-      if (this.searchHistoryList.length > 0) { // 有数据的话 判断
-        if (this.searchHistoryList.indexOf(citem) !== -1) { // 有相同的，先删除 再添加 
-          this.searchHistoryList.splice(this.searchHistoryList.indexOf(citem), 1)
-          this.searchHistoryList.unshift(citem)
-        } else { // 没有相同的 添加
-          this.searchHistoryList.unshift(citem)
+      citem = citem.trim();
+      if (this.searchHistoryList.length > 0) {
+        // 有数据的话 判断
+        if (this.searchHistoryList.indexOf(citem) !== -1) {
+          // 有相同的，先删除 再添加
+          this.searchHistoryList.splice(
+            this.searchHistoryList.indexOf(citem),
+            1
+          );
+          this.searchHistoryList.unshift(citem);
+        } else {
+          // 没有相同的 添加
+          this.searchHistoryList.unshift(citem);
         }
-      } else { // 没有数据 添加
-        this.searchHistoryList.unshift(citem)
+      } else {
+        // 没有数据 添加
+        this.searchHistoryList.unshift(citem);
       }
-      if (this.searchHistoryList.length > 6) { // 保留六个值
-        this.searchHistoryList.pop()
+      if (this.searchHistoryList.length > 6) {
+        // 保留六个值
+        this.searchHistoryList.pop();
       }
-      localStorage.setItem('seachList', JSON.stringify(this.searchHistoryList))
+      localStorage.setItem("seachList", JSON.stringify(this.searchHistoryList));
     }
   },
   watch: {
-    "value" () {
+    value () {
       if (this.value == "") {
         this.showcontent = true;
         this.showlist = false;
