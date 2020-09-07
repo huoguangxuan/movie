@@ -37,5 +37,10 @@ export default [
     name: "film-photos",
     component: () =>
       import(/* webpackChunkName: "film" */ "../views/films/photos")
+  },
+  {
+    path: "/ylh",
+    name: "ylh",
+    component: () => import(/* webpackChunkName: "film" */ "../views/films/ylh")
   }
 ];
