@@ -1,8 +1,6 @@
 <template>
   <div class="page-wrap cinemas">
-    <div class="page-title">
-      <h4>影院列表</h4>
-    </div>
+    <van-nav-bar title="影院列表" />
     <van-dropdown-menu>
       <van-dropdown-item v-model="value1" title="筛选" ref="placeselect">
         <van-tree-select
@@ -43,8 +41,16 @@
 </template>
 <script>
 import Vue from "vue";
-import { Cell, DropdownMenu, DropdownItem, Tag, TreeSelect } from "vant";
+import {
+  NavBar,
+  Cell,
+  DropdownMenu,
+  DropdownItem,
+  Tag,
+  TreeSelect
+} from "vant";
 
+Vue.use(NavBar);
 Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
 Vue.use(Tag);
@@ -154,6 +160,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+@import url(../../styles/common.less);
 @import url(../../styles/cinemas.less);
 @import url(../../styles/vant_sf.less);
 </style>

@@ -57,6 +57,13 @@ let routes = [
     component: () =>
       import(/* webpackChunkName: "pages" */ "../views/cinemas/detail")
   },
+  //影院地图
+  {
+    path: "/cinemas/map",
+    name: "cinemasmap",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/cinemas/map")
+  },
 
   //影票频道首页
   {
@@ -91,6 +98,20 @@ let routes = [
     name: "orderConfirm",
     component: () =>
       import(/* webpackChunkName: "pages" */ "../views/tickets/orderConfirm")
+  },
+  //影票频道退单
+  {
+    path: "/refund",
+    name: "refund",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/tickets/refund")
+  },
+  //影票频道退单结果
+  {
+    path: "/refund/result",
+    name: "refundResult",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/tickets/refundResult")
   },
   //个人主页
   {
