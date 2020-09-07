@@ -13,7 +13,7 @@
     <div v-show="showcontent"
          class="showcontent">
       <div class="location">
-        <span class="location_title">热门搜索</span>
+        <span class="location_title">当前所在城市</span>
         <div class="location_content">
           <div class="location_text"
                v-for="(item, index) in hotsearch"
