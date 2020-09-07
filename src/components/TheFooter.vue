@@ -53,6 +53,27 @@ export default {
   },
   watch: {
     "$route.path": function(newVal, oldVal) {
+      switch (newVal) {
+        case "/home":
+          this.active = 0;
+          break;
+        case "/films/hotfilms":
+          this.active = 1;
+          break;
+        case "/films/thefilms":
+          this.active = 1;
+          break;
+        case "/cinemas":
+          this.active = 2;
+          break;
+
+        case "/userCenter":
+          this.active = 3;
+          break;
+
+        default:
+          this.active = 0;
+      }
       if (newVal == "/home") {
         this.active = 0;
       }
@@ -68,5 +89,8 @@ export default {
 .footer {
   width: 100vw;
   height: 49px;
+  /deep/ .van-tabbar-item--active {
+    color: #ff7030;
+  }
 }
 </style>

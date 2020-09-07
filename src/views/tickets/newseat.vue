@@ -77,7 +77,10 @@
               :key="index"
               @click="handleSeatClick($event, seat)"
             >
-              <div class="seat" :style="{ width: width + 'rem', height: height + 'rem' }"></div>
+              <div
+                class="seat"
+                :style="{ width: width + 'rem', height: height + 'rem' }"
+              ></div>
             </div>
           </div>
         </v-touch>
@@ -124,7 +127,8 @@
         round
         class="buy-btn"
         color="linear-gradient(to right, #F8A10E, #EE6806)"
-      >去购票</van-button>
+        >去购票</van-button
+      >
     </div>
     <!-- //广播弹框 -->
     <van-popup v-model="showAll" position="bottom" :style="{ height: '50%' }">
@@ -145,7 +149,7 @@ import { Toast, Icon, Popup } from "vant";
 import Bscroll from "better-scroll";
 export default {
   name: "select-seat",
-  data: function () {
+  data: function() {
     return {
       showAll: false,
       rows: 9,
@@ -223,6 +227,7 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch("changenavshow", false);
     if (this.seatWrapWidth > 10) {
       this.seatScaleX = 1 - (this.seatWrapWidth - 10) / 10;
     } else {

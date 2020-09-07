@@ -31,15 +31,15 @@ export default [
     path: "/choseSeat",
     name: "choseSeat",
     component: () =>
-      import(/* webpackChunkName: "tickets" */ "../views/tickets/choseSeat")
-  },
-  //影票频道选座
-  {
-    path: "/seat",
-    name: "seat",
-    component: () =>
       import(/* webpackChunkName: "tickets" */ "../views/tickets/newseat")
   },
+  // //影票频道选座
+  // {
+  //   path: "/seat",
+  //   name: "seat",
+  //   component: () =>
+  //     import(/* webpackChunkName: "tickets" */ "../views/tickets/newseat")
+  // },
   //影票频道订单确认
   {
     path: "/orderConfirm",

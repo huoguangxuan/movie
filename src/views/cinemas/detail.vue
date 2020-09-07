@@ -98,6 +98,7 @@ export default {
     };
   },
   mounted() {
+    this.$store.dispatch("changenavshow", false); //关闭下面的footer显示
     console.log(this.$route.query.id);
   },
   methods: {
