@@ -74,39 +74,20 @@
     <div class="comment">
       <span class="headleft">大家都在看</span>
       <ul>
-        <li>
+        <li v-for="(item,index) in list"
+            :key="index"
+            v-show="isopen||index <max">
           <img src="@/assets/images/headimg.png" />
           <div class="commentright">
-            <span class="comment_one">村东头的年华</span>
-            <span class="comment_two">畅爽冰淇淋5G套餐129元</span>
-            <span class="comment_three">不错的影片，很好，很震撼。</span>
+            <span class="comment_one">{{item.name}}</span>
+            <span class="comment_two">{{item.taocan}}</span>
+            <span class="comment_three">{{item.ganjue}}</span>
             <span class="comment_four">
-              <span>2020-09-01</span>
+              <span>{{item.time}}</span>
               <div class="comment_five">
                 <span class="comment_six">
                   <img src="@/assets/images/praise.png" />
-                  <span style="padding-left: 6px;">1323</span>
-                </span>
-                <span class="comment_six">
-                  <img src="@/assets/images/reply.png" />
-                  <span style="padding-left: 6px;">回复</span>
-                </span>
-              </div>
-            </span>
-          </div>
-        </li>
-        <li>
-          <img src="@/assets/images/headimg.png" />
-          <div class="commentright">
-            <span class="comment_one">村东头的年华</span>
-            <span class="comment_two">畅爽冰淇淋5G套餐129元</span>
-            <span class="comment_three">不错的影片，很好，很震撼。</span>
-            <span class="comment_four">
-              <span>2020-09-01</span>
-              <div class="comment_five">
-                <span class="comment_six">
-                  <img src="@/assets/images/praise.png" />
-                  <span style="padding-left: 6px;">1323</span>
+                  <span style="padding-left: 6px;">{{item.zan}}</span>
                 </span>
                 <span class="comment_six">
                   <img src="@/assets/images/reply.png" />
@@ -119,8 +100,15 @@
       </ul>
     </div>
     <!-- 查看全部评论 -->
-    <div class="examine">
+    <div class="examine"
+         v-show="!isopen&&list.length>max"
+         @click="isopen=!isopen">
       <span>查看全部评论</span> <img src="@/assets/images/mores.png" />
+    </div>
+    <div class="examine"
+         v-show="isopen&&list.length>max"
+         @click="isopen=false">
+      <span>收起评论</span>
     </div>
     <!-- 写评论 -->
     <div class="write">
@@ -134,7 +122,17 @@
 <script>
 export default {
   data () {
-    return {};
+    return {
+      list: [
+        { name: '村东头的年华', taocan: '畅爽冰淇淋5G套餐129元', ganjue: '不错的影片，很好，很震撼。', time: '2020-09-01', zan: '1322' },
+        { name: '会变身的奥特曼', taocan: '畅爽冰淇淋5G套餐129元', ganjue: '不错的影片，很好，很震撼。', time: '2020-09-01', zan: '1322' },
+        { name: '风花雪月', taocan: '畅爽冰淇淋5G套餐129元', ganjue: '不错的影片，很好，很震撼。', time: '2020-09-01', zan: '1322' },
+        { name: '流年、', taocan: '畅爽冰淇淋5G套餐129元', ganjue: '不错的影片，很好，很震撼。', time: '2020-09-01', zan: '1322' },
+        { name: '村东头的年华', taocan: '畅爽冰淇淋5G套餐129元', ganjue: '不错的影片，很好，很震撼。', time: '2020-09-01', zan: '1322' }
+      ],
+      max: 2,
+      isopen: false
+    };
   },
   methods: {},
   created () { },
