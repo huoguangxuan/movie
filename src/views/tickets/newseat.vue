@@ -110,7 +110,6 @@
             class="scroll-item"
             v-for="item in selectedSeatList"
             :key="'select' + item.seatId"
-            @click="cancelSelect(item)"
           >
             {{ item.row }}排{{ item.column }}座
             <br />
@@ -157,8 +156,8 @@ export default {
       hallName: "地质礼堂", //电影院
       notes: ["观影期间请全程佩戴口罩，感谢配合！", "2.请不要在影厅就餐"], //通知公告
       showAll: false,
-      rows: 2,
-      cols: 13,
+      rows: 5,
+      cols: 6,
       deltaX: 0, //移动的位移X
       seatList: list,
       selectedSeatList: [],
@@ -179,10 +178,6 @@ export default {
       startX: 0, // ---移动的起点X轴 单位px
       startY: 0, // ---移动的起点Y轴 单位px
       transformOrigin: "50% 0",
-      bundingLeft: 0, //边界左
-      bundingRight: 0, //边界右
-      bundingTop: 0, //边界上
-      bundingBottom: 0, //边界下
       screenRem:
         (document.body.clientWidth ||
           window.innerWidth ||
@@ -349,7 +344,6 @@ export default {
       // console.log("seatWrapHeight:", this.seatWrapHeight);
       // console.log("selectBlockHeight:", this.selectBlockHeight);
       const BundingX = this.$refs.seatsBlock.$el.getBoundingClientRect().x;
-      const Bunding = this.$refs.seatsBlock.$el.getBoundingClientRect();
       const BundingRight = this.$refs.seatsBlock.$el.getBoundingClientRect()
         .right;
       const BundingTop = this.$refs.seatsBlock.$el.getBoundingClientRect().top;
@@ -397,11 +391,6 @@ export default {
             this.translateY =
               -(this.selectBlockHeight - this.seatWrapWidth) / 2 + 1;
           }
-          console.log(
-            document.documentElement.clientHeight - BundingBottom,
-            this.screenRem / 37.5,
-            (40 + 5 + 61 + 70 + 33 + 44 + 31) * (this.screenRem / 37.5)
-          );
           if (
             document.documentElement.clientHeight - BundingBottom >
             (40 + 5 + 61 + 70 + 33 + 44 + 31) * (this.screenRem / 37.5)
