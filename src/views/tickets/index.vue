@@ -399,7 +399,7 @@ export default {
 }
 //热门电影//即将上映
 .film {
-  width: 100vw;
+  margin: 0px 17px;
   height: 249px;
   display: flex;
   align-items: center;
@@ -451,29 +451,24 @@ export default {
   }
   //热映/即将上映共用样式
   .filmcontent {
-    width: 100vw;
+    width: 100%;
     height: 231px;
     overflow: hidden;
     display: flex;
     align-items: center;
     touch-action: none;
     .filmcont {
-      width: 750px;
       display: flex;
       align-items: center;
       flex-direction: row;
-      padding-left: 9px;
       li {
-        padding-left: 8px;
-        width: 100px;
         display: flex;
         flex-direction: column;
+        margin-right: 8px;
         a {
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          padding-left: 8px;
-          width: 100px;
           display: flex;
           flex-direction: column;
           .filmname {
@@ -523,7 +518,7 @@ export default {
 }
 //热门活动
 .activities {
-  width: 100vw;
+  margin: 0px 17px;
   height: 183.5px;
   display: flex;
   align-items: center;
@@ -558,20 +553,19 @@ export default {
   //活动的横向滑动样式
   .wrapper {
     touch-action: none;
-    width: 100vw;
+    width: 100%;
+    margin: 0px 17px;
     height: 165.5px;
     overflow: hidden;
     display: flex;
     align-items: center;
     .cont {
-      width: 750px;
       height: 130px;
       display: flex;
       align-items: center;
       flex-direction: row;
-      padding-left: 9px;
       li {
-        padding-left: 8px;
+        padding-right: 8px;
         width: 100px;
         height: 130px;
       }
