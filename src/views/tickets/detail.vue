@@ -35,7 +35,7 @@
           <p><van-icon name="down" /></p>
           <p class="font14">保存图片</p>
         </div>
-        <div class="block">
+        <div class="block" @click="saveImg">
           <p><van-icon name="share" /></p>
           <p class="font14">分享给好友</p>
         </div>
@@ -43,45 +43,9 @@
     </div>
     <!-- 隐藏的部分 -->
     <van-overlay :show="show" @click="show = false">
-      <!-- <div class="ticket-card" ref="imageWrapper">
-        <div class="film-info">
-          <div class="text">
-            <h3 class="font18 black">{{ ticket.movieName }}</h3>
-            <p class="p-line blood">
-              {{ ticket.showStartTime }} （{{ ticket.language }}）
-            </p>
-            <p class="p-line">{{ ticket.cinemaName }}</p>
-            <p class="p-line">
-              <span>{{ ticket.hallCode }} | </span>
-              <span v-for="seat in ticket.seats" :key="seat.seatId">
-                {{ seat.row }}排{{ seat.column }}座
-              </span>
-            </p>
-          </div>
-          <img class="poster" :src="ticket.posterUrl" alt="" />
-        </div>
-        <div class="niceline">
-          <div class="circle4"></div>
-          <div class="border"></div>
-          <div class="circle5"></div>
-        </div>
-        <div class="title">取电影票</div>
-        <div class="qrcode">
-          <qrcode-vue :value="qrurl" :size="size"></qrcode-vue>
-        </div>
-        <p class="font12 black ac count">您有{{ ticketCount }}张电影票</p>
-        <div class="code font14 black">取票号：{{ dealStr4 }}</div>
-        <div class="actions" ref="actions">
-          <div class="block" @click="saveImg">
-            <p><van-icon name="down" /></p>
-            <p class="font14">保存图片</p>
-          </div>
-          <div class="block">
-            <p><van-icon name="share" /></p>
-            <p class="font14">分享给好友</p>
-          </div>
-        </div>
-      </div> -->
+      <div class="wrapper">
+        <img :src="imgUrl" alt="" />
+      </div>
     </van-overlay>
     <div class="divider"></div>
     <!-- 用户购买详情信息 -->
@@ -173,7 +137,7 @@
 <script>
 import TheHeader from "@/components/TheHeader";
 import QrcodeVue from "qrcode.vue";
-import { Icon, Dialog, Overlay } from "vant";
+import { Icon, Dialog, Overlay, Toast } from "vant";
 import html2canvas from "html2canvas";
 
 import api from "@/api";
@@ -204,6 +168,7 @@ export default {
   },
   created() {
     this.getTicketInfo();
+    this.convertImg();
   },
   methods: {
     getTicketInfo() {
@@ -217,8 +182,43 @@ export default {
         })
         .catch();
     },
+    downloadImg() {
+      this.convertImg();
+      if (!this.imgUrl) return;
+      // 如果浏览器支持msSaveOrOpenBlob方法（也就是使用IE浏览器的时候），那么调用该方法去下载图片;
+      if (window.navigator.msSaveOrOpenBlob) {
+        let bstr = atob(this.imgUrl.split(",")[1]);
+        // console.log(bstr);
+        let n = bstr.length;
+        let u8arr = new Uint8Array(n);
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+        let blob = new Blob([u8arr]);
+        window.navigator.msSaveOrOpenBlob(blob, name + "." + "png");
+      } else {
+        // 这里就按照chrome等新版浏览器来处理
+        let bstr = atob(this.imgUrl.split(",")[1]);
+        let n = bstr.length;
+        let u8arr = new Uint8Array(n);
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+        let blob = new Blob([u8arr]);
+        // console.log(blob);
+        let a = document.createElement("a");
+        // a.href = URL.createObjectURL(blob);
+        a.href = URL.createObjectURL(blob);
+        a.setAttribute("download", "1234.png");
+        a.click();
+      }
+    },
     saveImg() {
-      console.log("开始生成图片");
+      this.share = true;
+      // console.log("开始生成图片");
+      this.convertImg();
+    },
+    convertImg() {
       html2canvas(this.$refs.imageWrapper, {
         scale: 1,
         useCORS: true,
@@ -232,7 +232,8 @@ export default {
         .then(canvas => {
           let dataURL = canvas.toDataURL("image/png");
           this.imgUrl = dataURL;
-          if (this.imgUrl !== "") {
+          // console.log(dataURL);
+          if (this.imgUrl !== "" && this.share) {
             this.show = true;
           }
         })
@@ -335,10 +336,10 @@ export default {
     align-items: center;
     justify-content: center;
     height: 100%;
-    .block {
-      img {
-        border-radius: 8px;
-      }
+    padding: 20px;
+    img {
+      border-radius: 8px;
+      width: 100%;
     }
   }
   .detail {
