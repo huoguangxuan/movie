@@ -36,7 +36,7 @@ export default {
     [Tabbar.name]: Tabbar,
     [TabbarItem.name]: TabbarItem
   },
-  data() {
+  data () {
     return {
       active: 0,
       icon: {
@@ -52,8 +52,8 @@ export default {
     };
   },
   watch: {
-    "$route.path": function(newVal, oldVal) {
-      if (newVal == "/home") {
+    "$route.path": function (newVal, oldVal) {
+      if (newVal == "/home" || oldVal == "/home") {
         this.active = 0;
       }
       if (newVal == "/films/hotfilms" || newVal == "/films/thefilms") {

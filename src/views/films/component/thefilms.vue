@@ -21,6 +21,7 @@
         </ul>
       </div>
     </div>
+    <div class="divider"></div>
     <div class="specific">
       <div class="specifictime">
         <!-- 上映时间的滑动 -->
@@ -198,14 +199,12 @@ export default {
 
 <style lang="less" scoped>
 .thenfilms {
-  width: 100vw;
+  background-color: white;
   .recently {
+    margin: 0px 17px;
     height: 231px;
-    background-color: white;
-    margin-bottom: 8px;
     .recentlyhead {
       height: 31px;
-      margin: 0px 17px;
       span {
         font-family: PingFangSC-Regular;
         font-size: 16px;
@@ -215,20 +214,17 @@ export default {
       }
     }
     .recentlycontent {
-      width: 100vw;
       height: 200px;
       overflow: hidden;
       display: flex;
       align-items: center;
       touch-action: none;
       .recentlycont {
-        width: 750px;
         display: flex;
         align-items: center;
         flex-direction: row;
-        padding-left: 9px;
         li {
-          padding-left: 8px;
+          padding-right: 8px;
           width: 100px;
           display: flex;
           flex-direction: column;
@@ -253,25 +249,21 @@ export default {
     }
   }
   .specific {
-    width: 100vw;
     .specifictime {
-      width: 100vw;
+      margin: 0px 17px;
       height: 46px;
       background-color: white;
       .specificbig {
         touch-action: none;
-        width: 100vw;
         height: 46px;
         overflow: hidden;
         display: flex;
         align-items: center;
         .specificmin {
-          width: 750px;
           height: 46px;
           display: flex;
           align-items: center;
           flex-direction: row;
-          padding-left: 17px;
           li {
             width: 100px;
             height: 46px;

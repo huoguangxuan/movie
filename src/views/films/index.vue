@@ -1,16 +1,16 @@
 <template>
   <div class="films">
-    <van-tabs
-      style="position:fixed;top:0;width:100%;z-index:2"
-      v-model="active"
-    >
-      <van-tab title="正在热映" to="/films/hotfilms"></van-tab>
-      <van-tab title="即将上映" to="/films/thefilms"></van-tab>
+    <van-tabs style="position:fixed;top:0;width:100%;z-index:2"
+              v-model="active">
+      <van-tab title="正在热映"
+               to="/films/hotfilms"></van-tab>
+      <van-tab title="即将上映"
+               to="/films/thefilms"></van-tab>
     </van-tabs>
     <div class="divider"></div>
     <router-view></router-view>
   </div>
-</template>
+</template> 
 
 <script>
 import { Tab, Tabs } from "vant";
@@ -19,10 +19,25 @@ export default {
     [Tab.name]: Tab,
     [Tabs.name]: Tabs
   },
-  data() {
+  data () {
     return {
       active: 0
     };
+  },
+  created () {
+    this.active = this.$route.query.active;
+  },
+  mounted () { },
+  methods: {},
+  watch: {
+    "active": function (newVal, oldVal) {
+      if (this.active == 0) {
+        this.$router.push("/films/hotfilms")
+      }
+      if (this.active == 1) {
+        this.$router.push("/films/thefilms")
+      }
+    }
   }
 };
 </script>

@@ -51,7 +51,7 @@
                 :class="{ active: num == 2 }"
                 class="spanright">即将上映</span>
         </span>
-        <router-link :to="{ name: num == 1 ? 'hotfilms' : 'thefilms' }">
+        <router-link :to="{ path: num == 1 ? '/films/hotfilms' : '/films/thefilms' ,query:{active:num==1?0:1}}">
           <span class="headright">
             更多<img class="more"
                  src="@/assets/images/more.png" />
@@ -98,11 +98,16 @@
                    :src="item.playBillUrl" />
               <span class="filmname">{{ item.name }}</span>
             </router-link>
-            <router-link :to="{ name: 'cinemas' }">
+            <div @click="wantlook(index)">
               <van-button class="wantlook"
+                          v-show="true"
                           round
                           type="info">想看</van-button>
-            </router-link>
+              <van-button class="thinklook"
+                         v-show="false"
+                          round
+                          type="info">已想看</van-button>
+            </div>
           </li>
         </ul>
       </div>
@@ -257,6 +262,9 @@ export default {
     getcity () {
       if (!this.$route.query.city == "")
         this.city = this.$route.query.city;
+    },
+    wantlook (index) {
+      
     }
   }
 };
@@ -505,6 +513,17 @@ export default {
           margin-top: 10px;
           border: none;
           border-style: none;
+          text-align: center;
+          line-height: 30px;
+        }
+        .thinklook {
+          width: 74px;
+          height: 30px;
+          color: #cccccc;
+          background-color: white;
+          border-radius: 30spx;
+          margin-top: 10px;
+          border: 1px solid #cccccc;
           text-align: center;
           line-height: 30px;
         }
