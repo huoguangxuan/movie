@@ -16,6 +16,28 @@ module.exports = {
   },
   devServer: {
     open: true,
-    openPage: "films"
+    openPage: "films",
+    proxy: {
+      "/mtc-front": {
+        // 目标 API 地址
+        // 开发环境
+        target: "http://myts.utools.club/",
+        // target: 'http://39.108.0.147:18100',
+        // target: "http://172.27.68.215:12000",// 本地
+        // 如果要代理 websockets
+        ws: false,
+        // 将主机标头的原点更改为目标URL(设置跨域)
+        changeOrigin: true
+        // pathRewrite: {
+        //   "^/mtc-front": "/mtc-front"
+        // }
+      },
+      "/mock": {
+        target: "http://172.27.68.86:8090/",
+        pathRewrite: {
+          "^/mock": ""
+        }
+      }
+    }
   }
 };

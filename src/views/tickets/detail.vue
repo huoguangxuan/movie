@@ -26,12 +26,25 @@
       </div>
       <div class="title">取电影票</div>
       <div class="qrcode">
-        <qrcode-vue :value="qrurl" :size="size"></qrcode-vue>
+        <img
+          class="hasshow"
+          v-if="hasshow"
+          src="@/assets/images/hasshow.png"
+          alt=""
+        />
+        <qrcode-vue
+          :class="{ op2: hasshow }"
+          :value="qrurl"
+          :size="size"
+        ></qrcode-vue>
       </div>
       <p class="font12 black ac count">您有{{ ticketCount }}张电影票</p>
-      <div class="code font14 black">取票号：{{ dealStr4 }}</div>
+      <div class="code font14 black">
+        <span>取票号：</span
+        ><span :class="{ 'line-through': hasshow }">{{ dealStr4 }}</span>
+      </div>
       <div class="actions no-win">
-        <div class="block" @click="saveImg">
+        <div class="block" @click="downloadImg">
           <p><van-icon name="down" /></p>
           <p class="font14">保存图片</p>
         </div>
@@ -51,9 +64,13 @@
     <!-- 用户购买详情信息 -->
     <div class="detail">
       <div class="location">
-        <span class="span-district">万达影城（通州万达店）</span>
-        <span class="span-specific">新华西街58号万达广场1号楼5层</span>
+        <div class="location-info">
+          <span class="span-district">万达影城（通州万达店）</span>
+          <span class="span-specific">新华西街58号万达广场1号楼5层</span>
+        </div>
+        <van-icon class="location-map" name="location-o" />
       </div>
+
       <div class="orderfrom">
         <div class="orderfromhead">
           <span class="headleft">实付金额：￥39.9</span>
@@ -135,6 +152,7 @@
   </div>
 </template>
 <script>
+import ImageDown from "@/utils/imageDown";
 import TheHeader from "@/components/TheHeader";
 import QrcodeVue from "qrcode.vue";
 import { Icon, Dialog, Overlay, Toast } from "vant";
@@ -158,7 +176,9 @@ export default {
       ticketCount: 0,
       ticketCode: "",
       show: false,
-      imgUrl: ""
+      imgUrl: "",
+      curTimestamp: 0,
+      hasshow: false
     };
   },
   computed: {
@@ -168,7 +188,7 @@ export default {
   },
   created() {
     this.getTicketInfo();
-    this.convertImg();
+    // this.convertImg();
   },
   methods: {
     getTicketInfo() {
@@ -179,39 +199,14 @@ export default {
           this.ticket = res.data;
           this.ticketCount = res.data.seats.length;
           this.ticketCode = res.data.ticketCode;
+          this.curTimestamp = new Date().valueOf();
+          if (this.ticket.showStartTime < this.curTimestamp)
+            this.hasshow = true;
         })
         .catch();
     },
     downloadImg() {
       this.convertImg();
-      if (!this.imgUrl) return;
-      // 如果浏览器支持msSaveOrOpenBlob方法（也就是使用IE浏览器的时候），那么调用该方法去下载图片;
-      if (window.navigator.msSaveOrOpenBlob) {
-        let bstr = atob(this.imgUrl.split(",")[1]);
-        // console.log(bstr);
-        let n = bstr.length;
-        let u8arr = new Uint8Array(n);
-        while (n--) {
-          u8arr[n] = bstr.charCodeAt(n);
-        }
-        let blob = new Blob([u8arr]);
-        window.navigator.msSaveOrOpenBlob(blob, name + "." + "png");
-      } else {
-        // 这里就按照chrome等新版浏览器来处理
-        let bstr = atob(this.imgUrl.split(",")[1]);
-        let n = bstr.length;
-        let u8arr = new Uint8Array(n);
-        while (n--) {
-          u8arr[n] = bstr.charCodeAt(n);
-        }
-        let blob = new Blob([u8arr]);
-        // console.log(blob);
-        let a = document.createElement("a");
-        // a.href = URL.createObjectURL(blob);
-        a.href = URL.createObjectURL(blob);
-        a.setAttribute("download", "1234.png");
-        a.click();
-      }
     },
     saveImg() {
       this.share = true;
@@ -232,6 +227,7 @@ export default {
         .then(canvas => {
           let dataURL = canvas.toDataURL("image/png");
           this.imgUrl = dataURL;
+          ImageDown(this.imgUrl, null, null);
           // console.log(dataURL);
           if (this.imgUrl !== "" && this.share) {
             this.show = true;
@@ -278,6 +274,9 @@ export default {
       padding: 10px 17px;
       text-align: center;
       margin: auto;
+      .line-through {
+        text-decoration: line-through;
+      }
     }
     .niceline {
       display: flex;
@@ -308,12 +307,23 @@ export default {
       font-size: 14px;
       color: #333333;
       line-height: 14px;
-      padding-bottom: 28px;
       padding-left: 10px;
     }
     .qrcode {
       display: flex;
       justify-content: center;
+      position: relative;
+      padding-top: 30px;
+      .hasshow {
+        position: absolute;
+        top: 0;
+        right: 60px;
+        width: 70px;
+        height: 70px;
+      }
+      .op2 {
+        opacity: 0.2;
+      }
       /deep/ canvas {
         border: 5px solid white;
         width: 132px !important;
@@ -350,21 +360,28 @@ export default {
       height: 60px;
       border-bottom: 1px solid #ececec;
       box-sizing: border-box;
+      align-items: center;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      .span-district {
-        font-family: PingFangSC-Regular;
-        font-size: 12px;
-        color: #333333;
-        line-height: 12px;
-        margin-bottom: 10px;
+      .location-info {
+        flex: 1;
+        border-right: 1px solid #eeeeee;
+        .span-district {
+          font-family: PingFangSC-Regular;
+          font-size: 12px;
+          color: #333333;
+          display: block;
+          line-height: 12px;
+          margin-bottom: 10px;
+        }
+        .span-specific {
+          font-family: PingFangSC-Regular;
+          font-size: 12px;
+          color: #999999;
+          display: block;
+          line-height: 12px;
+        }
       }
-      .span-specific {
-        font-family: PingFangSC-Regular;
-        font-size: 12px;
-        color: #999999;
-        line-height: 12px;
+      .location-icon {
       }
     }
     .orderfrom {

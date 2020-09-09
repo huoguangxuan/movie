@@ -13,11 +13,11 @@ export default {
   },
   //获取影票信息
   getTicketInfo(params) {
-    return axios.post(`${prefix}/user/getTicket`, params);
+    return axios.post(`/mock/user/getUserOrderDetai`, params);
   },
   //home
   getHomeData(params) {
-    return axios.post(`${prefix}/home/getHomeData`, params);
+    return axios.post(`/mtc-front/v1/homeInfo/getHomeData`, params);
   },
   getMoreDatar(params) {
     return axios.post(`${prefix}/home/getMoreDatar`, params);

@@ -24,7 +24,6 @@ VueAMap.initAMapApiLoader({
 // 引入全局重置样式
 import "./assets/base.css";
 Vue.use(vant);
-
 // 根据屏幕宽度动态设置rem基准值
 import "amfe-flexible";
 var VueTouch = require("vue-touch");

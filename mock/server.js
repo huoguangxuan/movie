@@ -661,8 +661,8 @@ app.use("/film/getFilmDetail", function(req, res) {
       origin: "大陆",
       introduction:
         "《八佰》由管虎执导，主演阵容包括张译、杜淳、李晨、王千源、黄志忠、姜武、魏晨、欧豪、俞灏明等人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役",
-      isCollection: "是否收藏",
-      isWanted: "是否想看",
+      isCollection: "1",
+      isWanted: "1",
       celebrityMovieRoles: [
         {
           roleType: "导演",
@@ -877,8 +877,17 @@ app.use("/film/getFilmDetail", function(req, res) {
     }
   });
 });
+
+// 标记想看收藏
+app.use("/film/markWanAlready", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 17:38：22"
+  });
+});
 //home
-app.use("/user/getTicket", function(req, res) {
+app.use("/user/getUserOrderDetai", function(req, res) {
   res.json({
     code: "0000",
     msg: "成功",
@@ -888,7 +897,7 @@ app.use("/user/getTicket", function(req, res) {
         "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
       movieName: "八佰",
       runDate: "08月23日 12:10-14:37 （国语2D）",
-      showStartTime: "08月23日 12:10-14:37",
+      showStartTime: 1599630301000,
       showEndTime: "散场时间",
       language: "国语2D",
       showVersionType: "放映版本",
@@ -1055,6 +1064,8 @@ app.use("/cinema/getMessage", function(req, res) {
       totalNum: "2",
       totalPrice: "64",
       features: ["儿童票", "可停车"],
+      isRefund: "1",
+      isChange: "1",
       seats: [
         {
           rowId: "1",
@@ -1079,12 +1090,12 @@ app.use("/cinema/getMessage", function(req, res) {
         {
           name: "xxxxxxxx影城卡",
           sort: "1",
-          discount: "单单减3元"
+          discount: "3"
         },
         {
           name: "xxxxxxxx联名卡",
           sort: "2",
-          discount: "首单减9元"
+          discount: "9"
         }
       ]
     }

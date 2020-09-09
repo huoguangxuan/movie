@@ -1,8 +1,6 @@
 <template>
   <div class="modifyphone">
-    <div class="title">
-      输入手机号
-    </div>
+    <the-header title="修改手机号"></the-header>
     <div class="divider"></div>
     <div class="phone">
       <van-form validate-first>
@@ -30,12 +28,14 @@
 
 <script>
 import { Button, Form, Field } from "vant";
+import theHeader from "@/components/TheHeader";
 import api from "@/api";
 export default {
   components: {
     [Button.name]: Button,
     [Form.name]: Form,
-    [Field.name]: Field
+    [Field.name]: Field,
+    theHeader
   },
   data() {
     return {
