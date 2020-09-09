@@ -1,25 +1,20 @@
 <template>
   <div class="order">
     <div class="header tit1">
-      <van-icon class="back"
-                @click="$router.back(-1)"
-                name="arrow-left" />
+      <van-icon class="back" @click="$router.back(-1)" name="arrow-left" />
       <h3 class="page-name">确认订单</h3>
-      <div class="timer ">{{ timer }}</div>
+      <div class="timer orange" id="countDown">{{ hottime }}</div>
     </div>
     <div class="divider"></div>
     <div class="ticket-info">
-      <img class="poster"
-           :src="order.posterUrl"
-           alt="" />
+      <img class="poster" :src="order.posterUrl" alt="" />
       <div class="film-info">
         <h3 class="font18 black">{{ order.movieName }}</h3>
         <p class="p-line">{{ order.showStartTime }} （{{ order.language }}）</p>
         <p class="p-line">{{ order.cinemaName }}</p>
         <p class="p-line">
           <span>{{ order.hallCode }} | </span>
-          <span v-for="seat in order.seats"
-                :key="seat.seatId">
+          <span v-for="seat in order.seats" :key="seat.seatId">
             {{ seat.rowNum }}排{{ seat.columnNum }}座
           </span>
         </p>
@@ -27,14 +22,24 @@
     </div>
     <div class="features">
       <div class="the-feature">
-        <span><img style="width:13px;height:13px;"
-               src="@/assets/images/support.png" />
-          <span style="font-size: 12px;color: #333333;margin-left:6px;">支持退票</span>
-        </span>
-        <span><img style="width:13px;height:13px;"
-               src="@/assets/images/nosupport.png" />
-          <span style="font-size: 12px;color: #333333;margin-left:6px;">不支持改签</span>
-        </span>
+        <div>
+          <img
+            class="feature-icon"
+            :src="order.isRefund === '1' ? support : nosupport"
+          />
+          <span style="display:inline-block" class="font12 black">{{
+            reFund
+          }}</span>
+        </div>
+        <div>
+          <img
+            class="feature-icon"
+            :src="order.isChange === '1' ? support : nosupport"
+          />
+          <span style="display:inline-block" class="font12 black">
+            {{ reChange }}</span
+          >
+        </div>
       </div>
       <div class="prices black font12">
         （共{{ order.totalNum }}张）&nbsp; 原价￥{{ order.totalPrice }}
@@ -47,15 +52,22 @@
         <p class="font14 activity-name">优惠券&活动</p>
         <div class="activity-path font14">
           已选择
-          <van-icon style="position:relative;top:2px"
-                    name="arrow" />影城卡
+          <van-icon style="position:relative;top:2px" name="arrow" />{{
+            discart.name
+          }}
         </div>
       </div>
-      <div class="coupon-item">
-        <span class="black font14"> 北京万达影城通州店影城卡 </span><span class="orange font14">-3元</span>
-      </div>
-      <div class="coupon-item">
-        <span class="black font14"> 联名卡 </span><span class="orange font14"> 首单9.9元 </span>
+      <div
+        class="coupon-item"
+        v-for="(discount, index) in order.discounts"
+        :key="index"
+        @click.prevent="$event => handleCart(discount, $event)"
+      >
+        <span class="black font14">{{ discount.name }} </span
+        ><span class="orange font14" style="margin-right:20px"
+          >￥{{ `-${discount.discount}` }}</span
+        >
+        <van-icon class="font14 gray check" name="passed" />
       </div>
     </div>
     <div class="divider"></div>
@@ -68,41 +80,49 @@
           <van-cell-group>
             <van-cell @click="radio = '1'">
               <template #title>
-                <div><img src="@/assets/images/wechat.png" /><span>微信</span></div>
+                <div>
+                  <img src="@/assets/images/wechat.png" /><span>微信</span>
+                </div>
               </template>
               <template #right-icon>
                 <van-radio name="1">
                   <template #icon="props">
-                    <img class="img-icon"
-                         :src="props.checked ? activeIcon : inactiveIcon" />
+                    <img
+                      class="img-icon"
+                      :src="props.checked ? activeIcon : inactiveIcon"
+                    />
                   </template>
                 </van-radio>
               </template>
             </van-cell>
-            <van-cell clickable
-                      @click="radio = '2'">
+            <van-cell clickable @click="radio = '2'">
               <template #title>
-                <div><img src="@/assets/images/my.png" /><span>沃钱包</span></div>
+                <div>
+                  <img src="@/assets/images/my.png" /><span>沃钱包</span>
+                </div>
               </template>
               <template #right-icon>
                 <van-radio name="2">
                   <template #icon="props">
-                    <img class="img-icon"
-                         :src="props.checked ? activeIcon : inactiveIcon" />
+                    <img
+                      class="img-icon"
+                      :src="props.checked ? activeIcon : inactiveIcon"
+                    />
                   </template>
                 </van-radio>
               </template>
             </van-cell>
-            <van-cell clickable
-                      @click="radio = '3'">
+            <van-cell clickable @click="radio = '3'">
               <template #title>
                 <img src="@/assets/images/bankcard.png" /><span>银行卡</span>
               </template>
               <template #right-icon>
                 <van-radio name="3">
                   <template #icon="props">
-                    <img class="img-icon"
-                         :src="props.checked ? activeIcon : inactiveIcon" />
+                    <img
+                      class="img-icon"
+                      :src="props.checked ? activeIcon : inactiveIcon"
+                    />
                   </template>
                 </van-radio>
               </template>
@@ -112,20 +132,17 @@
       </div>
     </div>
     <div class="divider"></div>
-    <router-link :to="{ path: '/modifyPhone',query:{oldMobile:oldPhone} }">
+    <router-link :to="{ path: '/modifyPhone', query: { oldMobile: oldPhone } }">
       <div class="user-mobile">
         <div class="mobile-icon">
-          <img class="img-url"
-               :src="mobileUrl"
-               alt="" />
+          <img class="img-url" :src="mobileUrl" alt="" />
         </div>
         <div class="mobile">
-          <p class="font14 black">{{oldPhone}}</p>
+          <p class="font14 black">{{ oldPhone }}</p>
           <p class="font12">此手机号仅用于生成订单</p>
         </div>
         <div class="action">
-          <van-icon class="back font14"
-                    name="arrow" />
+          <van-icon class="back font14" name="arrow" />
         </div>
       </div>
     </router-link>
@@ -149,26 +166,28 @@
     <div class="divider"></div>
     <div class="buy-panel">
       <p class="orange font18">
-        <strong>￥{{ order.totalPrice }}</strong>
+        <strong>￥{{ payPrice }}</strong>
       </p>
-      <div class="action-detail font14"
-           @click="toggleShowDetail">
+      <div class="action-detail font14" @click="toggleShowDetail">
         明细
         <van-icon :name="showDetail ? 'arrow-down' : 'arrow-up'" />
       </div>
-      <van-button class="font16"
-                  round
-                  color="linear-gradient(to right, #F8A10E, #EE6806)"
-                  @click="$router.push('/booking')">立即付款</van-button>
+      <van-button
+        class="font16"
+        round
+        color="linear-gradient(to right, #F8A10E, #EE6806)"
+        @click="$router.push('/booking')"
+        >立即付款</van-button
+      >
     </div>
-    <van-popup v-model="showDetail"
-               position="bottom"
-               :style="{ height: '30%' }">
+    <van-popup
+      v-model="showDetail"
+      position="bottom"
+      :style="{ height: '30%' }"
+    >
       <div class="popup-title font18 ac black">
         结算明细
-        <van-icon @click="toggleShowDetail"
-                  class="cross font18"
-                  name="cross" />
+        <van-icon @click="toggleShowDetail" class="cross font18" name="cross" />
       </div>
       <div class="popup-body">
         <div class="font16 black">电影票{{ order.totalNum }}张</div>
@@ -176,9 +195,9 @@
           <span class="font14 left-text"> 原价 </span>
           <span class="font14"> ￥{{ order.totalPrice }}</span>
         </p>
-        <p class="content">
-          <span class="font14 left-text"> 影城卡 </span>
-          <span class="font14"> -￥ 0</span>
+        <p class="content" v-if="discart.name">
+          <span class="font14 left-text"> {{ discart.name }} </span>
+          <span class="font14 orange"> ￥-{{ discart.discount }}</span>
         </p>
       </div>
     </van-popup>
@@ -198,24 +217,44 @@ export default {
     [Cell.name]: Cell,
     [CellGroup.name]: CellGroup
   },
-  data: function () {
+  data: function() {
     return {
       order: {},
-      timer: "00:00",
+      hottime: "",
       mobileUrl: require("@/assets/images/mobile.png"),
       showDetail: false,
       radio: "2",
       activeIcon: require("@/assets/images/pitchon.png"),
       inactiveIcon: require("@/assets/images/unselected.png"),
-      oldPhone: "13109098766"
+      oldPhone: "13109098766",
+      useCart: false,
+      discart: { name: "" },
+      support: require("@/assets/images/support.png"),
+      nosupport: require("@/assets/images/nosupport.png")
     };
   },
-  created () {
+  computed: {
+    payPrice() {
+      if (this.discart.discount)
+        return this.order.totalPrice - this.discart.discount;
+      return this.order.totalPrice;
+    },
+    reChange() {
+      return this.order.isChange === "1" ? "支持改签" : "不支持改签";
+    },
+    reFund() {
+      return this.order.isRefund === "1" ? "支持退票" : "不支持退票";
+    }
+  },
+  created() {
     this.getOrderInfo();
-    this.oldPhone=this.$route.query.newMobile;
+    this.oldPhone = this.$route.query.newMobile;
+  },
+  mounted() {
+    this.countDown();
   },
   methods: {
-    getOrderInfo () {
+    getOrderInfo() {
       const params = {
         cinemaId: "11111111111",
         movieId: "2222222222",
@@ -249,8 +288,78 @@ export default {
         })
         .catch();
     },
-    toggleShowDetail () {
+    toggleShowDetail() {
       this.showDetail = !this.showDetail;
+    },
+    handleCart(val, e) {
+      const iconEle = e.currentTarget.lastElementChild;
+      const passed =
+        iconEle.className == "font14 gray check van-icon van-icon-passed";
+      if (passed) {
+        this.discart = val;
+        document.querySelectorAll(".van-icon-checked").forEach(item => {
+          item.className = "font14 gray check van-icon van-icon-passed";
+        });
+        iconEle.className = "font14 check van-icon green van-icon-checked";
+      } else {
+        this.discart = {};
+        iconEle.className = "font14 gray check van-icon van-icon-passed";
+      }
+    },
+    timeStamp(second_time) {
+      if (second_time <= 0) {
+        return;
+      }
+      var time =
+        "<div><p><span>00</span>天</p><p><span>00</span>时<span>00</span>分<span>" +
+        parseInt(second_time) +
+        "</span>秒</p></div>";
+      if (parseInt(second_time) > 60) {
+        var second = parseInt(second_time) % 60;
+        var min = parseInt(second_time / 60);
+        time = min + "</span>分<span>" + second + "</span>秒</p>";
+        if (min > 60) {
+          min = parseInt(second_time / 60) % 60;
+          var hour = parseInt(parseInt(second_time / 60) / 60);
+          time = min + "</span>分<span>" + second + "</span>秒</p></div>";
+          if (hour > 24) {
+            hour = parseInt(parseInt(second_time / 60) / 60) % 24;
+            var day = parseInt(parseInt(parseInt(second_time / 60) / 60) / 24);
+            time =
+              "<div><p><span>" +
+              day +
+              "</span>天</p><p><span>" +
+              hour +
+              "</span>时<span>" +
+              min +
+              "</span>分<span>" +
+              second +
+              "</span>秒</p></div>";
+          }
+        }
+      }
+      return time;
+    },
+    countDown() {
+      setInterval(() => {
+        var expireTime = 1599630301000; //订单过期时候的时间戳，或者是一个其它时间，这里灵活处理
+        var houtime = Number(expireTime - Date.parse(new Date())) / 1000; //秒
+        // document.getElementById("countDown").innerHTML = this.timeStamp(
+        //   houtime
+        // );
+        if (houtime <= 0) {
+          return;
+        }
+        if (parseInt(houtime) > 60) {
+          const second = parseInt(houtime) % 60;
+          const min = parseInt(houtime / 60);
+          this.hottime = `${min >= 10 ? "" : "0"}${min}:${
+            second >= 10 ? "" : "0"
+          }${second}`;
+        }
+        // this.hottime = houtime;
+        // console.log(this.timeStamp(houtime));
+      }, 1000);
     }
   }
 };
@@ -262,6 +371,9 @@ export default {
     height: 44px;
     align-items: center;
     background: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
     .back {
       color: #333;
       font-size: 16px;
@@ -283,6 +395,7 @@ export default {
     }
   }
   .ticket-info {
+    margin-top: 44px;
     display: flex;
     background-color: #fff;
     align-items: center;
@@ -313,10 +426,18 @@ export default {
       flex: 1;
       display: flex;
       align-items: center;
+      .feature-icon {
+        width: 14px;
+        height: 14px;
+        margin-right: 5px;
+        position: relative;
+        top: -2px;
+      }
       span {
         display: flex;
         align-items: center;
         margin-right: 12px;
+        font-size: 12px;
       }
     }
   }
@@ -339,6 +460,10 @@ export default {
       border-radius: 8px;
       border-radius: 8px;
       margin-bottom: 10px;
+      align-items: center;
+      .check {
+        font-size: 15px;
+      }
       .black {
         flex: 1;
       }

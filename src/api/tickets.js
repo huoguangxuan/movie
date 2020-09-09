@@ -13,7 +13,7 @@ export default {
   },
   //获取影票信息
   getTicketInfo(params) {
-    return axios.post(`${prefix}/user/getTicket`, params);
+    return axios.post(`/mock/user/getUserOrderDetai`, params);
   },
   //home
   // getHomeData(params) {

@@ -1,25 +1,21 @@
 <template>
   <div class="photos">
     <the-header :title="movieName" />
-    <van-tabs v-model="active">
-      <van-tab title="全部"></van-tab>
-      <van-tab title="剧照"></van-tab>
-      <van-tab title="海报"></van-tab>
-      <van-tab title="工作照"></van-tab>
-      <van-tab title="新闻"></van-tab>
+    <van-tabs v-model="active" swipeable>
+      <van-tab v-for="(tab, index) in tabs" :title="tab" :key="index">
+        <div class="photos-container">
+          <van-row gutter="4">
+            <van-col span="6" v-for="(photo, index) in showPhotos" :key="index">
+              <van-image
+                class="photo"
+                fit="cover"
+                @click="handleImageView(index)"
+                :src="photo.photoUrl"
+              />
+            </van-col>
+          </van-row></div
+      ></van-tab>
     </van-tabs>
-    <div class="photos-container">
-      <van-row gutter="8">
-        <van-col span="6" v-for="(photo, index) in showPhotos" :key="index">
-          <van-image
-            class="photo"
-            fit="cover"
-            @click="handleImageView(index)"
-            :src="photo.photoUrl"
-          />
-        </van-col>
-      </van-row>
-    </div>
   </div>
 </template>
 <script>
@@ -39,7 +35,8 @@ export default {
     return {
       photos: {},
       movieName: "",
-      active: 0
+      active: 0,
+      tabs: ["全部", "剧照", "海报", "工作照", "新闻"]
     };
   },
   computed: {
@@ -62,6 +59,7 @@ export default {
   },
   created() {
     this.getPhotos();
+    this.$store.dispatch("changenavshow", false);
   },
   mounted() {},
   methods: {
@@ -95,7 +93,6 @@ export default {
     .photo {
       width: 100%;
       height: 100%;
-      margin-bottom: 1px;
     }
   }
 }

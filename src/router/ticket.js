@@ -31,8 +31,15 @@ export default [
     path: "/choseSeat",
     name: "choseSeat",
     component: () =>
-      import(/* webpackChunkName: "tickets" */ "../views/tickets/choseSeat")
+      import(/* webpackChunkName: "tickets" */ "../views/tickets/newseat")
   },
+  // //影票频道选座
+  // {
+  //   path: "/seat",
+  //   name: "seat",
+  //   component: () =>
+  //     import(/* webpackChunkName: "tickets" */ "../views/tickets/newseat")
+  // },
   //影票频道订单确认
   {
     path: "/orderConfirm",
@@ -46,5 +53,19 @@ export default [
     name: "modifyPhone",
     component: () =>
       import(/* webpackChunkName: "tickets" */ "../views/tickets/modifyPhone")
+  },
+  //影票频道退单
+  {
+    path: "/refund",
+    name: "refund",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/tickets/refund")
+  },
+  //影票频道退单结果
+  {
+    path: "/refund/result",
+    name: "refundResult",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/tickets/refundResult")
   }
 ];

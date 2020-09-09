@@ -26,16 +26,29 @@
       </div>
       <div class="title">取电影票</div>
       <div class="qrcode">
-        <qrcode-vue :value="qrurl" :size="size"></qrcode-vue>
+        <img
+          class="hasshow"
+          v-if="hasshow"
+          src="@/assets/images/hasshow.png"
+          alt=""
+        />
+        <qrcode-vue
+          :class="{ op2: hasshow }"
+          :value="qrurl"
+          :size="size"
+        ></qrcode-vue>
       </div>
       <p class="font12 black ac count">您有{{ ticketCount }}张电影票</p>
-      <div class="code font14 black">取票号：{{ dealStr4 }}</div>
+      <div class="code font14 black">
+        <span>取票号：</span
+        ><span :class="{ 'line-through': hasshow }">{{ dealStr4 }}</span>
+      </div>
       <div class="actions no-win">
-        <div class="block" @click="saveImg">
+        <div class="block" @click="downloadImg">
           <p><van-icon name="down" /></p>
           <p class="font14">保存图片</p>
         </div>
-        <div class="block">
+        <div class="block" @click="saveImg">
           <p><van-icon name="share" /></p>
           <p class="font14">分享给好友</p>
         </div>
@@ -43,53 +56,21 @@
     </div>
     <!-- 隐藏的部分 -->
     <van-overlay :show="show" @click="show = false">
-      <!-- <div class="ticket-card" ref="imageWrapper">
-        <div class="film-info">
-          <div class="text">
-            <h3 class="font18 black">{{ ticket.movieName }}</h3>
-            <p class="p-line blood">
-              {{ ticket.showStartTime }} （{{ ticket.language }}）
-            </p>
-            <p class="p-line">{{ ticket.cinemaName }}</p>
-            <p class="p-line">
-              <span>{{ ticket.hallCode }} | </span>
-              <span v-for="seat in ticket.seats" :key="seat.seatId">
-                {{ seat.row }}排{{ seat.column }}座
-              </span>
-            </p>
-          </div>
-          <img class="poster" :src="ticket.posterUrl" alt="" />
-        </div>
-        <div class="niceline">
-          <div class="circle4"></div>
-          <div class="border"></div>
-          <div class="circle5"></div>
-        </div>
-        <div class="title">取电影票</div>
-        <div class="qrcode">
-          <qrcode-vue :value="qrurl" :size="size"></qrcode-vue>
-        </div>
-        <p class="font12 black ac count">您有{{ ticketCount }}张电影票</p>
-        <div class="code font14 black">取票号：{{ dealStr4 }}</div>
-        <div class="actions" ref="actions">
-          <div class="block" @click="saveImg">
-            <p><van-icon name="down" /></p>
-            <p class="font14">保存图片</p>
-          </div>
-          <div class="block">
-            <p><van-icon name="share" /></p>
-            <p class="font14">分享给好友</p>
-          </div>
-        </div>
-      </div> -->
+      <div class="wrapper">
+        <img :src="imgUrl" alt="" />
+      </div>
     </van-overlay>
     <div class="divider"></div>
     <!-- 用户购买详情信息 -->
     <div class="detail">
       <div class="location">
-        <span class="span-district">万达影城（通州万达店）</span>
-        <span class="span-specific">新华西街58号万达广场1号楼5层</span>
+        <div class="location-info">
+          <span class="span-district">万达影城（通州万达店）</span>
+          <span class="span-specific">新华西街58号万达广场1号楼5层</span>
+        </div>
+        <van-icon class="location-map" name="location-o" />
       </div>
+
       <div class="orderfrom">
         <div class="orderfromhead">
           <span class="headleft">实付金额：￥39.9</span>
@@ -171,9 +152,10 @@
   </div>
 </template>
 <script>
+import ImageDown from "@/utils/imageDown";
 import TheHeader from "@/components/TheHeader";
 import QrcodeVue from "qrcode.vue";
-import { Icon, Dialog, Overlay } from "vant";
+import { Icon, Dialog, Overlay, Toast } from "vant";
 import html2canvas from "html2canvas";
 
 import api from "@/api";
@@ -194,7 +176,9 @@ export default {
       ticketCount: 0,
       ticketCode: "",
       show: false,
-      imgUrl: ""
+      imgUrl: "",
+      curTimestamp: 0,
+      hasshow: false
     };
   },
   computed: {
@@ -204,6 +188,7 @@ export default {
   },
   created() {
     this.getTicketInfo();
+    // this.convertImg();
   },
   methods: {
     getTicketInfo() {
@@ -214,11 +199,21 @@ export default {
           this.ticket = res.data;
           this.ticketCount = res.data.seats.length;
           this.ticketCode = res.data.ticketCode;
+          this.curTimestamp = new Date().valueOf();
+          if (this.ticket.showStartTime < this.curTimestamp)
+            this.hasshow = true;
         })
         .catch();
     },
+    downloadImg() {
+      this.convertImg();
+    },
     saveImg() {
-      console.log("开始生成图片");
+      this.share = true;
+      // console.log("开始生成图片");
+      this.convertImg();
+    },
+    convertImg() {
       html2canvas(this.$refs.imageWrapper, {
         scale: 1,
         useCORS: true,
@@ -232,7 +227,9 @@ export default {
         .then(canvas => {
           let dataURL = canvas.toDataURL("image/png");
           this.imgUrl = dataURL;
-          if (this.imgUrl !== "") {
+          ImageDown(this.imgUrl, null, null);
+          // console.log(dataURL);
+          if (this.imgUrl !== "" && this.share) {
             this.show = true;
           }
         })
@@ -277,6 +274,9 @@ export default {
       padding: 10px 17px;
       text-align: center;
       margin: auto;
+      .line-through {
+        text-decoration: line-through;
+      }
     }
     .niceline {
       display: flex;
@@ -307,12 +307,23 @@ export default {
       font-size: 14px;
       color: #333333;
       line-height: 14px;
-      padding-bottom: 28px;
       padding-left: 10px;
     }
     .qrcode {
       display: flex;
       justify-content: center;
+      position: relative;
+      padding-top: 30px;
+      .hasshow {
+        position: absolute;
+        top: 0;
+        right: 60px;
+        width: 70px;
+        height: 70px;
+      }
+      .op2 {
+        opacity: 0.2;
+      }
       /deep/ canvas {
         border: 5px solid white;
         width: 132px !important;
@@ -335,10 +346,10 @@ export default {
     align-items: center;
     justify-content: center;
     height: 100%;
-    .block {
-      img {
-        border-radius: 8px;
-      }
+    padding: 20px;
+    img {
+      border-radius: 8px;
+      width: 100%;
     }
   }
   .detail {
@@ -349,21 +360,28 @@ export default {
       height: 60px;
       border-bottom: 1px solid #ececec;
       box-sizing: border-box;
+      align-items: center;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      .span-district {
-        font-family: PingFangSC-Regular;
-        font-size: 12px;
-        color: #333333;
-        line-height: 12px;
-        margin-bottom: 10px;
+      .location-info {
+        flex: 1;
+        border-right: 1px solid #eeeeee;
+        .span-district {
+          font-family: PingFangSC-Regular;
+          font-size: 12px;
+          color: #333333;
+          display: block;
+          line-height: 12px;
+          margin-bottom: 10px;
+        }
+        .span-specific {
+          font-family: PingFangSC-Regular;
+          font-size: 12px;
+          color: #999999;
+          display: block;
+          line-height: 12px;
+        }
       }
-      .span-specific {
-        font-family: PingFangSC-Regular;
-        font-size: 12px;
-        color: #999999;
-        line-height: 12px;
+      .location-icon {
       }
     }
     .orderfrom {

@@ -272,6 +272,7 @@ app.use("/ticket/getSeatDatas", function(req, res) {
       date: "2020-08-06",
       showStartTime: "2020-08-06 17:38：22",
       showEndTime: "2020-08-06 17:38：22",
+      limit: 4,
       note: [
         {
           sort: "1",
@@ -288,7 +289,7 @@ app.use("/ticket/getSeatDatas", function(req, res) {
       showVersion: "3d",
       movieId: "0111",
       datas: {
-        seatStatus: ["", ""],
+        seatStatus: ["0", "1", "2", "3"],
         seats: [
           {
             rowId: "1",
@@ -307,134 +308,27 @@ app.use("/ticket/getSeatDatas", function(req, res) {
                 seatPrice: "50.00",
                 status: "2",
                 columnId: "2",
-                columnNum: "1",
+                columnNum: "2",
                 type: "0",
                 seatId: "0002"
               },
               {
                 seatPrice: "50.00",
-                status: "1",
+                status: "3",
                 columnId: "3",
-                columnNum: "1",
+                columnNum: "3",
                 type: "0",
                 seatId: "0003"
               },
               {
                 seatPrice: "50.00",
                 status: "2",
-                columnId: "3",
-                columnNum: "1",
-                type: "0",
-                seatId: "0003"
-              },
-
-              {
-                seatPrice: "50.00",
-                status: "1",
-                columnId: "3",
-                columnNum: "1",
-                type: "0",
-                seatId: "0003"
-              },
-              {
-                seatPrice: "50.00",
-                status: "2",
-                columnId: "3",
-                columnNum: "1",
-                type: "0",
-                seatId: "0003"
-              },
-              {
-                seatPrice: "50.00",
-                status: "1",
-                columnId: "3",
-                columnNum: "1",
-                type: "0",
-                seatId: "0003"
-              },
-              {
-                seatPrice: "50.00",
-                status: "2",
-                columnId: "3",
-                columnNum: "1",
-                type: "0",
-                seatId: "0003"
-              },
-              {
-                seatPrice: "50.00",
-                status: "1",
-                columnId: "3",
-                columnNum: "1",
-                type: "0",
-                seatId: "0003"
-              },
-              {
-                seatPrice: "50.00",
-                status: "2",
-                columnId: "3",
-                columnNum: "1",
-                type: "0",
-                seatId: "0003"
-              },
-              {
-                seatPrice: "50.00",
-                status: "1",
-                columnId: "3",
-                columnNum: "1",
-                type: "1",
-                seatId: "0003"
-              },
-              {
-                seatPrice: "50.00",
-                status: "1",
-                columnId: "3",
-                columnNum: "1",
-                type: "2",
-                seatId: "0003"
-              },
-              {
-                seatPrice: "50.00",
-                status: "2",
-                columnId: "3",
-                columnNum: "1",
-                type: "0",
-                seatId: "0003"
-              },
-              {
-                seatPrice: "50.00",
-                status: "1",
-                columnId: "3",
-                columnNum: "1",
-                type: "0",
-                seatId: "0003"
-              },
-              {
-                seatPrice: "50.00",
-                status: "1",
-                columnId: "3",
-                columnNum: "1",
-                type: "0",
-                seatId: "0003"
-              }
-            ]
-          },
-          {
-            rowId: "2",
-            rowNum: "2",
-            columns: []
-          },
-          {
-            rowId: "2",
-            rowNum: "2",
-            columns: [
-              {
-                seatPrice: "50.00",
-                status: "1",
                 columnId: "4",
                 columnNum: "4",
                 type: "0",
                 seatId: "0004"
               },
+
               {
                 seatPrice: "50.00",
                 status: "1",
@@ -445,11 +339,136 @@ app.use("/ticket/getSeatDatas", function(req, res) {
               },
               {
                 seatPrice: "50.00",
-                status: "1",
+                status: "2",
                 columnId: "6",
                 columnNum: "6",
                 type: "0",
                 seatId: "0006"
+              },
+              {
+                seatPrice: "50.00",
+                status: "1",
+                columnId: "7",
+                columnNum: "7",
+                type: "0",
+                seatId: "0007"
+              },
+              {
+                seatPrice: "50.00",
+                status: "2",
+                columnId: "8",
+                columnNum: "8",
+                type: "0",
+                seatId: "0008"
+              },
+              {
+                seatPrice: "50.00",
+                status: "1",
+                columnId: "9",
+                columnNum: "9",
+                type: "0",
+                seatId: "0009"
+              },
+              {
+                seatPrice: "50.00",
+                status: "2",
+                columnId: "10",
+                columnNum: "10",
+                type: "0",
+                seatId: "0010"
+              }
+            ]
+          },
+          {
+            rowId: "2",
+            rowNum: "2",
+            columns: []
+          },
+          {
+            rowId: "3",
+            rowNum: "3", //<!-- status:0空，1可售，2不可售，3，已售 -->
+            columns: [
+              // <!-- type:0普通，1情侣左，2情侣右 -->
+              {
+                seatPrice: "50.00",
+                status: "1",
+                columnId: "11",
+                columnNum: "1",
+                type: "0",
+                seatId: "0011"
+              },
+              {
+                seatPrice: "50.00",
+                status: "2",
+                columnId: "12",
+                columnNum: "2",
+                type: "0",
+                seatId: "0012"
+              },
+              {
+                seatPrice: "50.00",
+                status: "3",
+                columnId: "13",
+                columnNum: "3",
+                type: "0",
+                seatId: "0013"
+              },
+              {
+                seatPrice: "50.00",
+                status: "2",
+                columnId: "14",
+                columnNum: "4",
+                type: "0",
+                seatId: "0014"
+              },
+
+              {
+                seatPrice: "50.00",
+                status: "1",
+                columnId: "15",
+                columnNum: "5",
+                type: "0",
+                seatId: "0015"
+              },
+              {
+                seatPrice: "50.00",
+                status: "2",
+                columnId: "16",
+                columnNum: "6",
+                type: "0",
+                seatId: "0016"
+              },
+              {
+                seatPrice: "50.00",
+                status: "1",
+                columnId: "17",
+                columnNum: "7",
+                type: "1",
+                seatId: "0017"
+              },
+              {
+                seatPrice: "50.00",
+                status: "1",
+                columnId: "18",
+                columnNum: "8",
+                type: "2",
+                seatId: "0018"
+              },
+              {
+                seatPrice: "50.00",
+                status: "1",
+                columnId: "19",
+                columnNum: "9",
+                type: "0",
+                seatId: "0019"
+              },
+              {
+                seatPrice: "50.00",
+                status: "2",
+                columnId: "20",
+                columnNum: "10",
+                type: "0",
+                seatId: "0020"
               }
             ]
           }
@@ -899,7 +918,7 @@ app.use("/home/getHomeData", function(req, res) {
   });
 });
 //films
-app.use("/mtc-front/v1/homeInfo/getFilmDetail", function(req, res) {
+app.use("/film/getFilmDetail", function(req, res) {
   res.json({
     code: "0000",
     msg: "成功",
@@ -914,8 +933,8 @@ app.use("/mtc-front/v1/homeInfo/getFilmDetail", function(req, res) {
       origin: "大陆",
       introduction:
         "《八佰》由管虎执导，主演阵容包括张译、杜淳、李晨、王千源、黄志忠、姜武、魏晨、欧豪、俞灏明等人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役人。影片取材自1937年淞沪会战的最后一役",
-      isCollection: "是否收藏",
-      isWanted: "是否想看",
+      isCollection: "1",
+      isWanted: "1",
       celebrityMovieRoles: [
         {
           roleType: "导演",
@@ -1130,8 +1149,17 @@ app.use("/mtc-front/v1/homeInfo/getFilmDetail", function(req, res) {
     }
   });
 });
+
+// 标记想看收藏
+app.use("/film/markWanAlready", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 17:38：22"
+  });
+});
 //home
-app.use("/user/getTicket", function(req, res) {
+app.use("/user/getUserOrderDetai", function(req, res) {
   res.json({
     code: "0000",
     msg: "成功",
@@ -1141,7 +1169,7 @@ app.use("/user/getTicket", function(req, res) {
         "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
       movieName: "八佰",
       runDate: "08月23日 12:10-14:37 （国语2D）",
-      showStartTime: "08月23日 12:10-14:37",
+      showStartTime: 1599630301000,
       showEndTime: "散场时间",
       language: "国语2D",
       showVersionType: "放映版本",
@@ -1308,6 +1336,8 @@ app.use("/cinema/getMessage", function(req, res) {
       totalNum: "2",
       totalPrice: "64",
       features: ["儿童票", "可停车"],
+      isRefund: "1",
+      isChange: "1",
       seats: [
         {
           rowId: "1",
@@ -1332,14 +1362,651 @@ app.use("/cinema/getMessage", function(req, res) {
         {
           name: "xxxxxxxx影城卡",
           sort: "1",
-          discount: "单单减3元"
+          discount: "3"
         },
         {
           name: "xxxxxxxx联名卡",
           sort: "2",
-          discount: "首单减9元"
+          discount: "9"
         }
       ]
+    }
+  });
+});
+// 我的订单接口
+app.use("/user/getUserOrders", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 17:38：22",
+    data: {
+      pageSize: "10",
+      pageNo: "2",
+      totalPage: "3",
+      pageData: [
+        {
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          movieName: "电影名",
+          cinemaName: "影院名",
+          payAmount: "100.00",
+          runDate: "2020-09-03 13:53:35",
+          orderNo: "订单号",
+          creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式",
+          runStatus: "1",
+          sort: "1"
+        },
+        {
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          movieName: "电影名",
+          cinemaName: "影院名",
+          payAmount: "100.00",
+          runDate: "2020-03-05 21:46:35",
+          orderNo: "订单号",
+          creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式",
+          runStatus: "0",
+          sort: "1"
+        },
+        {
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          movieName: "电影名",
+          cinemaName: "影院名",
+          payAmount: "100.00",
+          runDate: "放影时间:yyyy-MM-dd hh:mm:ss格式",
+          orderNo: "订单号",
+          creatTime: "订单创建:yyyy-MM-dd hh:mm:ss格式",
+          runStatus: "0",
+          sort: "1"
+        }
+      ]
+    }
+  });
+});
+// 我的收藏接口
+app.use("/user/getUserCollect", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 17:38：22",
+    data: {
+      pageSize: "10",
+      pageNo: "1",
+      totalPage: "3",
+      pageData: [
+        {
+          sort: "1",
+          cinemaScore: "9.0",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "9999",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "2",
+          cinemaScore: "9.0",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        },
+        {
+          sort: "3",
+          cinemaScore: "9.0",
+          price: "30.45",
+          dist: "300",
+          movieName: "电影名",
+          movieId: "电影Id,唯一标识",
+          hotScore: "想看人数",
+          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          runDate: "上映日期",
+          publicDesc: "上映描述",
+          runStatus: "1",
+          actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            }
+          ]
+        }
+      ],
+      pageData1: [
+        {
+          cinemaScore: "8.8",
+          cinemaName: "影院名",
+          price: "30.45",
+          dist: "600",
+          address: "影院地址",
+          cinemaStatus: "1",
+          cinemaId: "影院Id",
+          isCollect: "是否收藏",
+          features: ["卫生", "观影体验好", "服务到位"]
+        },
+        {
+          cinemaScore: "8.8",
+          cinemaName: "影院名",
+          address: "影院地址",
+          cinemaStatus: "1",
+          cinemaId: "影院Id",
+          isCollect: "是否收藏",
+          features: ["卫生", "观影体验好", "服务到位"]
+        }
+      ]
+    }
+  });
+});
+// 个人中心
+app.use("/user/getBaseMessage", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 17:38：22",
+    data: {
+      unPayNu: "1",
+      unUseNum: "2"
     }
   });
 });

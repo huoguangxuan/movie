@@ -17,14 +17,29 @@
         <p class="film-feature">{{ film.runDate }}</p>
         <div class="actions">
           <van-button
-            icon="like-o"
+            @click="() => handleCollect('0', film.isWanted)"
+            icon="star-o"
             size="small"
             style="margin-right:14px"
-            type="default"
-            >想看</van-button
+            :color="
+              film.isWanted === '1'
+                ? 'linear-gradient(to right, #F8A10E, #EE6806)'
+                : ''
+            "
+            :type="film.isWanted == '1' ? 'warning' : 'default'"
+            >{{ film.isWanted === "1" ? "已想看" : "想看" }}</van-button
           >
-          <van-button icon="star-o" size="small" type="default"
-            >收藏</van-button
+          <van-button
+            icon="like-o"
+            size="small"
+            @click="() => handleCollect('1', film.isCollection)"
+            :color="
+              film.isCollection === '1'
+                ? 'linear-gradient(to right, #F8A10E, #EE6806)'
+                : ''
+            "
+            :type="film.isCollection == '1' ? 'warning' : 'default'"
+            >{{ film.isCollection === "1" ? "已收藏" : "收藏" }}</van-button
           >
         </div>
       </div>
@@ -198,7 +213,7 @@
         </li>
       </ul>
     </div>
-    <div class="buy ac">
+    <div class="buy ac" v-if="isShowTime">
       <van-button
         @click.stop="
           $router.push({ path: '/choseSeat', params: { movieId: 1 } })
@@ -208,22 +223,30 @@
         >去购票</van-button
       >
     </div>
+    <div class="mask" v-show="loading">
+      <div class="loading-box">
+        <van-loading color="#1989fa" />
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import BScroll from "better-scroll";
 import "video.js/dist/video-js.css";
 import { videoPlayer } from "vue-video-player";
-import { Icon, Button } from "vant";
+import { Icon, Button, Loading, Toast } from "vant";
 import api from "@/api";
 export default {
   components: {
     videoPlayer,
     [Icon.name]: Icon,
-    [Button.name]: Button
+    [Button.name]: Button,
+    [Loading.name]: Loading
   },
   data() {
     return {
+      loading: false,
+      isShowTime: true,
       playerOptions: {
         // videojs options
         muted: true,
@@ -269,6 +292,7 @@ export default {
   },
   methods: {
     getFilmDetail() {
+      this.loading = true;
       const params = {
         // movieId: this.$router.params.movieId || 0
         movieId: 0
@@ -296,11 +320,32 @@ export default {
               eventPassthrough: "vertical"
             });
           });
+          setTimeout(() => {
+            this.loading = false;
+          }, 1000);
         })
-        .catch();
+        .catch(() => (this.loading = false));
     },
     toggleContent() {
       this.showMore = !this.showMore;
+    },
+    handleCollect(type, operat) {
+      const params = {
+        type, //类型,收藏:0,标记想看为:1
+        operat: operat === "0" ? "1" : "0", //想看/想收藏1，否为2
+        id: this.film.id
+      };
+      api.films
+        .handleCollect(params)
+        .then(() => {
+          // 切换状态
+          if (type === "1") {
+            this.film.isCollection = operat === "0" ? "1" : "0";
+            return;
+          }
+          this.film.isWanted = operat === "0" ? "1" : "0";
+        })
+        .catch(() => Toast("标记失败，请稍后重试"));
     }
   }
 };
@@ -332,6 +377,14 @@ export default {
       .actions {
         position: absolute;
         bottom: 0;
+        /deep/ button {
+          border-radius: 5px;
+          width: 100px;
+          /deep/.van-button__text {
+            white-space: nowrap;
+          }
+          border: 1px solid #ebedf0;
+        }
       }
     }
     .right {
@@ -473,6 +526,23 @@ export default {
   .bscroll-container {
     white-space: nowrap;
     overflow: hidden;
+  }
+  .mask {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: #fff;
+    .loading-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      z-index: 5000;
+    }
   }
 }
 .buy {
