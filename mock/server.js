@@ -899,7 +899,7 @@ app.use("/home/getHomeData", function(req, res) {
   });
 });
 //films
-app.use("/film/getFilmDetail", function(req, res) {
+app.use("/mtc-front/v1/homeInfo/getFilmDetail", function(req, res) {
   res.json({
     code: "0000",
     msg: "成功",
