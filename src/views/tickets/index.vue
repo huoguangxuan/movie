@@ -71,8 +71,8 @@
               :key="index">
             <router-link :to="{ name: 'film-detail' }">
               <img class="img"
-                   :src="item.playBillUrl" />
-              <span class="filmname">{{ item.name }}</span>
+                   :src="item.posterUrl" />
+              <span class="filmname">{{ item.movieNname }}</span>
             </router-link>
             <router-link :to="{ name: 'cinemas' }">
               <van-button class="bytick"
@@ -91,12 +91,12 @@
             ref="comingcont">
           <!-- 这里是子盒子，即滚动区域 -->
           <li class="cont-item"
-              v-for="(item, index) in coming"
+              v-for="(item, index) in coming "
               :key="index">
             <router-link :to="{ name: 'film-detail' }">
               <img class="img"
-                   :src="item.playBillUrl" />
-              <span class="filmname">{{ item.name }}</span>
+                   :src="item.posterUrl" />
+              <span class="filmname">{{ item.movieNname }}</span>
             </router-link>
             <div @click="wantlook(index)">
               <van-button class="wantlook"
@@ -104,7 +104,7 @@
                           round
                           type="info">想看</van-button>
               <van-button class="thinklook"
-                         v-show="false"
+                          v-show="false"
                           round
                           type="info">已想看</van-button>
             </div>
@@ -130,7 +130,7 @@
               v-for="(item, index) in activi"
               :key="index">
             <img class="img"
-                 :src="item.photoUrl" />
+                 :src="item.imageUrl" />
           </li>
         </ul>
       </div>
@@ -200,24 +200,39 @@ export default {
   created () { },
   mounted () {
     this.getHomeData();
+    this.getHomeDatar();
     this.$store.dispatch("changenavshow", true);
     this.getcity();
   },
   methods: {
-    //首页banner，热映，即将上映，热门活动的数据接口
+    //首页banner,热门活动的数据接口
     getHomeData () {
-      const params = { cityId: "北京" };
+      const params = { cityId: "110" };
       api.tickets
         .getHomeData(params)
         .then(res => {
           console.log(res);
           this.banner = res.data.banner;
           this.activi = res.data.activity.data;
-          this.fail = res.data.showing.data;
-          this.coming = res.data.coming.data;
           this.length_activi = res.data.activity.data.length;
-          this.length_fail = res.data.showing.data.length;
-          this.length_coming = res.data.coming.data.length;
+          this.verScroll();
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getHomeDatar () {
+      const params = { cityId: "110",runStatus:1,pageNo:1,pageSize:10 };
+      api.tickets
+        .getHomeDatar(params)
+        .then(res => {
+          console.log(res);
+          //热映
+          this.fail = res.data.pageData;
+          //即将上映
+          this.coming = res.data.pageDatas;
+          this.length_fail = res.data.pageData.length;
+          this.length_coming = res.data.pageDatas.length;
           this.verScroll();
         })
         .catch(err => {
@@ -264,7 +279,7 @@ export default {
         this.city = this.$route.query.city;
     },
     wantlook (index) {
-      
+
     }
   }
 };

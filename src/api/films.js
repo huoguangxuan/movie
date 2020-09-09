@@ -7,6 +7,6 @@ export default {
     return axios.post(`${prefix}/home/getMoreData`, params);
   },
   getFilmDetail(params) {
-    return axios.post(`${prefix}/film/getFilmDetail`, params);
+    return axios.post(`${prefix}/mtc-front/v1/homeInfo/getFilmDetail`, params);
   }
 };

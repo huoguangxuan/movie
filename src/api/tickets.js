@@ -16,10 +16,21 @@ export default {
     return axios.post(`${prefix}/user/getTicket`, params);
   },
   //home
-  getHomeData(params) {
-    return axios.post(`${prefix}/home/getHomeData`, params);
-  },
+  // getHomeData(params) {
+  //   return axios.post(`${prefix}/home/getHomeData`, params);
+  // },
   getMoreDatar(params) {
     return axios.post(`${prefix}/home/getMoreDatar`, params);
+  },
+  getHomeData(params) {
+    return axios.get(
+      `${prefix}/mtc-front/v1/homeInfo/getHomeData?cityId=${params.cityId}`
+    );
+  },
+  getHomeDatar(params) {
+    return axios.get(
+      `${prefix}/mtc-front/v1/homeInfo/getShowingOrComing`,
+      params
+    );
   }
 };

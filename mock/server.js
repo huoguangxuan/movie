@@ -458,6 +458,278 @@ app.use("/ticket/getSeatDatas", function(req, res) {
     }
   });
 });
+//*************************************************************************************最新修改接口模板
+//首页接口一（轮播图和热门活动的接口）
+app.use("/mtc-front/v1/homeInfo/getHomeData", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-09-07 10:21:33",
+    data: {
+      banner: [
+        {
+          bannerStatus: "02",
+          cityCode: "110",
+          createTime: 1598953752000,
+          id: "1",
+          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/536/0000536578.fid",
+          linkUrl: "https://www.baidu.com/",
+          place: "01",
+          provinceCode: "11",
+          sortOrder: 1,
+          title: "红苹果",
+          updateTime: 1599191736000
+        },
+        {
+          bannerStatus: "02",
+          cityCode: "110",
+          createTime: 1599035518000,
+          id: "5b11ac634b9c437ca6e646bdaffdc214",
+          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/588/0000588314.fid",
+          linkUrl: "https://www.baidu.com/",
+          place: "01",
+          provinceCode: "11",
+          title: "dddddd",
+          updateTime: 1599191674000
+        },
+        {
+          bannerStatus: "02",
+          cityCode: "110",
+          createTime: 1599035518000,
+          id: "5b11ac634b9c437ca6e646bdaffdc214",
+          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/456/0000456738.fid",
+          linkUrl: "https://www.baidu.com/",
+          place: "01",
+          provinceCode: "11",
+          title: "dddddd",
+          updateTime: 1599191674000
+        },
+        {
+          bannerStatus: "02",
+          cityCode: "110",
+          createTime: 1599035518000,
+          id: "5b11ac634b9c437ca6e646bdaffdc214",
+          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/457/0000457354.fid",
+          linkUrl: "https://www.baidu.com/",
+          place: "01",
+          provinceCode: "11",
+          title: "dddddd",
+          updateTime: 1599191674000
+        }
+      ],
+      activity: {
+        modelName: null,
+        data: [
+          {
+            bannerStatus: "02",
+            cityCode: "110",
+            createTime: 1599191769000,
+            id: "0c440ab108e54609b37d7b3bd1deb02b",
+            imageUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg",
+            linkUrl: "https://www.baidu.com/",
+            place: "02",
+            provinceCode: "11",
+            title: "eeeee",
+            updateTime: 1599191810000
+          },
+          {
+            bannerStatus: "02",
+            cityCode: "110",
+            createTime: 1599191769000,
+            id: "0c440ab108e54609b37d7b3bd1deb02b",
+            imageUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg",
+            linkUrl: "https://www.baidu.com/",
+            place: "02",
+            provinceCode: "11",
+            title: "eeeee",
+            updateTime: 1599191810000
+          },
+          {
+            bannerStatus: "02",
+            cityCode: "110",
+            createTime: 1599191769000,
+            id: "0c440ab108e54609b37d7b3bd1deb02b",
+            imageUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg",
+            linkUrl: "https://www.baidu.com/",
+            place: "02",
+            provinceCode: "11",
+            title: "eeeee",
+            updateTime: 1599191810000
+          },
+          {
+            bannerStatus: "02",
+            cityCode: "110",
+            createTime: 1599191769000,
+            id: "0c440ab108e54609b37d7b3bd1deb02b",
+            imageUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg",
+            linkUrl: "https://www.baidu.com/",
+            place: "02",
+            provinceCode: "11",
+            title: "eeeee",
+            updateTime: 1599191810000
+          },
+          {
+            bannerStatus: "02",
+            cityCode: "110",
+            createTime: 1599191769000,
+            id: "0c440ab108e54609b37d7b3bd1deb02b",
+            imageUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg",
+            linkUrl: "https://www.baidu.com/",
+            place: "02",
+            provinceCode: "11",
+            title: "eeeee",
+            updateTime: 1599191810000
+          },
+          {
+            bannerStatus: "02",
+            cityCode: "110",
+            createTime: 1599191769000,
+            id: "0c440ab108e54609b37d7b3bd1deb02b",
+            imageUrl:
+              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg",
+            linkUrl: "https://www.baidu.com/",
+            place: "02",
+            provinceCode: "11",
+            title: "eeeee",
+            updateTime: 1599191810000
+          }
+        ]
+      }
+    }
+  });
+});
+
+//*************************************************************************************最新修改接口模板
+//首页接口二（首页热映，即将上映数据接口）
+app.use("/mtc-front/v2/homeInfo/getHomeData", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-09-03 20:52:00",
+    data: {
+      pageNo: 1,
+      pageSize: 3,
+      rows: 10,
+      totalPage: 0,
+      pageData: [
+        {
+          movieNname: "大头儿子小头爸爸",
+          movieId: "000",
+          sort: "0",
+          posterUrl:
+            "https://img.alicdn.com/bao/uploaded/i3/TB1PboqhGNj0u4jSZFyXXXgMVXa_.jpg_300x300.jpg"
+        },
+        {
+          movieNname: "战狼2",
+          movieId: "001",
+          sort: "1",
+          posterUrl:
+            "https://img.alicdn.com/bao/uploaded/i3/TB1PboqhGNj0u4jSZFyXXXgMVXa_.jpg_300x300.jpg"
+        },
+        {
+          movieNname: "大头儿子小头爸爸",
+          movieId: "002",
+          sort: "2",
+          posterUrl:
+            "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+        },
+        {
+          movieNname: "八佰",
+          movieId: "003",
+          sort: "3",
+          posterUrl:
+            "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+        },
+        {
+          movieNname: "小时代1",
+          movieId: "004",
+          sort: "4",
+          posterUrl:
+            "https://img.alicdn.com/bao/uploaded/i3/TB1PboqhGNj0u4jSZFyXXXgMVXa_.jpg_300x300.jpg"
+        }
+      ],
+      pageDatas: [
+        {
+          movieNname: "天气之子",
+          movieId: "005",
+          sort: "5",
+          posterUrl:
+            "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+        },
+        {
+          movieNname: "西红柿首富",
+          movieId: "006",
+          sort: "6",
+          posterUrl:
+            "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
+        },
+        {
+          movieNname: "小时代2",
+          movieId: "007",
+          sort: "7",
+          posterUrl:
+            "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+        },
+        {
+          movieNname: "小时代3",
+          movieId: "008",
+          sort: "8",
+          posterUrl:
+            "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
+        },
+        {
+          movieNname: "小时代4",
+          movieId: "0009",
+          sort: "9",
+          posterUrl:
+            "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+        }
+      ]
+    }
+  });
+});
+
+//*************************************************************************************最新修改接口模板
+//首页接口三（首页资讯接口）
+app.use("/home/getInformation", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 15:34:22",
+    data: {
+      totalPage: 1,
+      pageSize: 1,
+      pageNo: 1,
+      pageData: [
+        {
+          id: "asdfghjk2345678",
+          sort: "1",
+          title: "特朗普称愿自掏腰包胜选",
+          pushTime: "2020-08-09 13:59:22",
+          content:
+            "部分手机用户会使用系统或微信提供的字体放大功能，开启该功能后，组件的 font-size 和 line-height 会等比例放大，导致部分组件出现样式偏移的问题，在 2.8.0 版本中，我们针对这个场景进行了适配。",
+          linkUrl: "https://www.baidu.com/",
+          imageUrl: "https://www.baidu.com/"
+        },
+        {
+          id: "asdfghjk2345678",
+          sort: "1",
+          title: "饿了么将推出多等5分钟功能",
+          pushTime: "2020-08-12 13:59:22",
+          content:
+            "有赞前端团队是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、赋能等业务线。我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有。",
+          linkUrl: "https://www.baidu.com/",
+          imageUrl: "https://www.baidu.com/"
+        }
+      ]
+    }
+  });
+});
 
 // 获取首页banner，热映，即将上映，热门活动的数据接口
 app.use("/home/getHomeData", function(req, res) {
