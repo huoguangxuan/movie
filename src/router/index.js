@@ -135,12 +135,26 @@ let routes = [
     component: () =>
       import(/* webpackChunkName: "pages" */ "../views/userCenter/about")
   },
+  //隐私政策
+  {
+    path: "/privacy",
+    name: "privacy",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/userCenter/privacy")
+  },
+  //用户协议
+  {
+    path: "/agreement",
+    name: "agreement",
+    component: () =>
+      import(/* webpackChunkName: "pages" */ "../views/userCenter/agreement")
+  },
   //我的活动
   {
-    path: "/activites",
-    name: "activites",
+    path: "/index",
+    name: "index",
     component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/userCenter/activites")
+      import(/* webpackChunkName: "pages" */ "../views/userCenter/index")
   },
   //404
   {

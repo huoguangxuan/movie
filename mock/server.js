@@ -1102,7 +1102,7 @@ app.use("/user/getUserOrders", function(req, res) {
       totalPage: "3",
       pageData: [
         {
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           movieName: "电影名",
           cinemaName: "影院名",
           payAmount: "100.00",
@@ -1113,7 +1113,7 @@ app.use("/user/getUserOrders", function(req, res) {
           sort: "1"
         },
         {
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           movieName: "电影名",
           cinemaName: "影院名",
           payAmount: "100.00",
@@ -1124,7 +1124,7 @@ app.use("/user/getUserOrders", function(req, res) {
           sort: "1"
         },
         {
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           movieName: "电影名",
           cinemaName: "影院名",
           payAmount: "100.00",
@@ -1136,6 +1136,44 @@ app.use("/user/getUserOrders", function(req, res) {
         }
       ]
     }
+  });
+});
+// 我的影城卡
+app.use("/user/getCinemaCard", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-08-06 17:38：22",
+    data: [{
+          cinemaName: "影院名",
+          cardName: "影城卡名",
+          cardStatus: "0",
+          expiredDate: "有效期：2020-09-03",
+          buyNum: "13",
+          totalSaving: "130",
+          cardId: "卡Id",
+          sort: "1"
+        },
+        {
+          cinemaName: "影院名",
+          cardName: "影城卡名",
+          cardStatus: "1",
+          expiredDate: "有效期：2020-09-02",
+          buyNum: "13",
+          totalSaving: "130",
+          cardId: "卡Id",
+          sort: "1"
+        },
+        {
+          cinemaName: "影院名",
+          cardName: "影城卡名",
+          cardStatus: "2",
+          expiredDate: "有效期：2020-09-03",
+          buyNum: "13",
+          totalSaving: "130",
+          cardId: "卡Id",
+          sort: "1"
+        }]
   });
 });
 // 我的收藏接口
@@ -1155,11 +1193,63 @@ app.use("/user/getUserCollect", function(req, res) {
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "9999",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
           actors: [
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            },
+            {
+              sort: "1",
+              name: "小张"
+            },
             {
               sort: "1",
               name: "小张"
@@ -1172,7 +1262,7 @@ app.use("/user/getUserCollect", function(req, res) {
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1191,30 +1281,7 @@ app.use("/user/getUserCollect", function(req, res) {
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
-          runDate: "上映日期",
-          publicDesc: "上映描述",
-          runStatus: "1",
-          actors: [
-            {
-              sort: "1",
-              name: "小张"
-            },
-            {
-              sort: "1",
-              name: "小张"
-            }
-          ]
-        },
-        {
-          sort: "3",
-          cinemaScore: "9.0",
-          price: "30.45",
-          dist: "300",
-          movieName: "电影名",
-          movieId: "电影Id,唯一标识",
-          hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1230,14 +1297,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "4",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1253,14 +1320,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "5",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1276,14 +1343,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "6",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1299,14 +1366,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "7",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1322,14 +1389,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "8",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1345,14 +1412,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "9",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1368,14 +1435,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "10",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1391,14 +1458,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "11",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1414,14 +1481,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "12",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1437,14 +1504,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "13",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1460,14 +1527,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "14",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1483,14 +1550,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "15",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
@@ -1506,175 +1573,14 @@ app.use("/user/getUserCollect", function(req, res) {
           ]
         },
         {
-          sort: "3",
+          sort: "16",
           cinemaScore: "9.0",
           price: "30.45",
           dist: "300",
           movieName: "电影名",
           movieId: "电影Id,唯一标识",
           hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
-          runDate: "上映日期",
-          publicDesc: "上映描述",
-          runStatus: "1",
-          actors: [
-            {
-              sort: "1",
-              name: "小张"
-            },
-            {
-              sort: "1",
-              name: "小张"
-            }
-          ]
-        },
-        {
-          sort: "3",
-          cinemaScore: "9.0",
-          price: "30.45",
-          dist: "300",
-          movieName: "电影名",
-          movieId: "电影Id,唯一标识",
-          hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
-          runDate: "上映日期",
-          publicDesc: "上映描述",
-          runStatus: "1",
-          actors: [
-            {
-              sort: "1",
-              name: "小张"
-            },
-            {
-              sort: "1",
-              name: "小张"
-            }
-          ]
-        },
-        {
-          sort: "3",
-          cinemaScore: "9.0",
-          price: "30.45",
-          dist: "300",
-          movieName: "电影名",
-          movieId: "电影Id,唯一标识",
-          hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
-          runDate: "上映日期",
-          publicDesc: "上映描述",
-          runStatus: "1",
-          actors: [
-            {
-              sort: "1",
-              name: "小张"
-            },
-            {
-              sort: "1",
-              name: "小张"
-            }
-          ]
-        },
-        {
-          sort: "3",
-          cinemaScore: "9.0",
-          price: "30.45",
-          dist: "300",
-          movieName: "电影名",
-          movieId: "电影Id,唯一标识",
-          hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
-          runDate: "上映日期",
-          publicDesc: "上映描述",
-          runStatus: "1",
-          actors: [
-            {
-              sort: "1",
-              name: "小张"
-            },
-            {
-              sort: "1",
-              name: "小张"
-            }
-          ]
-        },
-        {
-          sort: "3",
-          cinemaScore: "9.0",
-          price: "30.45",
-          dist: "300",
-          movieName: "电影名",
-          movieId: "电影Id,唯一标识",
-          hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
-          runDate: "上映日期",
-          publicDesc: "上映描述",
-          runStatus: "1",
-          actors: [
-            {
-              sort: "1",
-              name: "小张"
-            },
-            {
-              sort: "1",
-              name: "小张"
-            }
-          ]
-        },
-        {
-          sort: "3",
-          cinemaScore: "9.0",
-          price: "30.45",
-          dist: "300",
-          movieName: "电影名",
-          movieId: "电影Id,唯一标识",
-          hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
-          runDate: "上映日期",
-          publicDesc: "上映描述",
-          runStatus: "1",
-          actors: [
-            {
-              sort: "1",
-              name: "小张"
-            },
-            {
-              sort: "1",
-              name: "小张"
-            }
-          ]
-        },
-        {
-          sort: "3",
-          cinemaScore: "9.0",
-          price: "30.45",
-          dist: "300",
-          movieName: "电影名",
-          movieId: "电影Id,唯一标识",
-          hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
-          runDate: "上映日期",
-          publicDesc: "上映描述",
-          runStatus: "1",
-          actors: [
-            {
-              sort: "1",
-              name: "小张"
-            },
-            {
-              sort: "1",
-              name: "小张"
-            }
-          ]
-        },
-        {
-          sort: "3",
-          cinemaScore: "9.0",
-          price: "30.45",
-          dist: "300",
-          movieName: "电影名",
-          movieId: "电影Id,唯一标识",
-          hotScore: "想看人数",
-          posterUrl: "https://img.yzcdn.cn/vant/ipad.jpeg",
+          posterUrl: "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c",
           runDate: "上映日期",
           publicDesc: "上映描述",
           runStatus: "1",
