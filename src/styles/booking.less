@@ -1,0 +1,81 @@
+.cinemas-booking {
+
+  .lst {
+
+    li {
+      width: calc(100% - 34px);
+      height: 136px;
+      background: #FFFFFF;
+      margin: 8px 0;
+      padding: 10px 17px;
+
+
+      .txt-box {
+        min-height: 30px;
+        display: flex;
+        justify-content: space-between;
+
+        p {
+          font-family: PingFangSC-Regular;
+          font-size: 12px;
+          color: #666666;
+          line-height: 24px;
+
+          &.name {
+            font-family: PingFangSC-Semibold;
+            font-size: 16px;
+            color: #333333;
+            line-height: 32px;
+          }
+
+          & .price {
+            font-family: PingFangSC-Semibold;
+            font-size: 16px;
+            color: #FF6024;
+            line-height: 32px;
+          }
+
+        }
+      }
+
+      .films-box {
+        height: 70px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        overflow-x: scroll;
+
+        div {
+          margin: 0 4px;
+          width: 75px;
+          height: 58px;
+          border: 1px solid #CCCCCC;
+          border-radius: 4px;
+          text-align: center;
+          flex-shrink: 0;
+
+          h6 {
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #333333;
+            line-height: 20px;
+          }
+
+          .type {
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: #666666;
+            line-height: 20px;
+          }
+
+          .price {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #FF6024;
+            line-height: 16px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,211 @@
+.search-result {
+
+  .film-box,
+  .cinemas-box,
+  .info-box {
+
+    h4 {
+      height: 32px;
+      padding-left: 17px;
+      font-family: PingFangSC-Regular;
+      font-size: 16px;
+      color: #666666;
+      line-height: 32px;
+    }
+
+    .to-more {
+      text-align: center;
+      height: 24px;
+      font-family: PingFangSC-Regular;
+      font-size: 12px;
+      color: #FF6024;
+      line-height: 24px;
+      position: relative;
+
+      img {
+        width: 16px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  .film-box {
+    .film-content {
+
+      .item {
+        background-color: #fff;
+        padding: 10px 17px;
+        display: flex;
+        border-bottom: 8px solid #f4f4f4;
+
+        .poster {
+          width: 60px;
+          height: 100px;
+          border-radius: 3px;
+          margin-right: 8px;
+        }
+
+        .info {
+          flex: 1;
+          margin-right: 10px;
+
+          .hot-score {
+            margin: 3px 0px;
+          }
+        }
+
+        .score {
+          align-self: center;
+          text-align: center;
+
+          .buy-btn {
+            margin-top: 8px;
+            padding: 5px 15px;
+          }
+        }
+      }
+    }
+  }
+
+  .cinemas-box {
+    .cinemas-content {
+
+      li {
+        height: 88px;
+        background: #FFFFFF;
+        margin: 8px 0;
+        padding: 10px 17px;
+
+        .txt-box {
+          min-height: 30px;
+          display: flex;
+          justify-content: space-between;
+
+          p {
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: #666666;
+            line-height: 24px;
+
+            &.name {
+              font-family: PingFangSC-Semibold;
+              font-size: 16px;
+              color: #333333;
+              line-height: 32px;
+            }
+
+            & .price {
+              font-family: PingFangSC-Semibold;
+              font-size: 16px;
+              color: #FF6024;
+              line-height: 32px;
+            }
+
+          }
+        }
+
+        .tags {
+          height: 30px;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  .info-box {
+    .informationcontent {
+      width: 100vw;
+
+      .exampel {
+        width: 100vw;
+        height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+        background-color: white;
+
+        ul {
+          width: 341px;
+          height: 140px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .exone {
+          width: 228px;
+          height: 120px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .title {
+            font-family: PingFang-SC-Bold;
+            font-size: 14px;
+            color: #333333;
+            line-height: 14px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .text {
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: #999999;
+            line-height: 20px;
+
+            .spanstart {
+              overflow: hidden;
+              -webkit-line-clamp: 3;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+            }
+
+            .spanend {
+              float: right;
+              padding-right: 4px;
+              font-family: PingFangSC-Regular;
+              font-size: 10px;
+              color: #ff7030;
+              line-height: 10px;
+
+              img {
+                width: 12px;
+                height: 12px;
+                margin-bottom: 2px;
+                margin-left: 2px;
+              }
+            }
+          }
+
+          .time {
+            font-family: PingFangSC-Regular;
+            font-size: 10px;
+            color: #666666;
+            line-height: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+          }
+        }
+
+        .extwo {
+          width: 85px;
+          height: 120px;
+
+          img {
+            width: 85px;
+            height: 120px;
+          }
+        }
+      }
+    }
+  }
+}

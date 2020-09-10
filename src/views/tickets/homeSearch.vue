@@ -2,26 +2,42 @@
   <div class="search">
     <div class="searchs">
       <van-search
-        v-model="value"
+        v-model="keyword"
         show-action
         placeholder="搜索影片、影院..."
-        @search="onSearch"
+        @search="onSearch(keyword)"
       >
         <template #action>
-          <div @click="onSearch">搜索</div>
+          <div @click="onSearch(keyword)">搜索</div>
         </template>
       </van-search>
     </div>
     <div class="hotsearch">
-      <span class="hotsearch_title">热门搜索</span>
-      <div class="hotsearch_content">
-        <div class="hotsearch_text">刘德华</div>
-        <div class="hotsearch_text">战狼</div>
-        <div class="hotsearch_text">绝地武士</div>
-        <div class="hotsearch_text">大头儿子</div>
+      <span class="search_title">热门搜索</span>
+      <div class="search_content">
+        <div
+          class="hotsearch_text"
+          v-for="(item, key) in searchLst"
+          :key="key"
+          @click="onSearch(item)"
+        >
+          {{ item }}
+        </div>
       </div>
     </div>
-    <div class="historysearch"></div>
+    <div class="historysearch">
+      <span class="search_title">历史搜索</span>
+      <div class="search_content">
+        <div
+          class="hotsearch_text"
+          v-for="(item, key) in searchLst"
+          :key="key"
+          @click="onSearch(item)"
+        >
+          {{ item }}
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -34,14 +50,44 @@ export default {
   },
   data() {
     return {
-      value: ""
+      keyword: "",
+      searchLst: [
+        "刘德华",
+        "战狼",
+        "绝地武士",
+        "大头儿子",
+        "大头儿子",
+        "大头儿子"
+      ]
     };
   },
-  methods: {
-    onSearch() {}
+  mounted() {
+    this.getSearchResul();
   },
-  created() {},
-  mounted() {}
+  methods: {
+    onSearch(keyword) {
+      if (!keyword) return;
+      this.$router.push({
+        path: "/homesearch/result",
+        query: {
+          keyword: this.keyword || keyword
+        }
+      });
+    },
+    getSearchResul() {
+      const params = { type: 1 };
+      api.films
+        .getSearchResul(params)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(() => {
+          this.refreshing = false;
+          this.loading = false;
+        });
+    }
+  },
+  created() {}
 };
 </script>
 
@@ -76,10 +122,11 @@ export default {
       margin-left: 15px;
     }
   }
-  .hotsearch {
+  .hotsearch,
+  .historysearch {
     padding: 0 17px;
     margin-top: 20px;
-    .hotsearch_title {
+    .search_title {
       font-family: PingFangSC-Semibold;
       font-weight: bold;
       font-size: 18px;
@@ -87,7 +134,7 @@ export default {
       text-align: right;
       line-height: 18px;
     }
-    .hotsearch_content {
+    .search_content {
       margin-top: 20px;
       display: flex;
       flex-wrap: wrap;
