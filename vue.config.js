@@ -37,6 +37,9 @@ module.exports = {
         pathRewrite: {
           "^/mock": ""
         }
+      },
+      "/mtc-proxy": {
+        target: "http://172.27.69.42:12020/"
       }
     }
   }

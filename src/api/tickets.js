@@ -5,7 +5,9 @@ const prefix = "";
 export default {
   //获取动态座位图
   getSeats(params) {
-    return axios.get(`${prefix}/ticket/getSeatDatas`, params);
+    return axios.get(
+      `/mtc-proxy/v1/seats/seatsList?flowNo=${params.flowNo}&showId=${params.showId}`
+    );
   },
   //获取订单信息
   getOrderInfo(params) {

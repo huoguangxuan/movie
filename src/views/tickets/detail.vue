@@ -68,7 +68,7 @@
           <span class="span-district">万达影城（通州万达店）</span>
           <span class="span-specific">新华西街58号万达广场1号楼5层</span>
         </div>
-        <van-icon class="location-map" name="location-o" />
+        <van-icon class="location-map info" name="location-o" />
       </div>
 
       <div class="orderfrom">
@@ -323,6 +323,7 @@ export default {
       }
       .op2 {
         opacity: 0.2;
+        // filter: opacity(20%);
       }
       /deep/ canvas {
         border: 5px solid white;
@@ -365,6 +366,7 @@ export default {
       .location-info {
         flex: 1;
         border-right: 1px solid #eeeeee;
+        margin-right: 20px;
         .span-district {
           font-family: PingFangSC-Regular;
           font-size: 12px;
@@ -380,8 +382,6 @@ export default {
           display: block;
           line-height: 12px;
         }
-      }
-      .location-icon {
       }
     }
     .orderfrom {

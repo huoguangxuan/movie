@@ -70,8 +70,8 @@
               v-for="(seat, index) in seatList"
               class="wrap"
               :class="{
-                'love left': seat.type === 'L',
-                'love right': seat.type === 'R'
+                'love left': seat.seatType === 'LOVE_LEFT',
+                'love right': seat.seatType === 'LOVE_RIGHT'
               }"
               :data-status="seat.status"
               :key="index"
@@ -109,9 +109,9 @@
           <li
             class="scroll-item"
             v-for="item in selectedSeatList"
-            :key="'select' + item.seatId"
+            :key="'select' + item.seatNo"
           >
-            {{ item.row }}排{{ item.column }}座
+            {{ item.rowId }}排{{ item.columnId }}座
             <br />
             <span class="orange">{{ item.seatPrice }}元</span>
           </li>
@@ -145,9 +145,9 @@
   </div>
 </template>
 <script>
-import { list } from "./seatList.js";
 import { Toast, Icon, Popup } from "vant";
 import Bscroll from "better-scroll";
+import api from "@/api";
 export default {
   name: "select-seat",
   data: function() {
@@ -156,10 +156,10 @@ export default {
       hallName: "地质礼堂", //电影院
       notes: ["观影期间请全程佩戴口罩，感谢配合！", "2.请不要在影厅就餐"], //通知公告
       showAll: false,
-      rows: 5,
-      cols: 6,
+      rows: 0,
+      cols: 0,
       deltaX: 0, //移动的位移X
-      seatList: list,
+      seatList: [],
       selectedSeatList: [],
       selectBlockWidth: 10, //横向最大值rem
       maxSelect: 6,
@@ -208,7 +208,7 @@ export default {
       return this.cols;
     },
     seatWrapHeight() {
-      return this.rows;
+      return this.rows.length;
     }
   },
   watch: {
@@ -233,28 +233,61 @@ export default {
   },
   created() {
     this.$store.dispatch("changenavshow", false);
-    if (this.seatWrapWidth > 10) {
-      this.seatScaleX = 1 - (this.seatWrapWidth - 10) / this.seatWrapWidth;
-    } else {
-      this.seatScaleX = 1;
-    }
-    if (this.seatWrapHeight > this.selectBlockHeight) {
-      this.seatScaleY =
-        1 -
-        (this.seatWrapHeight - this.selectBlockHeight) / this.selectBlockHeight;
-    } else {
-      this.seatScaleY = 1;
-    }
-    this.seatScale =
-      this.seatScaleX < this.seatScaleY ? this.seatScaleX : this.seatScaleY;
-    this.initScale = this.seatScale;
-    this.translateX = (10 - this.seatWrapWidth) / 2;
-    this.translateY = -(this.seatWrapHeight - this.selectBlockHeight) / 2;
+    this.getSeatList();
   },
   methods: {
+    computbunding() {
+      if (this.seatWrapWidth > 10) {
+        this.seatScaleX = 1 - (this.seatWrapWidth - 10) / this.seatWrapWidth;
+      } else {
+        this.seatScaleX = 1;
+      }
+      if (this.seatWrapHeight > this.selectBlockHeight) {
+        this.seatScaleY =
+          1 -
+          (this.seatWrapHeight - this.selectBlockHeight) /
+            this.selectBlockHeight;
+      } else {
+        this.seatScaleY = 1;
+      }
+      this.seatScale =
+        this.seatScaleX < this.seatScaleY
+          ? 0.9 * this.seatScaleX.toFixed(2)
+          : 0.9 * this.seatScaleY.toFixed(2);
+      this.initScale = this.seatScale;
+      this.translateX = (10 - this.seatWrapWidth) / 2;
+      this.translateY = -(this.seatWrapHeight - this.selectBlockHeight) / 2;
+    },
+    getSeatList() {
+      const params = {
+        flowNo: String(Date.parse(new Date())) + String(Math.random()),
+        showId: "202009190000016"
+      };
+      api.tickets
+        .getSeats(params)
+        .then(res => {
+          // console.log(res.data[0].columns.filter(f=>));
+          this.seatList = res.data[0].columns.filter(f => {
+            return (
+              f.rowId != "1" &&
+              f.rowId != "10" &&
+              f.rowId != "9" &&
+              f.rowId != "8"
+            );
+          });
+          console.log(this.seatList);
+          const filterRow = this.seatList.map(f => f.rowId);
+          const rowSet = new Set(filterRow);
+          this.rows = Array.from(rowSet);
+          this.cols = res.data[0].columns.filter(f => f.rowId === "1").length;
+          this.computbunding();
+          // console.log(this.seatScaleX, this.seatScaleY, this.seatScale);
+        })
+        .catch();
+    },
     handleSeatClick(e, seatItem) {
       this.panStatus = true;
-      if (seatItem.status === "1") {
+      if (seatItem.status === "CAN_SELL") {
         //可售
         this.seatScale = this.maxScale;
         const c_index = e.currentTarget.className.indexOf("active");
@@ -262,7 +295,6 @@ export default {
           ? this._selectSeat(e, seatItem)
           : this._unselectSeat(e, seatItem);
       }
-      console.log(this.selectedSeatList);
     },
     _selectSeat(e, seatItem) {
       //判断是否超出最大选座数---普通
@@ -271,7 +303,7 @@ export default {
         return;
       }
 
-      if (seatItem.type === "L" || seatItem.type === "R") {
+      if (seatItem.type === "LOVE_LEFT" || seatItem.type === "LOVE_RIGHT") {
         if (this.selectedSeatList.length >= this.maxSelect - 1) {
           //情侣座
           Toast("最多只能选择" + this.maxSelect + "个座位哦~");
@@ -287,7 +319,7 @@ export default {
         " active",
         ""
       );
-      if (seatItem.type === "L" || seatItem.type === "R") {
+      if (seatItem.type === "LOVE_LEFT" || seatItem.type === "LOVE_RIGHT") {
         this._computeClass(e, seatItem, "unselect");
       } else {
         this.selectedSeatList = this.selectedSeatList.filter(
@@ -298,8 +330,9 @@ export default {
     _computeClass(e, seatItem, action) {
       const curItem = element => element.seatNo === seatItem.seatNo;
       const curIndex = this.seatList.findIndex(curItem);
-      const activeIndex = seatItem.type === "L" ? curIndex + 1 : curIndex - 1;
-      const prefixStr = seatItem.type === "L" ? "next" : "previous";
+      const activeIndex =
+        seatItem.type === "LOVE_LEFT" ? curIndex + 1 : curIndex - 1;
+      const prefixStr = seatItem.type === "LOVE_LEFT" ? "next" : "previous";
       if (action === "select") {
         e.currentTarget[`${prefixStr}ElementSibling`].className =
           e.currentTarget[`${prefixStr}ElementSibling`].className + " active";
@@ -333,8 +366,7 @@ export default {
       }
     },
     pinchin() {
-      Toast(this.translateX, this.translateY);
-      if (this.seatScale > this.initScale) {
+      if (this.seatScale > this.initScale * 0.8) {
         this.seatScale -= 0.05;
       }
     },
@@ -350,54 +382,53 @@ export default {
       // const Bunding = this.$refs.seatsBlock.$el.getBoundingClientRect();
       const BundingWidth = this.$refs.seatsBlock.$el.getBoundingClientRect()
         .width;
+      const BundingHeight = this.$refs.seatsBlock.$el.getBoundingClientRect()
+        .height;
       const BundingBottom = this.$refs.seatsBlock.$el.getBoundingClientRect()
         .bottom;
+      // console.log(BundingTop);
       if (this.selectBlockWidth * this.screenRem >= BundingWidth) {
-        //初始化倍率
+        //宽度在边界内
         this.translateX = (10 - this.seatWrapWidth) / 2;
+        // this.translateY = (this.selectBlockHeight - this.seatWrapHeight) / 2;
+      } else {
+        // console.log(this.screenRem, BundingX);
+        if (BundingX / this.screenRem > 1) {
+          //左边界
+          console.log("左超出");
+          console.log(BundingWidth / this.screenRem);
+          this.translateX =
+            (BundingWidth / this.screenRem - this.selectBlockWidth) / 2 + 1;
+
+          //   this.startX / this.screenRem -
+          //   ev.deltaX / this.screenRem -
+          //   (this.seatWrapWidth - 10) / 2;
+          // this.translateX = 2;
+          // this.translateX =
+          //   this.seatWrapWidth - 10 + (10 - this.seatWrapWidth) / 2 + 0.5;
+        }
+        if (BundingRight / this.screenRem < 10 - 1) {
+          //左划
+          console.log("右滑出");
+          this.translateX =
+            -(BundingWidth / this.screenRem - this.selectBlockWidth) / 2 - 1;
+        }
+      }
+      if (this.selectBlockHeight * this.screenRem >= BundingHeight * 0.9) {
         this.translateY = (this.selectBlockHeight - this.seatWrapHeight) / 2;
       } else {
-        //放大后
-        console.log("放大了");
-        if (this.seatWrapWidth <= this.selectBlockWidth) {
-          //宽度没有超出
-          this.translateX = (10 - this.seatWrapWidth) / 2;
+        if (BundingTop >= (44 + 31 + 26) * (this.screenRem / 37.5)) {
+          console.log("顶部ok了");
+          this.translateY =
+            (BundingHeight / this.screenRem - this.selectBlockHeight) / 2 + 1;
         }
         if (
-          //宽度超出
-          this.seatWrapWidth > this.selectBlockWidth
+          document.documentElement.clientHeight - BundingBottom >
+          (40 + 5 + 61 + 70 + 33 + 44 + 31) * (this.screenRem / 37.5)
         ) {
-          if (BundingX > 0) {
-            //右划
-            console.log("左超出");
-            this.translateX =
-              this.seatWrapWidth - 10 + (10 - this.seatWrapWidth) / 2 + 0.5;
-          } else if (BundingRight < this.screenRem * 10) {
-            //左划
-            console.log("右滑出");
-            this.translateX =
-              10 - this.seatWrapWidth + (10 - this.seatWrapWidth) / 2 - 0.5;
-          }
-        }
-        if (this.seatWrapHeight <= this.selectBlockHeight - 0.58667) {
-          //高度在范围内
-          console.log(BundingTop);
-          this.translateY = (this.selectBlockHeight - this.seatWrapHeight) / 2;
-        }
-        if (this.seatWrapHeight > this.selectBlockHeight - 0.58667) {
-          //高度超出
-          if (BundingTop > (44 + 31 + 26) * (this.screenRem / 37.5)) {
-            //头部ok了
-            this.translateY =
-              -(this.selectBlockHeight - this.seatWrapWidth) / 2 + 1;
-          }
-          if (
-            document.documentElement.clientHeight - BundingBottom >
-            (40 + 5 + 61 + 70 + 33 + 44 + 31) * (this.screenRem / 37.5)
-          ) {
-            console.log("底部ok了");
-            this.translateY = (this.selectBlockHeight - this.seatWrapWidth) / 2;
-          }
+          console.log("底部ok了");
+          this.translateY =
+            (this.selectBlockHeight - BundingHeight / this.screenRem) / 2 - 1;
         }
       }
     }
@@ -501,7 +532,7 @@ export default {
             background-repeat: no-repeat;
           }
         }
-        .wrap[data-status="1"] {
+        .wrap[data-status="CAN_SELL"] {
           .seat {
             background-image: url("../../assets/images/free.png");
           }
@@ -535,12 +566,17 @@ export default {
             }
           }
         }
-        .wrap[data-status="2"] {
+        .wrap[data-status="FORBID"] {
           .seat {
             background-image: url("../../assets/images/disable.png");
           }
         }
-        .wrap[data-status="3"] {
+        .wrap[data-status="LOCKED"] {
+          .seat {
+            background-image: url("../../assets/images/sold.png");
+          }
+        }
+        .wrap[data-status="SOLD"] {
           .seat {
             background-image: url("../../assets/images/sold.png");
           }

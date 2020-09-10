@@ -206,6 +206,7 @@
 <script>
 import api from "@/api";
 import { Icon, Button, Popup, Radio, RadioGroup, Cell, CellGroup } from "vant";
+import Secret from "@/utils/secret.js";
 export default {
   name: "order-confirm",
   components: {
@@ -230,7 +231,8 @@ export default {
       useCart: false,
       discart: { name: "" },
       support: require("@/assets/images/support.png"),
-      nosupport: require("@/assets/images/nosupport.png")
+      nosupport: require("@/assets/images/nosupport.png"),
+      key: ""
     };
   },
   computed: {
@@ -247,6 +249,7 @@ export default {
     }
   },
   created() {
+    this.getKey();
     this.getOrderInfo();
     this.oldPhone = this.$route.query.newMobile;
   },
@@ -254,6 +257,14 @@ export default {
     this.countDown();
   },
   methods: {
+    getKey() {
+      this.key = "9isOSiioniVigNa95H+9yzbRfUPhG9ljmweqB3TYGx8=";
+      // const hello = Base64.stringify("hello,word");
+      // console.log(hello);
+      const a = Secret.encrypt("aGVsbG8sd29yZA==", this.key);
+      console.log(a);
+      console.log(Secret.decrypt(a, this.key));
+    },
     getOrderInfo() {
       const params = {
         cinemaId: "11111111111",
