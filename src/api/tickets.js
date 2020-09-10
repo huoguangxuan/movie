@@ -15,7 +15,7 @@ export default {
   getTicketInfo(params) {
     return axios.post(`/mock/user/getUserOrderDetai`, params);
   },
-  //影票热映、即将上映
+  //影票正在热映、即将上映
   getMoreDatar(params) {
     return axios.post(`${prefix}/mock/home/getMoreDatar`, params);
   },
@@ -25,7 +25,7 @@ export default {
       `${prefix}/mock/v1/homeInfo/getHomeData?cityId=${params.cityId}`
     );
   },
-  //首页热映、即将上映
+  //首页的正在热映、即将上映
   getHomeDatar(params) {
     return axios.get(`${prefix}/mock/v1/homeInfo/getShowingOrComing`, params);
   }
