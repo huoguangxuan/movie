@@ -5,11 +5,11 @@ const prefix = "";
 export default {
   //获取动态座位图
   getSeats(params) {
-    return axios.get(`${prefix}/ticket/getSeatDatas`, params);
+    return axios.get(`${prefix}/mock/ticket/getSeatDatas`, params);
   },
   //获取订单信息
   getOrderInfo(params) {
-    return axios.post(`${prefix}/cinema/getMessage`, params);
+    return axios.post(`${prefix}/mock/cinema/getMessage`, params);
   },
   //获取影票信息
   getTicketInfo(params) {
