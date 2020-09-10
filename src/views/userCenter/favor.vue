@@ -2,11 +2,7 @@
   <div class="myWant">
     <van-nav-bar title="想看的影片"></van-nav-bar>
     <van-dropdown-menu class="van-dropdown-option">
-      <van-dropdown-item
-        v-model="value1"
-        :options="option1"
-        @change="switchMenu"
-      />
+      <van-dropdown-item v-model="value1" :options="option1" @change="switchMenu" />
     </van-dropdown-menu>
     <van-pull-refresh
       v-model="refreshing"
@@ -24,43 +20,43 @@
             @load="pullUp"
           >
             <ul class="tab-content">
-                <li
-                  class="item"
-                  v-for="item in list"
-                  :key="item.sort"
-                  @click="$router.push({path: '/film-detail',params: { movieId: item.sort }})"
-                >
-                  <img class="poster" :src="item.posterUrl" alt />
-                  <div class="info">
-                    <h3 class="font16 black">{{item.movieName}}</h3>
-                    <p class="font14 hot-score">
-                      <span class="orange">{{ item.hotScore || 0 }}</span>
-                      <span class="black">&nbsp;人想看</span>
-                    </p>
-                    <p class="font12 mtb4 van-multi-ellipsis--l2">{{ item.publicDesc }}</p>
-                    <p class="font12 black van-ellipsis actorsList">
-                      <span
-                        v-for="(actorsList, index) in item.actors"
-                        :key="index"
-                        class="nameActors"
-                      >{{ actorsList.name }}</span>
-                    </p>
-                  </div>
-                  <div class="score">
-                    <p class="font16">
-                      评分
-                      <span class="orange">{{ item.cinemaScore }}</span>
-                    </p>
-                    <van-button
-                      class="buy-btn"
-                      round
-                      @click.stop="$router.push({path: '/choseSeat',params: { movieId: item.sort }})"
-                      size="small"
-                      color="linear-gradient(to right, #F8A10E, #EE6806)"
-                    >去购票</van-button>
-                  </div>
-                </li>
-              </ul>
+              <li
+                class="item"
+                v-for="item in list"
+                :key="item.sort"
+                @click="$router.push({path: '/film-detail',params: { movieId: item.sort }})"
+              >
+                <img class="poster" :src="item.posterUrl" alt />
+                <div class="info">
+                  <h3 class="font16 black">{{item.movieName}}</h3>
+                  <p class="font14 hot-score">
+                    <span class="orange">{{ item.hotScore || 0 }}</span>
+                    <span class="black">&nbsp;人想看</span>
+                  </p>
+                  <p class="font12 mtb4 van-multi-ellipsis--l2">{{ item.publicDesc }}</p>
+                  <p class="font12 black van-ellipsis actorsList">
+                    <span
+                      v-for="(actorsList, index) in item.actors"
+                      :key="index"
+                      class="nameActors"
+                    >{{ actorsList.name }}</span>
+                  </p>
+                </div>
+                <div class="score">
+                  <p class="font16">
+                    评分
+                    <span class="orange">{{ item.cinemaScore }}</span>
+                  </p>
+                  <van-button
+                    class="buy-btn"
+                    round
+                    @click.stop="$router.push({path: '/choseSeat',params: { movieId: item.sort }})"
+                    size="small"
+                    color="linear-gradient(to right, #F8A10E, #EE6806)"
+                  >去购票</van-button>
+                </div>
+              </li>
+            </ul>
           </van-list>
         </template>
       </div>
@@ -273,7 +269,7 @@ export default {
   }
   /deep/ .van-dropdown-menu__bar {
     background: none;
-    box-shadow:none;
+    box-shadow: none;
   }
   .tab-content {
     background-color: #fff;

@@ -1,8 +1,7 @@
 <template>
   <div>
     <van-nav-bar title="隐私政策"></van-nav-bar>
-    <div>
-    </div>
+    <div></div>
   </div>
 </template>
 <script>
@@ -23,9 +22,7 @@ export default {
   mounted() {
     this.$store.dispatch("changenavshow", false); //关闭下面的footer显示
   },
-  methods: {
-  
-  }
+  methods: {}
 };
 </script>
 <style>

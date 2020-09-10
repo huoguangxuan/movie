@@ -31,7 +31,11 @@
               <span class="totalMoney">累计为您节省{{ item.totalSaving }}元</span>
             </div>
             <div class="time">
-              <van-cell value="查看详情" is-link @click.stop="$router.push({ path: '/order', query: { } })">
+              <van-cell
+                value="查看详情"
+                is-link
+                @click.stop="$router.push({ path: '/order', query: { } })"
+              >
                 <template #title>
                   <span class="custom-title">{{ item.expiredDate }}</span>
                 </template>

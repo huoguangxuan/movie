@@ -371,7 +371,7 @@ export default {
     height: 100px;
     border-radius: 0.08rem;
   }
-  .van-col--6{
+  .van-col--6 {
     text-align: center;
   }
   .rightImg {

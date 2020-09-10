@@ -1,11 +1,7 @@
 <template>
   <div>
     <van-nav-bar title="关于"></van-nav-bar>
-    <van-image
-      width="90"
-      height="90"
-      :src="icon.logo"
-    />
+    <van-image width="90" height="90" :src="icon.logo" />
     <div class="lianTong">联通手机营业厅</div>
     <div>
       <van-cell is-link @click.stop="$router.push('/privacy')">隐私权政策</van-cell>
@@ -39,8 +35,7 @@ export default {
   mounted() {
     this.$store.dispatch("changenavshow", false); //关闭下面的footer显示
   },
-  methods: {
-  }
+  methods: {}
 };
 </script>
 <style>
