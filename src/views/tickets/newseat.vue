@@ -28,6 +28,7 @@
     <div class="select-block" :style="{ height: selectBlockHeight + 'rem' }">
       <div class="select-block-warp" style="visibility: visible;">
         <div
+          v-show="this.seatList.length"
           class="hall-name-wrapper"
           :class="{ animate: panStatus }"
           :style="{

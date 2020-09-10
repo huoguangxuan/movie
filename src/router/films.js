@@ -3,26 +3,7 @@ export default [
   {
     path: "/films",
     name: "films",
-    redirect: "/films/hotfilms",
-    component: () => import(/* webpackChunkName: "pages" */ "../views/films"),
-    children: [
-      {
-        path: "hotfilms",
-        name: "hotfilms",
-        component: () =>
-          import(
-            /* webpackChunkName: "pages" */ "../views/films/component/hotfilms"
-          )
-      },
-      {
-        path: "thefilms",
-        name: "thefilms",
-        component: () =>
-          import(
-            /* webpackChunkName: "pages" */ "../views/films/component/thefilms"
-          )
-      }
-    ]
+    component: () => import(/* webpackChunkName: "pages" */ "../views/films")
   },
   //影片详情
   {

@@ -36,7 +36,7 @@ export default {
     [Tabbar.name]: Tabbar,
     [TabbarItem.name]: TabbarItem
   },
-  data () {
+  data() {
     return {
       active: 0,
       icon: {
@@ -57,16 +57,12 @@ export default {
         case "/home":
           this.active = 0;
           break;
-        case "/films/hotfilms":
-          this.active = 1;
-          break;
-        case "/films/thefilms":
+        case "/films":
           this.active = 1;
           break;
         case "/cinemas":
           this.active = 2;
           break;
-
         case "/userCenter":
           this.active = 3;
           break;
@@ -76,9 +72,6 @@ export default {
       }
       if (newVal == "/home") {
         this.active = 0;
-      }
-      if (newVal == "/films/hotfilms" || newVal == "/films/thefilms") {
-        this.active = 1;
       }
     }
   }
