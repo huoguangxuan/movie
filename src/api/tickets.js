@@ -15,22 +15,18 @@ export default {
   getTicketInfo(params) {
     return axios.post(`/mock/user/getUserOrderDetai`, params);
   },
-  //home
-  // getHomeData(params) {
-  //   return axios.post(`${prefix}/home/getHomeData`, params);
-  // },
+  //影票热映、即将上映
   getMoreDatar(params) {
-    return axios.post(`${prefix}/home/getMoreDatar`, params);
+    return axios.post(`${prefix}/mock/home/getMoreDatar`, params);
   },
+  //首页轮播、活动
   getHomeData(params) {
     return axios.get(
-      `${prefix}/mtc-front/v1/homeInfo/getHomeData?cityId=${params.cityId}`
+      `${prefix}/mock/v1/homeInfo/getHomeData?cityId=${params.cityId}`
     );
   },
+  //首页热映、即将上映
   getHomeDatar(params) {
-    return axios.get(
-      `${prefix}/mtc-front/v1/homeInfo/getShowingOrComing`,
-      params
-    );
+    return axios.get(`${prefix}/mock/v1/homeInfo/getShowingOrComing`, params);
   }
 };

@@ -479,7 +479,7 @@ app.use("/ticket/getSeatDatas", function(req, res) {
 });
 //*************************************************************************************最新修改接口模板
 //首页接口一（轮播图和热门活动的接口）
-app.use("/mtc-front/v1/homeInfo/getHomeData", function(req, res) {
+app.use("/v1/homeInfo/getHomeData", function(req, res) {
   res.json({
     code: "0000",
     msg: "成功",
@@ -625,7 +625,7 @@ app.use("/mtc-front/v1/homeInfo/getHomeData", function(req, res) {
 
 //*************************************************************************************最新修改接口模板
 //首页接口二（首页热映，即将上映数据接口）
-app.use("/mtc-front/v2/homeInfo/getHomeData", function(req, res) {
+app.use("/v1/homeInfo/getShowingOrComing", function(req, res) {
   res.json({
     code: "0000",
     msg: "成功",
@@ -750,173 +750,6 @@ app.use("/home/getInformation", function(req, res) {
   });
 });
 
-// 获取首页banner，热映，即将上映，热门活动的数据接口
-app.use("/home/getHomeData", function(req, res) {
-  res.json({
-    code: "0000",
-    msg: "成功",
-    dateTime: "2020-08-06 17:38：22",
-    data: {
-      banner: [
-        {
-          sort: "1",
-          name: "少时诵诗书",
-          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/536/0000536578.fid",
-          title: "",
-          linkUrl: "https://img.yzcdn.cn/vant/apple-1.jpg"
-        },
-        {
-          sort: "2",
-          name: "少时诵诗书",
-          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/588/0000588314.fid",
-          title: "",
-          linkUrl: "https://img.yzcdn.cn/vant/apple-2.jpg"
-        },
-        {
-          sort: "3",
-          name: "少时诵诗书",
-          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/456/0000456738.fid",
-          title: "",
-          linkUrl: "https://img.yzcdn.cn/vant/apple-3.jpg"
-        },
-        {
-          sort: "4",
-          name: "少时诵诗书",
-          imageUrl: "http://img.jomoo.com.cn/dev1/0/000/457/0000457354.fid",
-          title: "",
-          linkUrl: "https://img.yzcdn.cn/vant/apple-4.jpg"
-        }
-      ],
-      showing: {
-        modelName: "正在热映",
-        data: [
-          {
-            name: "大头儿子小头爸爸",
-            "id ": "",
-            sort: "1",
-            playBillUrl:
-              "https://img.alicdn.com/bao/uploaded/i3/TB1PboqhGNj0u4jSZFyXXXgMVXa_.jpg_300x300.jpg"
-          },
-          {
-            name: "战狼2",
-            "id ": "",
-            sort: "2",
-            playBillUrl:
-              "https://img.alicdn.com/bao/uploaded/i3/TB1PboqhGNj0u4jSZFyXXXgMVXa_.jpg_300x300.jpg"
-          },
-          {
-            name: "大头儿子小头爸爸",
-            "id ": "",
-            sort: "3",
-            playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
-          },
-          {
-            name: "八佰",
-            "id ": "",
-            sort: "4",
-            playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
-          },
-          {
-            name: "小时代1",
-            "id ": "",
-            sort: "4",
-            playBillUrl:
-              "https://img.alicdn.com/bao/uploaded/i3/TB1PboqhGNj0u4jSZFyXXXgMVXa_.jpg_300x300.jpg"
-          }
-        ]
-      },
-      coming: {
-        modelName: "即将上映",
-        data: [
-          {
-            name: "天气之子",
-            "id ": "",
-            sort: "1",
-            playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
-          },
-          {
-            name: "西红柿首富",
-            "id ": "",
-            sort: "2",
-            playBillUrl:
-              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
-          },
-          {
-            name: "小时代2",
-            "id ": "",
-            sort: "3",
-            playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
-          },
-          {
-            name: "小时代3",
-            "id ": "",
-            sort: "4",
-            playBillUrl:
-              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
-          },
-          {
-            name: "小时代4",
-            "id ": "",
-            sort: "4",
-            playBillUrl:
-              "https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
-          }
-        ]
-      },
-      activity: {
-        modelName: "热门活动",
-        data: [
-          {
-            name: "活动",
-            "id ": "",
-            sort: "1",
-            photoUrl:
-              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
-          },
-          {
-            name: "活动",
-            "id ": "",
-            sort: "2",
-            photoUrl:
-              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
-          },
-          {
-            name: "活动",
-            "id ": "",
-            sort: "3",
-            photoUrl:
-              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
-          },
-          {
-            name: "活动",
-            "id ": "",
-            sort: "4",
-            photoUrl:
-              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
-          },
-          {
-            name: "活动",
-            "id ": "",
-            sort: "4",
-            photoUrl:
-              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
-          },
-          {
-            name: "活动",
-            "id ": "",
-            sort: "4",
-            photoUrl:
-              "https://img.alicdn.com/bao/uploaded/i2/TB1oiRQSHY1gK0jSZTEXXXDQVXa_.jpg_160x240.jpg"
-          }
-        ]
-      }
-    }
-  });
-});
 //films
 app.use("/film/getFilmDetail", function(req, res) {
   res.json({
