@@ -33,7 +33,7 @@ module.exports = {
         // }
       },
       "/mock": {
-        target: "http://172.27.68.86:8090/",
+        target: "http://localhost:8090/",
         pathRewrite: {
           "^/mock": ""
         }

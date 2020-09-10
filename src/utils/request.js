@@ -13,13 +13,12 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // do something before request is sent
-    if (config.method.toLocaleLowerCase() == "get")
-      config.params = Object.assign({}, config.params, {
-        timestr: +new Date()
-      });
-    if (store.getters.token) {
-      config.headers["X-Token"] = getToken();
-    }
+    // debugger
+    // if (config.method.toLocaleLowerCase() == "get")
+    //   config.params = Object.assign({}, config.params, {
+    //     timestr: +new Date()
+    //   });
+
     return config;
   },
   error => {

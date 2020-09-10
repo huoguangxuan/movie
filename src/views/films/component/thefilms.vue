@@ -4,59 +4,61 @@
       <div class="recentlyhead">
         <span>近期最受期待</span>
       </div>
-      <div class="recentlycontent" ref="recentlycontent">
+      <div class="recentlycontent"
+           ref="recentlycontent">
         <!-- /* 这里是父盒子*/ -->
-        <ul class="recentlycont" ref="recentlycont">
+        <ul class="recentlycont"
+            ref="recentlycont">
           <!-- 这里是子盒子，即滚动区域 -->
-          <li class="cont-item" v-for="(item, index) in expected" :key="index">
-            <img class="img" :src="item.posterUrl" />
+          <li class="cont-item"
+              v-for="(item, index) in expected"
+              :key="index">
+            <img class="img"
+                 :src="item.posterUrl" />
             <span class="recentlyname">{{ item.movieName }}</span>
             <span class="recentlyname">{{ item.runDate }}</span>
           </li>
         </ul>
       </div>
     </div>
+    <div class="divider"></div>
     <div class="specific">
       <div class="specifictime">
         <!-- 上映时间的滑动 -->
-        <div class="specificbig" ref="specificbig">
-          <ul class="specificmin" ref="specificmin">
-            <li
-              v-for="(item, index) in time"
-              :key="index"
-              @click="timeindex(index)"
-            >
+        <div class="specificbig"
+             ref="specificbig">
+          <ul class="specificmin"
+              ref="specificmin">
+            <li v-for="(item, index) in time"
+                :key="index"
+                @click="timeindex(index)">
               <span class="specifictimer">{{ item.date }}</span>
             </li>
           </ul>
         </div>
       </div>
-      <div
-        class="specificcontent"
-        v-for="(item, index) in time"
-        :key="index"
-        v-show="num == index"
-      >
+      <div class="specificcontent"
+           v-for="(item, index) in time"
+           :key="index"
+           v-show="num == index">
         <div class="specificitem">
-          <van-list
-            v-model="loading"
-            :finished="finished"
-            finished-text="没有更多了"
-            @load="onLoad"
-          >
+          <van-list v-model="loading"
+                    :finished="finished"
+                    finished-text="没有更多了"
+                    @load="onLoad">
             <ul class="tab-content">
-              <li
-                class="item"
-                v-for="ite in item.datas"
-                :key="ite.movieId"
-                @click="
+              <li class="item"
+                  v-for="ite in item.datas"
+                  :key="ite.movieId"
+                  @click="
                   $router.push({
                     path: '/film-detail',
                     params: { movieId: ite.movieId }
                   })
-                "
-              >
-                <img class="poster" :src="ite.posterUrl" alt />
+                ">
+                <img class="poster"
+                     :src="ite.posterUrl"
+                     alt />
                 <div class="info">
                   <h3 class="font16 black">{{ ite.movieName }}</h3>
                   <p class="font14 hot-score">
@@ -71,19 +73,16 @@
                   </p>
                 </div>
                 <div class="score">
-                  <van-button
-                    class="buy-btn"
-                    round
-                    @click.stop="
+                  <van-button class="buy-btn"
+                              round
+                              @click.stop="
                       $router.push({
                         path: '/choseSeat',
                         params: { movieId: ite.movieId }
                       })
                     "
-                    size="small"
-                    color="linear-gradient(to right, #76BEFF , #0E79FF)"
-                    >想看</van-button
-                  >
+                              size="small"
+                              color="linear-gradient(to right, #76BEFF , #0E79FF)">想看</van-button>
                 </div>
               </li>
             </ul>
@@ -102,7 +101,7 @@ export default {
     [Button.name]: Button,
     [List.name]: List
   },
-  data() {
+  data () {
     return {
       expected: [],
       length_expected: "",
@@ -114,13 +113,13 @@ export default {
       num: 0
     };
   },
-  mounted() {
+  mounted () {
     this.getMoreDatar();
     this.getFilms();
   },
   methods: {
     //即将上映更多页接口
-    getMoreDatar() {
+    getMoreDatar () {
       const params = { cityId: "北京" };
       api.tickets
         .getMoreDatar(params)
@@ -136,7 +135,7 @@ export default {
           console.log(err);
         });
     },
-    getFilms() {
+    getFilms () {
       const params = { type: 1 };
       api.films
         .getFilms(params)
@@ -153,10 +152,10 @@ export default {
           this.loading = false;
         });
     },
-    onLoad() {
+    onLoad () {
       this.getFilms();
     },
-    onRefresh() {
+    onRefresh () {
       // 清空列表数据
       this.finished = false;
       // 重新加载数据
@@ -165,7 +164,7 @@ export default {
       // this.onLoad();
       this.getFilms();
     },
-    verScroll() {
+    verScroll () {
       let width_expected = this.length_expected * 110 * 2 + 20;
       let width_time = this.length_time * 110 * 2 + 20;
       this.$refs.recentlycont.style.width = width_expected + "px";
@@ -191,7 +190,7 @@ export default {
         }
       });
     },
-    timeindex(index) {
+    timeindex (index) {
       this.num = index;
     }
   }
@@ -200,14 +199,12 @@ export default {
 
 <style lang="less" scoped>
 .thenfilms {
-  width: 100vw;
+  background-color: white;
   .recently {
+    margin: 0px 17px;
     height: 231px;
-    background-color: white;
-    margin-bottom: 8px;
     .recentlyhead {
       height: 31px;
-      margin: 0px 17px;
       span {
         font-family: PingFangSC-Regular;
         font-size: 16px;
@@ -217,20 +214,17 @@ export default {
       }
     }
     .recentlycontent {
-      width: 100vw;
       height: 200px;
       overflow: hidden;
       display: flex;
       align-items: center;
       touch-action: none;
       .recentlycont {
-        width: 750px;
         display: flex;
         align-items: center;
         flex-direction: row;
-        padding-left: 9px;
         li {
-          padding-left: 8px;
+          padding-right: 8px;
           width: 100px;
           display: flex;
           flex-direction: column;
@@ -255,25 +249,21 @@ export default {
     }
   }
   .specific {
-    width: 100vw;
     .specifictime {
-      width: 100vw;
+      margin: 0px 17px;
       height: 46px;
       background-color: white;
       .specificbig {
         touch-action: none;
-        width: 100vw;
         height: 46px;
         overflow: hidden;
         display: flex;
         align-items: center;
         .specificmin {
-          width: 750px;
           height: 46px;
           display: flex;
           align-items: center;
           flex-direction: row;
-          padding-left: 17px;
           li {
             width: 100px;
             height: 46px;

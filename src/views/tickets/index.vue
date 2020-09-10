@@ -51,7 +51,7 @@
                 :class="{ active: num == 2 }"
                 class="spanright">即将上映</span>
         </span>
-        <router-link :to="{ name: num == 1 ? 'hotfilms' : 'thefilms' }">
+        <router-link :to="{ path: num == 1 ? '/films/hotfilms' : '/films/thefilms' ,query:{active:num==1?0:1}}">
           <span class="headright">
             更多<img class="more"
                  src="@/assets/images/more.png" />
@@ -71,8 +71,8 @@
               :key="index">
             <router-link :to="{ name: 'film-detail' }">
               <img class="img"
-                   :src="item.playBillUrl" />
-              <span class="filmname">{{ item.name }}</span>
+                   :src="item.posterUrl" />
+              <span class="filmname">{{ item.movieNname }}</span>
             </router-link>
             <router-link :to="{ name: 'cinemas' }">
               <van-button class="bytick"
@@ -91,18 +91,23 @@
             ref="comingcont">
           <!-- 这里是子盒子，即滚动区域 -->
           <li class="cont-item"
-              v-for="(item, index) in coming"
+              v-for="(item, index) in coming "
               :key="index">
             <router-link :to="{ name: 'film-detail' }">
               <img class="img"
-                   :src="item.playBillUrl" />
-              <span class="filmname">{{ item.name }}</span>
+                   :src="item.posterUrl" />
+              <span class="filmname">{{ item.movieNname }}</span>
             </router-link>
-            <router-link :to="{ name: 'cinemas' }">
+            <div @click="wantlook(index)">
               <van-button class="wantlook"
+                          v-show="true"
                           round
                           type="info">想看</van-button>
-            </router-link>
+              <van-button class="thinklook"
+                          v-show="false"
+                          round
+                          type="info">已想看</van-button>
+            </div>
           </li>
         </ul>
       </div>
@@ -125,7 +130,7 @@
               v-for="(item, index) in activi"
               :key="index">
             <img class="img"
-                 :src="item.photoUrl" />
+                 :src="item.imageUrl" />
           </li>
         </ul>
       </div>
@@ -195,24 +200,39 @@ export default {
   created () { },
   mounted () {
     this.getHomeData();
+    this.getHomeDatar();
     this.$store.dispatch("changenavshow", true);
     this.getcity();
   },
   methods: {
-    //首页banner，热映，即将上映，热门活动的数据接口
+    //首页banner,热门活动的数据接口
     getHomeData () {
-      const params = { cityId: "北京" };
+      const params = { cityId: "110" };
       api.tickets
         .getHomeData(params)
         .then(res => {
           console.log(res);
           this.banner = res.data.banner;
           this.activi = res.data.activity.data;
-          this.fail = res.data.showing.data;
-          this.coming = res.data.coming.data;
           this.length_activi = res.data.activity.data.length;
-          this.length_fail = res.data.showing.data.length;
-          this.length_coming = res.data.coming.data.length;
+          this.verScroll();
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getHomeDatar () {
+      const params = { cityId: "110",runStatus:1,pageNo:1,pageSize:10 };
+      api.tickets
+        .getHomeDatar(params)
+        .then(res => {
+          console.log(res);
+          //热映
+          this.fail = res.data.pageData;
+          //即将上映
+          this.coming = res.data.pageDatas;
+          this.length_fail = res.data.pageData.length;
+          this.length_coming = res.data.pageDatas.length;
           this.verScroll();
         })
         .catch(err => {
@@ -257,6 +277,9 @@ export default {
     getcity () {
       if (!this.$route.query.city == "")
         this.city = this.$route.query.city;
+    },
+    wantlook (index) {
+
     }
   }
 };
@@ -399,7 +422,7 @@ export default {
 }
 //热门电影//即将上映
 .film {
-  width: 100vw;
+  margin: 0px 17px;
   height: 249px;
   display: flex;
   align-items: center;
@@ -451,29 +474,24 @@ export default {
   }
   //热映/即将上映共用样式
   .filmcontent {
-    width: 100vw;
+    width: 100%;
     height: 231px;
     overflow: hidden;
     display: flex;
     align-items: center;
     touch-action: none;
     .filmcont {
-      width: 750px;
       display: flex;
       align-items: center;
       flex-direction: row;
-      padding-left: 9px;
       li {
-        padding-left: 8px;
-        width: 100px;
         display: flex;
         flex-direction: column;
+        margin-right: 8px;
         a {
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          padding-left: 8px;
-          width: 100px;
           display: flex;
           flex-direction: column;
           .filmname {
@@ -513,6 +531,17 @@ export default {
           text-align: center;
           line-height: 30px;
         }
+        .thinklook {
+          width: 74px;
+          height: 30px;
+          color: #cccccc;
+          background-color: white;
+          border-radius: 30spx;
+          margin-top: 10px;
+          border: 1px solid #cccccc;
+          text-align: center;
+          line-height: 30px;
+        }
       }
       img {
         width: 100px;
@@ -523,7 +552,7 @@ export default {
 }
 //热门活动
 .activities {
-  width: 100vw;
+  margin: 0px 17px;
   height: 183.5px;
   display: flex;
   align-items: center;
@@ -558,20 +587,19 @@ export default {
   //活动的横向滑动样式
   .wrapper {
     touch-action: none;
-    width: 100vw;
+    width: 100%;
+    margin: 0px 17px;
     height: 165.5px;
     overflow: hidden;
     display: flex;
     align-items: center;
     .cont {
-      width: 750px;
       height: 130px;
       display: flex;
       align-items: center;
       flex-direction: row;
-      padding-left: 9px;
       li {
-        padding-left: 8px;
+        padding-right: 8px;
         width: 100px;
         height: 130px;
       }

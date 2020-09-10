@@ -23,6 +23,22 @@ export default {
     return {
       active: 0
     };
+  },
+  created() {
+    this.active = this.$route.query.active;
+  },
+  mounted() {
+    this.changepath();
+  },
+  methods: {
+    changepath() {
+      if (this.$route.path == "/films/hotfilms") {
+        this.active = 0;
+      }
+      if (this.$route.path == "/films/thefilms") {
+        this.active = 1;
+      }
+    }
   }
 };
 </script>

@@ -36,7 +36,7 @@ export default {
     [Tabbar.name]: Tabbar,
     [TabbarItem.name]: TabbarItem
   },
-  data() {
+  data () {
     return {
       active: 0,
       icon: {

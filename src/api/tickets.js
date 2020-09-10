@@ -11,17 +11,24 @@ export default {
   },
   //获取订单信息
   getOrderInfo(params) {
-    return axios.post(`${prefix}/cinema/getMessage`, params);
+    return axios.post(`${prefix}/mock/cinema/getMessage`, params);
   },
   //获取影票信息
   getTicketInfo(params) {
     return axios.post(`/mock/user/getUserOrderDetai`, params);
   },
-  //home
-  getHomeData(params) {
-    return axios.post(`/mtc-front/v1/homeInfo/getHomeData`, params);
-  },
+  //影票正在热映、即将上映
   getMoreDatar(params) {
-    return axios.post(`${prefix}/home/getMoreDatar`, params);
+    return axios.post(`${prefix}/mock/home/getMoreDatar`, params);
+  },
+  //首页轮播、活动
+  getHomeData(params) {
+    return axios.get(
+      `${prefix}/mock/v1/homeInfo/getHomeData?cityId=${params.cityId}`
+    );
+  },
+  //首页的正在热映、即将上映
+  getHomeDatar(params) {
+    return axios.get(`${prefix}/mock/v1/homeInfo/getShowingOrComing`, params);
   }
 };
