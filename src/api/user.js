@@ -7,7 +7,7 @@ export default {
   getUserOrders(params) {
     return axios({
       url: `${userList}/user/getUserOrders`,
-      method: 'get',
+      method: "get",
       params
     });
   },
@@ -15,25 +15,30 @@ export default {
   getUserCollect(params) {
     return axios({
       url: `${userList}/user/getUserCollect`,
-      method: 'get',
+      method: "get",
       params
-    })
+    });
   },
   // 我想看的
   getUserWant(params) {
-      return axios({
-        url: `${userList}/user/getUserWant`,
-        method: 'get',
-        params
-      });
-
+    return axios({
+      url: `${userList}/user/getUserWant`,
+      method: "get",
+      params
+    });
   },
   // 个人中心
   getBaseMessage() {
     return axios({
       url: `${userList}/user/getBaseMessage`,
-      method: 'get'
+      method: "get"
     });
-
+  },
+  // 我的影城卡
+  getCinemaCard() {
+    return axios({
+      url: `${userList}/user/getCinemaCard`,
+      method: "get"
+    });
   }
 };

@@ -2,11 +2,7 @@
   <div class="myOrder">
     <div class="top">
       <van-nav-bar title="我的订单" />
-      <van-search
-        v-model="value"
-        placeholder="搜索我的订单"
-        @search="onSearch"
-      />
+      <van-search v-model="value" placeholder="搜索我的订单" @search="onSearch" />
     </div>
     <div class="myOffice">
       <van-tabs v-model="active" sticky @click="changeAct">
@@ -15,7 +11,9 @@
             <van-pull-refresh
               v-model="refreshing"
               @refresh="onRefresh"
-              style="height:  calc(100vh - 6rem);padding-bottom: 1.6rem;overflow-y: scroll"
+              :head-height="50"
+              success-text="刷新成功"
+              style="height:calc(100vh - 5rem);padding-bottom: 1.3rem;overflow-y: scroll"
             >
               <div v-if="noData" class="noData">空空如也~</div>
               <template v-else>
@@ -31,29 +29,23 @@
                     v-for="(item, index) in list"
                     :key="index"
                     gutter="6"
+                    @click.stop="$router.push({path: '/film-detail',params: { movieId: item.sort }})"
                   >
-                    <van-col span="6">
+                    <van-col span="5" style="padding:0;">
                       <img :src="item.posterUrl" class="leftImg" />
                     </van-col>
-                    <van-col span="12">
+                    <van-col span="13" style="padding:0;">
                       <div v-if="type == 2">
                         <div class="van-row-movieName">
-                          <div class="movieName van-ellipsis">
-                            {{ item.movieName }}
-                          </div>
+                          <div class="movieName van-ellipsis">{{ item.movieName }}</div>
                           <div class="times">
                             支付剩余时间：
-                            <van-count-down
-                              :time="item.runDate"
-                              @finish="finish"
-                            />
+                            <van-count-down :time="item.runDate" @finish="finish" />
                           </div>
                         </div>
                       </div>
                       <div v-else>
-                        <div class="van-row-movieName">
-                          {{ item.movieName }}
-                        </div>
+                        <div class="van-row-movieName">{{ item.movieName }}</div>
                       </div>
                       <p class>{{ item.runDate }}</p>
                       <p>{{ item.cinemaName }}</p>
@@ -61,40 +53,32 @@
                     </van-col>
                     <van-col span="6">
                       <div v-if="type == 1">
-                        <van-col span="24" v-if="item.runStatus == 5">
-                          <img
-                            src="https://img.yzcdn.cn/vant/ipad.jpeg"
-                            class="leftImg"
-                          />
+                        <van-col span="24" v-if="item.runStatus == 0">
+                          <!-- <img src="" class="rightImg" /> -->
                         </van-col>
-                        <van-col span="24" v-if="item.runStatus != 5">
-                          <img
-                            src="https://img.yzcdn.cn/vant/ipad.jpeg"
-                            class="leftImg"
-                          />
+                        <van-col span="24" v-if="item.runStatus == 1">
+                          <img :src="icon.notShow" class="rightImg" />
                         </van-col>
                       </div>
                       <div v-if="type == 2" style="margin-top: 25%;">
-                        <van-button round type="info">去付款</van-button>
+                        <van-button
+                          round
+                          type="info"
+                          @click.stop="$router.push({path: '/choseSeat',params: { movieId: item.sort }})"
+                        >去付款</van-button>
                       </div>
                       <div v-if="type == 3" class="pay">
                         <div class="rightText">已付款</div>
                       </div>
                       <div v-if="type == 4">
-                        <img
-                          src="https://img.yzcdn.cn/vant/ipad.jpeg"
-                          class="leftImg"
-                        />
+                        <img :src="icon.notShow" class="rightImg" />
                       </div>
                       <div v-if="type == 5">
                         <div v-if="item.runStatus == 1" class="payMent">
-                          <div class="rightText">已付款</div>
+                          <div class="rightText">退款中</div>
                         </div>
                         <div v-else>
-                          <img
-                            src="https://img.yzcdn.cn/vant/ipad.jpeg"
-                            class="leftImg"
-                          />
+                          <img :src="icon.refund" class="rightImg" />
                         </div>
                       </div>
                     </van-col>
@@ -127,6 +111,9 @@ import api from "@/api";
 import BScroll from "better-scroll";
 export default {
   name: "MyOffice",
+  props: {
+    unUseNum: Number
+  },
   data() {
     return {
       value: "",
@@ -134,17 +121,21 @@ export default {
       check: false,
       active: 0,
       title: [
-        { text: "全部", id: "" },
-        { text: "待付款", id: 2 },
-        { text: "待使用", id: 3 },
-        { text: "已使用", id: 3 },
-        { text: "退款(售后)", id: "" }
+        { text: "全部" },
+        { text: "待付款" },
+        { text: "待使用" },
+        { text: "已使用" },
+        { text: "退款(售后)" }
       ],
       noData: false,
       list: [],
       loading: false,
       finished: false,
       error: false,
+      icon: {
+        notShow: require("@/assets/images/notShow.png"),
+        refund: require("@/assets/images/refund.png")
+      },
       pageSize: 10,
       type: 1,
       pageNo: 0
@@ -165,7 +156,18 @@ export default {
   },
   mounted() {
     this.$store.dispatch("changenavshow", false); //关闭下面的footer显示
-    // this.type=1;
+    // 从个人中心跳转过来
+    console.log(this.$route.query.active == true);
+    if (this.$route.query.active == true) {
+      if (this.$route.query.active == 1) {
+        this.type = parseInt(this.$route.query.active) + 1;
+        this.active = parseInt(this.$route.query.active);
+      }
+      if (this.$route.query.active == 2) {
+        this.type = parseInt(this.$route.query.active) + 1;
+        this.active = parseInt(this.$route.query.active);
+      }
+    }
   },
   methods: {
     getUserOrders() {
@@ -179,6 +181,11 @@ export default {
         .then(res => {
           if (!res) return;
           let pageData = res.data.pageData;
+          for (let i = 0; i < this.title.length; i++) {
+            this.title[1].text = "待付款(" + res.data.totalPage + ")";
+            this.title[2].text = "待使用(" + res.data.pageNo + ")";
+            this.title[3].text = "已使用(" + res.data.totalPage + ")";
+          }
           // 如果没有数据，显示暂无数据
           if (pageData.length == 0 || !pageData) {
             this.finished = true;
@@ -264,29 +271,26 @@ export default {
 <style lang="less" scoped>
 .myOrder {
   background-color: #f4f4f4;
-  padding-bottom: 60px;
-  height: calc(100vh - 60px);
+  overflow: hidden;
+  // padding-bottom: 60px;
+  //height: calc(100vh - 1.30667rem);
+  height: calc(100vh);
   /deep/ .van-nav-bar__title {
     color: #333333;
     font-size: 16px;
   }
   .van-search {
+    height: 1.3rem;
     .van-search__content {
       border-radius: 1000px;
     }
   }
   /deep/ .van-tabs {
     background: #f4f4f4;
-    .van-tab {
-      color: #333333;
-      font-size: 12px;
-    }
-    .van-tabs__content {
-      padding-top: 10px;
-    }
   }
-  .van-tab__pane {
-    background: #f4f4f4;
+  /deep/ .van-tab {
+    color: #333333;
+    font-size: 12px;
   }
   /deep/ .van-tab--active {
     color: #ff6024;
@@ -298,20 +302,23 @@ export default {
     text-align: center;
     margin: 10% auto;
   }
+  .van-list {
+    padding-top: 10px;
+  }
   .van-row {
     display: flex;
     background: #fff;
     align-items: center;
     margin: 0 0 10px 0;
-    padding: 2% 0;
+    padding: 0.26667rem 0.45333rem;
     justify-content: center;
     &-movieName {
-      font-weight: 900;
       color: #333333;
       font-size: 18px;
     }
     p {
       font-size: 12px;
+      margin: 3% 0;
       color: #666666;
     }
   }
@@ -360,7 +367,19 @@ export default {
     box-shadow: 0px 4px 5px #ffd3c4;
   }
   .leftImg {
-    width: 100%;
+    width: 60px;
+    height: 100px;
+    border-radius: 0.08rem;
+  }
+  .van-col--6 {
+    text-align: center;
+  }
+  .rightImg {
+    width: 60px;
+    height: 60px;
+  }
+  /deep/ .van-list__finished-text {
+    margin-top: -10px;
   }
 }
 </style>

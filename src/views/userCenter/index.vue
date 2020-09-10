@@ -1,11 +1,11 @@
 <template>
   <div class="myCont">
     <div class="bgBox">
-      <img src="https://img.yzcdn.cn/vant/ipad.jpeg" alt />
+      <img src="@/assets/images/background.png" alt />
     </div>
     <div class="Box">
       <div class="boxCont">
-        <van-image round width="1.5rem" height="1.5rem" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+        <van-image round width="1.5rem" height="1.5rem" :src="icon.head" />
         <div class="information">
           <div class="nickname">村东头的年华</div>
           <div class="package">
@@ -15,30 +15,36 @@
         </div>
       </div>
       <van-tabbar>
-        <van-tabbar-item icon="https://img.yzcdn.cn/vant/cat.jpeg">联名卡权益</van-tabbar-item>
-        <van-tabbar-item icon="https://img.yzcdn.cn/vant/cat.jpeg">优惠券</van-tabbar-item>
+        <van-tabbar-item :icon="icon.lmkicon" @click.stop="$router.push('/cobrandCard')">联名卡权益</van-tabbar-item>
+        <van-tabbar-item :icon="icon.yhqicon" @click.stop="$router.push('/coupon')">优惠券</van-tabbar-item>
       </van-tabbar>
       <van-collapse v-model="activeNames">
-        <van-collapse-item title="我的订单" name="1" icon="https://img.yzcdn.cn/vant/ipad.jpeg">
+        <van-collapse-item title="我的订单" name="1" :icon="icon.myOrder">
           <van-tabbar>
             <van-tabbar-item
-              icon="https://img.yzcdn.cn/vant/cat.jpeg"
+              :icon="icon.payment"
               :badge="unPayNu"
-              @click="unPayNuTo"
+              @click.stop="$router.push({ path: '/order', query: { active:1, unPayNu: unPayNu } })"
             >待付款</van-tabbar-item>
             <van-tabbar-item
-              icon="https://img.yzcdn.cn/vant/cat.jpeg"
+              :icon="icon.used"
               :badge="unUseNum"
-              @click="unUseNumTo"
+              @click.stop="$router.push({ path: '/order', query: { active:2, unUseNum: unUseNum } })"
             >待使用</van-tabbar-item>
           </van-tabbar>
         </van-collapse-item>
       </van-collapse>
-      <van-cell title="想看的影片" icon="https://img.yzcdn.cn/vant/ipad.jpeg" is-link to="index" />
-      <van-cell title="我的影评" icon="https://img.yzcdn.cn/vant/ipad.jpeg" is-link to="index" />
-      <van-cell title="我的收藏" icon="https://img.yzcdn.cn/vant/ipad.jpeg" is-link to="index" />
-      <van-cell title="关于" icon="https://img.yzcdn.cn/vant/ipad.jpeg" is-link to="index" />
-      <van-cell title="我的客服" icon="https://img.yzcdn.cn/vant/ipad.jpeg" is-link to="index" />
+      <van-cell title="想看的影片" :icon="icon.tickets" is-link to="/favor" />
+      <van-cell title="我的影评" :icon="icon.myReviews" is-link to="/comments" />
+      <van-cell title="我的收藏" :icon="icon.myCollection" is-link to="/collection" />
+      <van-cell title="关于" :icon="icon.about" is-link to="/about" />
+      <van-cell
+        title="我的客服"
+        :icon="icon.myService"
+        is-link
+        to="/index"
+        style="border-radius: 0 0 5px 5px;"
+      />
     </div>
   </div>
 </template>
@@ -59,30 +65,24 @@ import api from "@/api";
 export default {
   data: function() {
     return {
-      selectedSeat: [],
       activeNames: ["1"],
-      unUseNum: "",
-      unPayNu: "",
-      loading: false
+      unUseNum: 0,
+      unPayNu: 0,
+      loading: false,
+      icon: {
+        head: require("@/assets/images/zeroyuan.jpg"),
+        lmkicon: require("@/assets/images/lmkicon.png"),
+        yhqicon: require("@/assets/images/yhqicon.png"),
+        myOrder: require("@/assets/images/myOrder.png"),
+        payment: require("@/assets/images/payment.png"),
+        used: require("@/assets/images/used.png"),
+        tickets: require("@/assets/images/tickets.png"),
+        myReviews: require("@/assets/images/myReviews.png"),
+        myCollection: require("@/assets/images/myCollection.png"),
+        about: require("@/assets/images/about.png"),
+        myService: require("@/assets/images/myService.png")
+      }
     };
-  },
-  watch: {
-    selectedSeat: function(value) {
-      let width = this.propSelectedSeat.length * 1.2 + 0.6;
-      this.$refs.scrollUl.style.width = width + "rem";
-      this.$nextTick(() => {
-        if (!this.scroll) {
-          this.scroll = new BScroll(this.$refs.scroll, {
-            scrollX: true,
-            // 忽略竖直方向的滚动
-            scrollY: false,
-            eventPassthrough: "vertical"
-          });
-        } else {
-          this.scroll.refresh();
-        }
-      });
-    }
   },
   components: {
     [VanImage.name]: VanImage,
@@ -104,19 +104,13 @@ export default {
       api
         .getBaseMessage()
         .then(res => {
-          if (!res || res == "0000") return;
+          if (!res || res.code != "0000") return;
           this.unPayNu = res.data.unPayNu;
           this.unUseNum = res.data.unUseNum;
         })
         .catch(err => {
           Toast("系统异常，请稍后重试");
         });
-    },
-    unPayNuTo() {
-      Toast("待付款");
-    },
-    unUseNumTo() {
-      Toast("去使用");
     }
   }
 };
@@ -128,8 +122,7 @@ body {
 </style>
 <style lang="less" scoped>
 .myCont {
-  padding-bottom: 60px;
-  height: calc(100vh - 60px);
+  //height: calc(100vh - 1.4rem);
   position: relative;
   .bgBox {
     width: 100%;
@@ -150,9 +143,9 @@ body {
       margin: 0 auto;
       display: flex;
       align-items: center;
-      padding: 7% 0;
+      padding: 7% 0 13% 0;
       .van-image--round {
-        border: 2px solid red;
+        border: 2px solid #fff;
       }
       .information {
         color: #fff;
@@ -180,30 +173,36 @@ body {
         color: #434343;
       }
       /deep/ .van-tabbar-item__icon img {
-        width: 1rem;
-        height: 1rem;
+        width: 32px;
+        height: 25px;
+        vertical-align: inherit;
       }
     }
     .van-tabbar {
       height: 1.7rem;
-      margin: 0 0 6% 0;
+      margin: 0 0 2% 0;
+    }
+    /deep/ .van-cell:first-child {
+      border-radius: 5px 5px 0 0;
     }
     /deep/ .van-cell {
       align-items: center;
       color: #333333;
-      border-radius: 5px;
+      padding: 0.2rem 0.4rem;
       font-size: 14px;
       .van-cell__left-icon {
         height: initial;
         .van-icon__image {
-          width: 2em;
-          height: 2em;
+          width: 32px;
+          height: 25px;
         }
       }
     }
-    .van-collapse-item__wrapper {
-      .van-tabbar {
-        margin: 0;
+    .van-collapse-item {
+      .van-collapse-item__wrapper {
+        .van-tabbar {
+          margin: 0;
+        }
       }
     }
   }
@@ -212,7 +211,7 @@ body {
   }
   /deep/ .van-info {
     background-color: #ff6024;
-    font-size: 10px;
+    right: 0.13333rem;
   }
 }
 </style>

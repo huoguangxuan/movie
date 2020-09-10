@@ -6,9 +6,11 @@
         <van-pull-refresh
           v-model="refreshing"
           @refresh="onRefresh"
-          style="height:  calc(100vh - 6rem);padding-bottom: 1.6rem;overflow-y: scroll"
+          :head-height="50"
+          success-text="刷新成功"
+          style="height:  calc(100vh - 2.4rem);overflow-y: scroll"
         >
-          <div v-if="noData" class="noData">暂无数据</div>
+          <div v-if="noData" class="noData">空空如也~</div>
           <template v-else>
             <van-list
               v-model="loading"
@@ -17,45 +19,44 @@
               :offset="100"
               @load="pullUp"
             >
-              <van-row v-for="(item, index) in list" :key="index" gutter="6">
-                <van-col span="6">
-                  <img :src="item.posterUrl" class="leftImg" />
-                </van-col>
-                <van-col span="12">
-                  <div class="van-row-movieName">{{ item.movieName }}</div>
-                  <p>
-                    <span class="number">{{ item.hotScore }}</span>
-                    <span>人想看</span>
-                  </p>
-                  <div class="publicDesc van-multi-ellipsis--l2">
-                    {{ item.publicDesc }}
+              <ul class="tab-content">
+                <li
+                  class="item"
+                  v-for="item in list"
+                  :key="item.sort"
+                  @click="$router.push({path: '/film-detail',params: { movieId: item.sort }})"
+                >
+                  <img class="poster" :src="item.posterUrl" alt />
+                  <div class="info">
+                    <h3 class="font16 black">{{item.movieName}}</h3>
+                    <p class="font14 hot-score">
+                      <span class="orange">{{ item.hotScore || 0 }}</span>
+                      <span class="black">&nbsp;人想看</span>
+                    </p>
+                    <p class="font12 mtb4 van-multi-ellipsis--l2">{{ item.publicDesc }}</p>
+                    <p class="font12 black van-ellipsis actorsList">
+                      <span
+                        v-for="(actorsList, index) in item.actors"
+                        :key="index"
+                        class="nameActors"
+                      >{{ actorsList.name }}</span>
+                    </p>
                   </div>
-                  <div class="actorsList van-ellipsis">
-                    <span
-                      v-for="(actorsList, index) in item.actors"
-                      :key="index"
-                      class="nameActors"
-                      >{{ actorsList.name }}</span
-                    >
-                  </div>
-                </van-col>
-                <van-col span="6">
                   <div class="score">
-                    评分
-                    <span class="scoreNumber">{{ item.cinemaScore }}</span>
+                    <p class="font16">
+                      评分
+                      <span class="orange">{{ item.cinemaScore }}</span>
+                    </p>
+                    <van-button
+                      class="buy-btn"
+                      round
+                      @click.stop="$router.push({path: '/choseSeat',params: { movieId: item.sort }})"
+                      size="small"
+                      color="linear-gradient(to right, #F8A10E, #EE6806)"
+                    >去购票</van-button>
                   </div>
-                  <van-button
-                    round
-                    type="info"
-                    v-if="item.runStatus == 0"
-                    disabled
-                    >未上映</van-button
-                  >
-                  <van-button round type="info" v-else @change="goTicket"
-                    >去购票</van-button
-                  >
-                </van-col>
-              </van-row>
+                </li>
+              </ul>
             </van-list>
           </template>
         </van-pull-refresh>
@@ -64,14 +65,12 @@
         <van-pull-refresh
           v-model="refreshing"
           @refresh="onRefresh"
-          style="height:  calc(100vh - 6rem);padding-bottom: 1.6rem;overflow-y: scroll"
+          :head-height="50"
+          success-text="刷新成功"
+          style="height:  calc(100vh - 2.4rem);overflow-y: scroll"
         >
           <ul class="lst">
-            <li
-              v-for="(item, key) in list"
-              :key="key"
-              @click="toDetail(item.id)"
-            >
+            <li v-for="(item, key) in list" :key="key" @click="toDetail(item.id)">
               <div class="txt-box">
                 <p class="name">{{ item.cinemaName }}</p>
                 <p>
@@ -88,8 +87,7 @@
                   type="warning"
                   v-for="(tag, index) in item.features"
                   :key="index"
-                  >{{ tag }}</van-tag
-                >
+                >{{ tag }}</van-tag>
               </div>
             </li>
           </ul>
@@ -237,10 +235,9 @@ export default {
 <style lang="less" scoped>
 .myCollection {
   background-color: #f4f4f4;
-  padding-bottom: 60px;
-  height: calc(100vh - 60px);
+  height: calc(100vh);
   /deep/.van-nav-bar__title {
-    font-weight: 900;
+    //font-weight: 900;
     color: #333333;
     overflow: initial;
     font-size: 16px;
@@ -253,73 +250,18 @@ export default {
     .van-tab--active {
       color: #ff6024;
     }
-    .van-tabs__content {
-      padding-top: 10px;
-    }
-    .van-dropdown-menu__title::after {
-      border-color: transparent transparent #333333 #333333;
-    }
-    .van-dropdown-menu__bar {
-      background: none;
-      box-shadow: none;
-    }
-    .van-dropdown-menu__title .van-ellipsis {
-      font-size: 12px;
-      color: #333333;
-    }
-  }
-  .van-pull-refresh {
-    background: #f4f4f4;
-  }
-  .number {
-    color: #ff6024;
-  }
-  .publicDesc {
-    color: #999999;
-    margin: 2% 0;
-    width: 90%;
-    font-size: 12px;
-  }
-  .actorsList {
-    width: 90%;
-    color: #333333;
-    font-size: 14px;
-  }
-  .featuresList {
-    width: 100%;
-    font-size: 12px;
-    margin: 3% 0;
-    &-name {
-      color: #ff6b33;
-      border: 1px solid #ff6b33;
-      border-radius: 5px;
-      margin: 0 2%;
-      padding: 4px 0;
-      text-align: center;
-    }
-    &-name:first-child {
-      margin: 0 2% 0 0;
-    }
   }
   .nameActors:first-child {
     position: relative;
-    margin: 0 2% 0 0;
+    margin: 0 4% 0 0;
   }
   .nameActors:first-child::after {
-    // border-right: 0.02667rem solid #333333;
     position: absolute;
     right: -20%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-55%);
     content: "|";
   }
-  .nameActors {
-    margin: 0 2%;
-  }
-  .van-tab__pane {
-    background: #f4f4f4;
-  }
-
   .noData {
     color: #969799;
     font-size: 0.37333rem;
@@ -327,43 +269,80 @@ export default {
     text-align: center;
     margin: 10% auto;
   }
-  .score {
-    font-size: 14px;
-    margin: 0 0 3% 10%;
+  .van-list {
+    padding-top: 0.21333rem;
   }
-  .scoreNumber {
-    color: #ff6024;
-  }
-  .van-row {
-    display: flex;
-    background: #fff;
-    align-items: center;
-    margin: 0 0 10px 0;
-    padding: 2% 0;
-    justify-content: center;
-    &-movieName {
-      font-weight: 900;
-      color: #333333;
-      font-size: 18px;
+  .tab-content {
+    background-color: #fff;
+    .item {
+      padding: 0.26667rem 0.45333rem;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      border-bottom: 0.21333rem solid #f4f4f4;
+      .poster {
+        width: 1.6rem;
+        height: 2.66667rem;
+        border-radius: 0.08rem;
+        margin-right: 0.21333rem;
+      }
+      .info {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        width: 50%;
+        margin-right: 0.26667rem;
+        .hot-score {
+          margin: 0.08rem 0;
+        }
+      }
+      .font14 {
+        font-size: 0.37333rem;
+      }
+      .mtb4 {
+        margin: 0.10667rem 0;
+      }
+      .font12 {
+        font-size: 0.32rem;
+      }
+      .van-multi-ellipsis--l2 {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .font16 {
+        font-size: 0.42667rem;
+      }
+      .orange {
+        color: #ff7030;
+      }
+      .black {
+        color: #333;
+      }
+      .score {
+        -webkit-align-self: center;
+        -ms-flex-item-align: center;
+        align-self: center;
+        text-align: center;
+        .buy-btn {
+          margin-top: 0.21333rem;
+          padding: 0.13333rem 0.4rem;
+        }
+      }
+      .actorsList {
+        width: 90%;
+        color: #333333;
+        font-size: 14px;
+      }
     }
-    p {
-      font-size: 12px;
-    }
-  }
-  .van-button--info {
-    border: none;
-    height: 0.8rem;
-    background: linear-gradient(to right, #f8a00e, #ee6906);
-    box-shadow: 0px 4px 5px #ffd3c4;
-  }
-  .leftImg {
-    width: 100%;
-  }
-  .van-dropdown-menu__bar {
-    background: none;
   }
   // 影院
   .lst {
+    padding-top: 0.21333rem;
     overflow: hidden;
     li {
       height: 88px;
@@ -394,7 +373,6 @@ export default {
           }
         }
       }
-
       .tags {
         height: 30px;
         display: flex;
