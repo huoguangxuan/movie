@@ -11,7 +11,7 @@
         </router-link>
         <router-link :to="{ name: 'citySelection' }">
           <div class="searchsite">
-            <span>{{city}}</span>
+            <span>{{ city }}</span>
             <img src="@/assets/images/pull.png" />
           </div>
         </router-link>
@@ -19,10 +19,10 @@
     </div>
     <!-- banner位 -->
     <div class="banner">
-      <van-swipe :autoplay="3000"
-                 indicator-color="white">
-        <van-swipe-item v-for="(item, index) in banner"
-                        :key="index"><img :src="item.imageUrl" /></van-swipe-item>
+      <van-swipe :autoplay="3000" indicator-color="white">
+        <van-swipe-item v-for="(item, index) in banner" :key="index"
+          ><img :src="item.imageUrl"
+        /></van-swipe-item>
       </van-swipe>
     </div>
     <!-- 精选活动位 -->
@@ -33,8 +33,7 @@
         </div>
         <div class="liveright">
           <span class="exclusive">万达影票X联通专享</span>
-          <van-button round
-                      type="info">限时兑换</van-button>
+          <van-button round type="info">限时兑换</van-button>
         </div>
       </div>
     </div>
@@ -42,66 +41,48 @@
     <div class="film">
       <div class="filmhead">
         <span class="headleft">
-          <span @click="num = 1"
-                :class="{ active: num == 1 }"
-                class="spanleft">正在热映</span>
-          <img class="long"
-               src="@/assets/images/long.png" />
-          <span @click="num = 2"
-                :class="{ active: num == 2 }"
-                class="spanright">即将上映</span>
+          <span @click="num = 1" :class="{ active: num == 1 }" class="spanleft"
+            >正在热映</span
+          >
+          <img class="long" src="@/assets/images/long.png" />
+          <span @click="num = 2" :class="{ active: num == 2 }" class="spanright"
+            >即将上映</span
+          >
         </span>
         <router-link :to="{ name: num == 1 ? 'hotfilms' : 'thefilms' }">
           <span class="headright">
-            更多<img class="more"
-                 src="@/assets/images/more.png" />
+            更多<img class="more" src="@/assets/images/more.png" />
           </span>
         </router-link>
       </div>
       <!-- 滑动正在热映 -->
-      <div class="filmcontent"
-           ref="filmcontent"
-           v-show="num == 1">
+      <div class="filmcontent" ref="filmcontent" v-show="num == 1">
         <!-- /* 这里是父盒子*/ -->
-        <ul class="filmcont"
-            ref="filmcont">
+        <ul class="filmcont" ref="filmcont">
           <!-- 这里是子盒子，即滚动区域 -->
-          <li class="cont-item"
-              v-for="(item, index) in fail"
-              :key="index">
+          <li class="cont-item" v-for="(item, index) in fail" :key="index">
             <router-link :to="{ name: 'film-detail' }">
-              <img class="img"
-                   :src="item.playBillUrl" />
+              <img class="img" :src="item.playBillUrl" />
               <span class="filmname">{{ item.name }}</span>
             </router-link>
             <router-link :to="{ name: 'cinemas' }">
-              <van-button class="bytick"
-                          round
-                          type="info">购票</van-button>
+              <van-button class="bytick" round type="info">购票</van-button>
             </router-link>
           </li>
         </ul>
       </div>
       <!-- 滑动即将上映 -->
-      <div class="filmcontent"
-           ref="comingcontent"
-           v-show="num == 2">
+      <div class="filmcontent" ref="comingcontent" v-show="num == 2">
         <!-- /* 这里是父盒子*/ -->
-        <ul class="filmcont"
-            ref="comingcont">
+        <ul class="filmcont" ref="comingcont">
           <!-- 这里是子盒子，即滚动区域 -->
-          <li class="cont-item"
-              v-for="(item, index) in coming"
-              :key="index">
+          <li class="cont-item" v-for="(item, index) in coming" :key="index">
             <router-link :to="{ name: 'film-detail' }">
-              <img class="img"
-                   :src="item.playBillUrl" />
+              <img class="img" :src="item.playBillUrl" />
               <span class="filmname">{{ item.name }}</span>
             </router-link>
             <router-link :to="{ name: 'cinemas' }">
-              <van-button class="wantlook"
-                          round
-                          type="info">想看</van-button>
+              <van-button class="wantlook" round type="info">想看</van-button>
             </router-link>
           </li>
         </ul>
@@ -112,20 +93,17 @@
       <div class="activihead">
         <span class="headleft">热门活动</span>
         <router-link :to="{ name: 'activity' }">
-          <span class="headright">更多<img src="@/assets/images/more.png" /></span>
+          <span class="headright"
+            >更多<img src="@/assets/images/more.png"
+          /></span>
         </router-link>
       </div>
-      <div class="wrapper"
-           ref="wrapper">
+      <div class="wrapper" ref="wrapper">
         <!-- /* 这里是父盒子*/ -->
-        <ul class="cont"
-            ref="cont">
+        <ul class="cont" ref="cont">
           <!-- 这里是子盒子，即滚动区域 -->
-          <li class="cont-item"
-              v-for="(item, index) in activi"
-              :key="index">
-            <img class="img"
-                 :src="item.photoUrl" />
+          <li class="cont-item" v-for="(item, index) in activi" :key="index">
+            <img class="img" :src="item.photoUrl" />
           </li>
         </ul>
       </div>
@@ -135,7 +113,8 @@
       <div class="informationhead">
         <span class="headleft">精选资讯</span>
         <router-link :to="{ name: 'information' }">
-          <span class="headright">更多<img src="@/assets/images/more.png" />
+          <span class="headright"
+            >更多<img src="@/assets/images/more.png" />
           </span>
         </router-link>
       </div>
@@ -144,23 +123,43 @@
           <ul>
             <li class="exone">
               <span class="title">八佰将于8月20日全国上映</span>
-              <span class="text"><span class="spanstart">八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映。八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映。</span><span class="spanend">查看详情<img src="@/assets/images/mores.png" /></span></span>
-              <span class="time"><span>消息来源：中国联通</span><span>2020-08-12</span></span>
+              <span class="text"
+                ><span class="spanstart"
+                  >八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映。八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映。</span
+                ><span class="spanend"
+                  >查看详情<img src="@/assets/images/mores.png"/></span
+              ></span>
+              <span class="time"
+                ><span>消息来源：中国联通</span><span>2020-08-12</span></span
+              >
             </li>
             <li class="extwo">
-              <img src="https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c" />
+              <img
+                src="https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+              />
             </li>
           </ul>
         </div>
         <div class="exampel">
           <ul>
             <li class="exone">
-              <span class="title">八佰将于8月20日全国上映八佰将于8月20日全国上映</span>
-              <span class="text"><span class="spanstart">于8月20日全国上映八佰将于上映八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映。</span><span class="spanend">查看详情<img src="@/assets/images/mores.png" /></span></span>
-              <span class="time"><span>消息来源：中国联通</span><span>2020-08-12</span></span>
+              <span class="title"
+                >八佰将于8月20日全国上映八佰将于8月20日全国上映</span
+              >
+              <span class="text"
+                ><span class="spanstart"
+                  >于8月20日全国上映八佰将于上映八佰将于8月20日全国上映八佰将于8月20日全国上映八佰将于8月20日全国上映。</span
+                ><span class="spanend"
+                  >查看详情<img src="@/assets/images/mores.png"/></span
+              ></span>
+              <span class="time"
+                ><span>消息来源：中国联通</span><span>2020-08-12</span></span
+              >
             </li>
             <li class="extwo">
-              <img src="https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c" />
+              <img
+                src="https://p1.meituan.net/moviemachine/a448ca6a5f4dafb88067722303ca0cfd96002.jpg@120w_200h_1e_1c"
+              />
             </li>
           </ul>
         </div>
@@ -179,7 +178,7 @@ export default {
     [SwipeItem.name]: SwipeItem,
     [Button.name]: Button
   },
-  data () {
+  data() {
     return {
       city: "北京",
       activi: [],
@@ -192,15 +191,15 @@ export default {
       num: 1
     };
   },
-  created () { },
-  mounted () {
+  created() {},
+  mounted() {
     this.getHomeData();
     this.$store.dispatch("changenavshow", true);
     this.getcity();
   },
   methods: {
     //首页banner，热映，即将上映，热门活动的数据接口
-    getHomeData () {
+    getHomeData() {
       const params = { cityId: "北京" };
       api.tickets
         .getHomeData(params)
@@ -219,7 +218,7 @@ export default {
           console.log(err);
         });
     },
-    verScroll () {
+    verScroll() {
       let width_active = this.length_activi * 110 * 2 + 20; // 动态计算出滚动区域的大小，前面已经说过了，产生滚动的原因是滚动区域宽度大于父盒子宽度
       let width_fail = this.length_fail * 110 * 2 + 20;
       let width_coming = this.length_coming * 110 * 2 + 20;
@@ -254,9 +253,8 @@ export default {
         }
       });
     },
-    getcity () {
-      if (!this.$route.query.city == "")
-        this.city = this.$route.query.city;
+    getcity() {
+      if (!this.$route.query.city == "") this.city = this.$route.query.city;
     }
   }
 };

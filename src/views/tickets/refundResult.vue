@@ -3,10 +3,9 @@
     <div class="contain-box">
       <div class="status">
         <img src="@/assets/images/refund_status.png" alt="" />
-        <h4>申请通过，退款中</h4>
+        <h4 :class="{ 'status-fail': status === 1 }">申请通过，退款中</h4>
         <p>到账时间：预计7个工作日原路返回</p>
       </div>
-
       <van-cell title="退款金额" value-class="money" value="39.9元" />
       <van-cell title="退款账户" value="原支付账户" />
       <van-cell title="退款流程" />
@@ -40,7 +39,8 @@ export default {
   name: "refundResult",
   data() {
     return {
-      radio: "1"
+      radio: "1",
+      status: 0
     };
   },
   mounted() {},

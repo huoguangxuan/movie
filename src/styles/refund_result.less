@@ -25,6 +25,11 @@
         position: absolute;
         left: 50px;
         top: 15px;
+
+        &.status-fail {
+          top: 50%;
+          transform: translateY(-50%);
+        }
       }
 
       p {
@@ -49,11 +54,11 @@
     h4 {
       text-align: center;
       color: #666666;
+      font-size: 14px;
 
       span {
         font-family: PingFangSC-Regular;
         color: #f39c4b;
-        line-height: 28px;
       }
     }
   }

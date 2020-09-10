@@ -37,6 +37,15 @@ let routes = [
     component: () =>
       import(/* webpackChunkName: "pages" */ "../views/tickets/homeSearch")
   },
+  //首页搜索页结果
+  {
+    path: "/homeSearch/result",
+    name: "homeSearchResult",
+    component: () =>
+      import(
+        /* webpackChunkName: "pages" */ "../views/tickets/homeSearchResult"
+      )
+  },
   //资讯详情
   {
     path: "/information",
@@ -50,26 +59,6 @@ let routes = [
     name: "activity",
     component: () =>
       import(/* webpackChunkName: "pages" */ "../views/tickets/activity")
-  },
-  //影院列表
-  {
-    path: "/cinemas",
-    name: "cinemas",
-    component: () => import(/* webpackChunkName: "pages" */ "../views/cinemas")
-  },
-  //影院详情
-  {
-    path: "/cinemas/detail",
-    name: "cinemasdetail",
-    component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/cinemas/detail")
-  },
-  //影院地图
-  {
-    path: "/cinemas/map",
-    name: "cinemasmap",
-    component: () =>
-      import(/* webpackChunkName: "pages" */ "../views/cinemas/map")
   },
 
   //个人主页

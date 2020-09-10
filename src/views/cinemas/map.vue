@@ -1,6 +1,6 @@
 <template>
   <div class="map">
-    <div class="go-back">
+    <div class="go-back" @click="goBack">
       <van-icon name="arrow-left" size="24px" />
     </div>
     <div class="search-btn">
@@ -170,6 +170,9 @@ export default {
     };
   },
   methods: {
+    goBack() {
+      this.$router.back(-1);
+    },
     initMarkers() {
       // let arr = [[116.366936, 39.921499]];
       // let markerLst = [];

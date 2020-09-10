@@ -12,7 +12,18 @@
       <h4>请带好口罩！</h4>
     </div> -->
     <van-notice-bar left-icon="volume-o" text="请带好口罩！" />
-    <div class="gallery"></div>
+    <div class="gallery">
+      <swiper ref="mySwiper" :options="swiperOptions">
+        <div class="swiper-slide" v-for="(item, key) in banners" :key="key">
+          <img :src="item" />
+        </div>
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
+      <h4>
+        八百<span class="score-txt">评分</span><span class="score">9.2</span>
+      </h4>
+      <p>分钟 | 类型 | 演员</p>
+    </div>
     <van-tabs v-model="active" swipe-threshold="3">
       <van-tab v-for="(item, key) in tab" :title="item" :key="key">
         <div
@@ -47,16 +58,24 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
 import { NavBar, NoticeBar, Tab, Tabs, Overlay } from "vant";
+import { Swiper, directive } from "vue-awesome-swiper";
+// If you use Swiper 6.0.0 or higher
+import "swiper/swiper-bundle.css";
 
-Vue.use(NavBar);
-Vue.use(NoticeBar);
-Vue.use(Tab);
-Vue.use(Tabs);
-Vue.use(Overlay);
 export default {
   name: "cinemaDetail",
+  components: {
+    [NavBar.name]: NavBar,
+    [NoticeBar.name]: NoticeBar,
+    [Tab.name]: Tab,
+    [Tabs.name]: Tabs,
+    [Overlay.name]: Overlay,
+    Swiper
+  },
+  directives: {
+    swiper: directive
+  },
   data() {
     return {
       tab: [
@@ -68,6 +87,34 @@ export default {
         "9月10日 周一"
       ],
       active: 1,
+      banners: [
+        require("@/assets/images/movie_bg.png"),
+        require("@/assets/images/movie_bg.png"),
+        require("@/assets/images/movie_bg.png"),
+        require("@/assets/images/movie_bg.png"),
+        require("@/assets/images/movie_bg.png"),
+        require("@/assets/images/movie_bg.png"),
+        require("@/assets/images/movie_bg.png"),
+        require("@/assets/images/movie_bg.png")
+      ],
+      swiperOptions: {
+        autoplay: true,
+        loop: true,
+        slideToClickedSlide: true,
+        slidesPerView: 5,
+        centeredSlides: true,
+        spaceBetween: 10,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true
+        },
+        on: {
+          slideChange: function() {
+            console.log("改变了，activeIndex为" + this.activeIndex);
+          }
+        }
+        // Some Swiper option/callback...
+      },
       lst: [
         {
           begin: "11:22",
@@ -100,6 +147,12 @@ export default {
   mounted() {
     this.$store.dispatch("changenavshow", false); //关闭下面的footer显示
     console.log(this.$route.query.id);
+    console.log("Current Swiper instance object", this.swiper);
+  },
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.$swiper;
+    }
   },
   methods: {
     searchByHand(id) {

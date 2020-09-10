@@ -8,5 +8,8 @@ export default {
   },
   getFilmDetail(params) {
     return axios.post(`${prefix}/film/getFilmDetail`, params);
+  },
+  getSearchResul(params) {
+    return axios.post(`${prefix}/homeInfo/getSearchResul`, params);
   }
 };

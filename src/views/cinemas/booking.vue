@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrap cinemas">
+  <div class="page-wrap cinemas-booking">
     <van-nav-bar title="影院列表" />
     <van-dropdown-menu>
       <van-dropdown-item v-model="value1" title="筛选" ref="placeselect">
@@ -12,7 +12,6 @@
       </van-dropdown-item>
       <van-dropdown-item v-model="value2" :options="option2" />
       <van-dropdown-item v-model="value3" :options="option3" />
-      <van-dropdown-item v-model="value4" :options="option4" />
     </van-dropdown-menu>
     <ul class="lst">
       <li v-for="(item, key) in lst" :key="key" @click="toDetail(item.id)">
@@ -26,14 +25,17 @@
           <p>{{ item.addr }}</p>
           <p>{{ item.dist }}m</p>
         </div>
-        <div class="tags">
-          <van-tag
-            plain
-            type="warning"
-            v-for="(tag, index) in item.tags"
+        <div class="films-box">
+          <div
+            class="films"
+            v-for="(films, index) in item.films"
             :key="index"
-            >{{ tag }}</van-tag
+            @click.stop="buyTicket()"
           >
+            <h6>{{ films.time }}</h6>
+            <p class="type">{{ films.type }}</p>
+            <p class="price">{{ films.price }}元</p>
+          </div>
         </div>
       </li>
     </ul>
@@ -50,7 +52,7 @@ import {
 } from "vant";
 
 export default {
-  name: "cinemas",
+  name: "cinemasBooking",
   components: {
     [NavBar.name]: NavBar,
     [DropdownMenu.name]: DropdownMenu,
@@ -64,7 +66,6 @@ export default {
       value1: 0,
       value2: "a",
       value3: 0,
-      value4: "a",
       option1: [
         { text: "全城", value: 0 },
         { text: "新款商品", value: 1 },
@@ -79,10 +80,6 @@ export default {
         { text: "综合排序", value: 0 },
         { text: "新款商品", value: 1 },
         { text: "活动商品", value: 2 }
-      ],
-      option4: [
-        { text: "好评排序", value: "a" },
-        { text: "销量排序", value: "b" }
       ],
       active: 0,
       activeId: 1,
@@ -113,7 +110,43 @@ export default {
           price: 32,
           addr: "影院地址",
           dist: 550,
-          tags: ["实惠", "便宜", "廉价"],
+          films: [
+            {
+              time: "9:00",
+              type: "国语2D",
+              price: 35.6
+            },
+            {
+              time: "9:00",
+              type: "国语2D",
+              price: 35.6
+            },
+            {
+              time: "9:00",
+              type: "国语2D",
+              price: 35.6
+            },
+            {
+              time: "9:00",
+              type: "国语2D",
+              price: 35.6
+            },
+            {
+              time: "9:00",
+              type: "国语2D",
+              price: 35.6
+            },
+            {
+              time: "9:00",
+              type: "国语2D",
+              price: 35.6
+            },
+            {
+              time: "9:00",
+              type: "国语2D",
+              price: 35.6
+            }
+          ],
           id: 1
         },
         {
@@ -152,6 +185,7 @@ export default {
         }
       });
     },
+    buyTicket() {},
     choosePlace(e) {
       console.log(e);
       this.$refs.placeselect.toggle();
@@ -161,6 +195,6 @@ export default {
 </script>
 <style lang="less" scoped>
 @import url(../../styles/common.less);
-@import url(../../styles/cinemas.less);
+@import url(../../styles/booking.less);
 @import url(../../styles/vant_sf.less);
 </style>

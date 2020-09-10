@@ -1730,5 +1730,74 @@ app.use("/user/getBaseMessage", function(req, res) {
 app.listen("8090", () => {
   console.log("监听端口 8090");
 });
-
+//homesearch
+app.use("/homeInfo/getSearchResul", function(req, res) {
+  res.json({
+    code: "0000",
+    msg: "成功",
+    dateTime: "2020-09-07 10:41:53",
+    data: {
+      cinemas: {
+        pageNo: 1,
+        pageSize: 3,
+        rows: 2,
+        totalPage: 0,
+        pageData: [
+          {
+            cinemaId: "122",
+            minPrice: "4990",
+            address: "南京不知道",
+            cinemaName: "万达",
+            distance: "3336.8",
+            sort: null,
+            features: ["不知道,并不知道,还是不知道"],
+            isCollect: null,
+            score: null
+          },
+          {
+            cinemaId: "124",
+            minPrice: "3990",
+            address: "不告诉不",
+            cinemaName: "万达本地店",
+            distance: "6756.599999999999",
+            sort: null,
+            features: ["不想说,不知道,舒适"],
+            isCollect: null,
+            score: null
+          }
+        ]
+      },
+      movies: {
+        pageNo: 1,
+        pageSize: 3,
+        rows: 2,
+        totalPage: 0,
+        pageData: [
+          {
+            runStatus: "0",
+            id: "1",
+            name: "电影战狼南万",
+            introduction: "33",
+            hotScore: null,
+            sort: null,
+            poster: "32",
+            director: "导演去,导演来,",
+            actor: "演员走,演员回,"
+          },
+          {
+            runStatus: "1",
+            id: "6",
+            name: "即将热映电影战争万",
+            introduction: "555",
+            hotScore: null,
+            sort: null,
+            poster: "3",
+            director: "演员啊,",
+            actor: "演员走,"
+          }
+        ]
+      }
+    }
+  });
+});
 // nodemon babel-node server.js
